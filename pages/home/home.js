@@ -23,7 +23,7 @@ const tInt = setInterval(() => {
     }
 }, 45);
 
-// ── Fade-up observer (one-shot, matches about.js)
+// ── Fade-up observer
 const observer = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {

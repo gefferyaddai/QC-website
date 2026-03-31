@@ -95,7 +95,7 @@ body {
     padding: 80px 0 60px;
 }
 
-/* grid texture — same as about.css */
+/* grid texture */
 .hero::before {
     content: '';
     position: absolute;
@@ -188,7 +188,7 @@ body {
     display: flex; flex-direction: column; gap: 2px;
 }
 .stat-pill strong { font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--pink-600); line-height: 1; }
-.stat-pill span { font-size: 11px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.stat-pill span { font-size: 18px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
 
 /* ── VISION / MISSION ── */
 .vision {
