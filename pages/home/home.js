@@ -6,7 +6,7 @@ window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.
 const titleEl  = document.getElementById('heroTitle');
 const subEl    = document.getElementById('typedSub');
 const titleTxt = 'Quantitative Investment Society';
-const subTxt   = 'UCalgary Division';
+const subTxt   = 'University of Calgary - Student Investment Fund';
 
 let ti = 0;
 const tInt = setInterval(() => {

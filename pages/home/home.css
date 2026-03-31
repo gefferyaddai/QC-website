@@ -185,10 +185,19 @@ body {
     background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(8px);
     border: 1px solid rgba(180, 140, 170, 0.22);
     border-radius: 16px; padding: 14px 22px;
-    display: flex; flex-direction: column; gap: 2px;
+    display: flex; flex-direction: column; gap: 4px;
 }
-.stat-pill strong { font-family: 'DM Serif Display', serif; font-size: 2.4rem; color: var(--pink-600); line-height: 1; }
-.stat-pill span { font-size: 18px; color: var(--text-mid); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+.stat-pill strong {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.9rem; font-style: italic;
+    color: var(--pink-600); line-height: 1;
+    letter-spacing: -0.5px;
+}
+.stat-pill span {
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-mid); margin-top: 2px;
+}
 
 /* ── VISION / MISSION ── */
 .vision {
@@ -196,13 +205,12 @@ body {
     position: relative; overflow: hidden;
 }
 
-/* grid texture on vision section too */
 .vision::before {
     content: '';
     position: absolute; inset: 0; z-index: 0;
     background-image:
-            linear-gradient(var(--border) 1px, transparent 1px),
-            linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 48px 48px;
     opacity: 0.5;
 }
@@ -210,19 +218,7 @@ body {
 .vision-inner {
     position: relative; z-index: 1;
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 72px; align-items: center;
-}
-
-.section-label {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--pink-600); margin-bottom: 20px;
-}
-.section-label::before {
-    content: '';
-    width: 24px; height: 1px;
-    background: var(--pink-400);
+    gap: 72px; align-items: start;
 }
 
 .vision h2 {
@@ -232,6 +228,7 @@ body {
 }
 .vision h2 em { font-style: italic; color: var(--pink-600); }
 .vision p { color: var(--text-mid); font-size: 1rem; line-height: 1.8; margin-bottom: 16px; font-weight: 300; }
+
 .vision-cta {
     display: inline-flex; align-items: center; gap: 8px;
     color: var(--pink-600); font-weight: 600; font-size: 0.9rem;
@@ -247,9 +244,27 @@ body {
     border-radius: 16px; padding: 22px 24px;
     opacity: 0; transform: translateX(72px);
     transition: opacity 0.5s ease, transform 0.55s cubic-bezier(0.22, 0.68, 0, 1.15), box-shadow 0.25s;
+    position: relative; overflow: hidden;
+}
+
+/* iridescent corner orb on each card */
+.role-card::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px; border-radius: 50%;
+    bottom: -40px; right: -40px;
+    background: radial-gradient(circle, var(--pink-200), var(--lav-200));
+    filter: blur(36px); opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
 }
 .role-card.slide-in { opacity: 1; transform: translateX(0); }
-.role-card.slide-in:hover { box-shadow: 0 8px 28px rgba(192, 80, 154, 0.12); transform: translateY(-3px); }
+.role-card.slide-in:hover {
+    box-shadow: 0 8px 28px rgba(192, 80, 154, 0.12);
+    transform: translateY(-3px);
+}
+.role-card.slide-in:hover::after { opacity: 0.7; }
+
 .role-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .role-icon {
     width: 36px; height: 36px; border-radius: 10px;
@@ -259,14 +274,19 @@ body {
     font-size: 0.9rem; flex-shrink: 0;
 }
 .role-title { font-weight: 700; font-size: 0.95rem; color: var(--text-dark); }
-.role-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; font-weight: 300; }
+.role-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; font-weight: 300; position: relative; z-index: 1; }
 
-/* ── NEWSLETTER — full-screen dark section ── */
+
+/* ── NEWSLETTER ── */
 .newsletter {
     min-height: 100vh;
     display: flex; align-items: center;
     padding: 100px 0;
-    background: linear-gradient(135deg, #1a1018 0%, #2d1828 100%);
+    background: linear-gradient(to bottom,
+        var(--off-white) 0%,
+        #2a1220 18%,
+        #1a1018 40%,
+        #2d1828 100%);
     position: relative; overflow: hidden;
 }
 /* grid texture on dark bg */

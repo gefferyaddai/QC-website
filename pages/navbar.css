@@ -59,9 +59,9 @@ body {
     gap: 12px;
     text-decoration: none;
     font-family: 'DM Serif Display', serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #1a1018;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.5px;
 }
 
 .brand span {
