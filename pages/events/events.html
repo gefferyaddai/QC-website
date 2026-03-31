@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../navbar.css">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Events — UC Quants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="events.css"/>
 </head>
 <body>
-<nav class="nav">
+
+<!-- ── NAV ── -->
+<nav class="nav" id="mainNav">
     <div class="wrap nav-inner">
         <div class="brand">
-            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo" />
+            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
             <span>Quantitative Investment Society</span>
         </div>
-
         <div class="nav-links">
             <a href="../home/home.html">Home</a>
-            <a href="../about/about.html" >About</a>
+            <a href="../about/about.html">About</a>
             <a href="../events/events.html" class="active">Events</a>
             <a href="../meet%20the%20team/mtt.html">Meet Us</a>
             <a href="../projects/projects.html">Projects</a>
@@ -24,5 +30,155 @@
     </div>
 </nav>
 
+<!-- ── PAGE HEADER ── -->
+<section class="page-header">
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+    <div class="wrap inner fade-up">
+        <div class="section-label">What's On</div>
+        <h1>Events &<br><em>gatherings.</em></h1>
+        <p class="header-sub">Workshops, talks, and networking — everything UC Quants has coming up.</p>
+    </div>
+</section>
+
+<!-- ── UPCOMING EVENTS ── -->
+<section class="upcoming-section">
+    <div class="wrap">
+        <div class="upcoming-header fade-up">
+            <div>
+                <h2>Upcoming <em>Events</em></h2>
+                <p>Stay tuned for UC Quants workshops, speaker sessions, and community activities.</p>
+            </div>
+            <button class="notify-btn" id="notifyBtn">
+                <i class="fa-regular fa-bell"></i> Get Notified
+            </button>
+        </div>
+
+        <!-- Empty state — remove and replace with events-grid when events are scheduled -->
+        <div class="empty-state fade-up" style="transition-delay: 0.1s">
+            <div class="empty-icon"><i class="fa-regular fa-calendar-xmark"></i></div>
+            <h3>No Upcoming Events</h3>
+            <p>Nothing scheduled right now — check back soon or get notified when new events drop.</p>
+        </div>
+
+        <!--
+        **WHEN WE HAVE EVENTS**: remove the empty-state above, uncomment this block,
+        and fill in the details for each card.
+
+        <div class="events-grid">
+          <div class="event-card fade-up">
+            <div class="event-card-banner">
+              <i class="event-fa-icon fa-solid fa-square-root-variable"></i>
+              <div class="event-date-badge">
+                <span class="month">Apr</span>
+                <span class="day">18</span>
+              </div>
+            </div>
+            <div class="event-card-body">
+              <span class="event-tag">Workshop</span>
+              <h3>Options Pricing Workshop</h3>
+              <div class="event-card-meta">
+                <span><i class="fa-regular fa-clock"></i> 6:00 PM</span>
+                <span><i class="fa-solid fa-location-dot"></i> STEM 119</span>
+              </div>
+              <p>A hands-on session covering Black-Scholes and Greeks with live Python demos.</p>
+              <a href="#" class="event-card-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+        -->
+    </div>
+</section>
+
+<!-- ── COUNTDOWN ── -->
+<section class="countdown-section">
+    <div class="wrap countdown-inner fade-up">
+        <div class="section-label">Next Event</div>
+        <h2 class="countdown-event-name" id="countdownEventName">TBA — Stay Tuned</h2>
+        <div class="countdown-grid">
+            <div class="countdown-unit">
+                <div class="countdown-number" id="cdDays">--</div>
+                <div class="countdown-lbl">Days</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit">
+                <div class="countdown-number" id="cdHours">--</div>
+                <div class="countdown-lbl">Hours</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit">
+                <div class="countdown-number" id="cdMinutes">--</div>
+                <div class="countdown-lbl">Minutes</div>
+            </div>
+            <div class="countdown-sep">:</div>
+            <div class="countdown-unit">
+                <div class="countdown-number" id="cdSeconds">--</div>
+                <div class="countdown-lbl">Seconds</div>
+            </div>
+        </div>
+        <p class="countdown-note" id="countdownNote">
+            <i class="fa-solid fa-circle-info"></i>
+            Don't miss out
+        </p>
+    </div>
+</section>
+
+<!-- ── CALENDAR ── -->
+<section class="calendar-section">
+    <div class="wrap">
+        <div class="calendar-header fade-up">
+            <div class="section-label">Schedule</div>
+            <h2>Event <em>Calendar</em></h2>
+            <p>View the full UC Quants schedule and plan ahead.</p>
+        </div>
+        <div class="calendar-card fade-up" style="transition-delay: 0.1s">
+            <!-- Replace the src with club's Google Calendar embed URL -->
+            <iframe
+                    src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FEdmonton"
+                    style="border: 0" width="100%" height="640" frameborder="0" scrolling="no"
+                    title="UC Quants Event Calendar">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- ── NOTIFY MODAL ── -->
+<div class="notify-modal-overlay" id="notifyModal">
+    <div class="notify-modal">
+        <button class="notify-modal-close" id="notifyClose">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div id="notifyFormState">
+            <div class="notify-modal-icon"><i class="fa-regular fa-bell"></i></div>
+            <h3>Get Notified</h3>
+            <p>Be the first to know when UC Quants events are announced.</p>
+            <form id="notifyForm">
+                <div class="notify-field">
+                    <label for="notifyName">First Name</label>
+                    <input type="text" id="notifyName" placeholder="Jane" required/>
+                </div>
+                <div class="notify-field">
+                    <label for="notifyEmail">Email Address</label>
+                    <input type="email" id="notifyEmail" placeholder="jane@ucalgary.ca" required/>
+                </div>
+                <button type="submit" class="notify-submit-btn">
+                    <i class="fa-regular fa-bell"></i> Notify Me
+                </button>
+            </form>
+            <p class="notify-modal-note">
+                <i class="fa-solid fa-lock"></i> No spam, ever. Unsubscribe anytime.
+            </p>
+        </div>
+        <div id="notifySuccessState" style="display: none; text-align: center; padding: 20px 0">
+            <div class="notify-modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h3>You're on the list!</h3>
+            <p style="margin-top: 10px; color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; font-weight: 300;">
+                We'll let you know as soon as the next UC Quants event is announced.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script src="events.js"></script>
 </body>
 </html>
