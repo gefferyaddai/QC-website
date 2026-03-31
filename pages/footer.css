@@ -1,0 +1,82 @@
+/* ── FOOTER ── */
+.footer {
+    background: #1a1018;
+    padding: 30px 0;
+    border-top: 1px solid rgba(180, 140, 170, 0.12);
+    position: relative;
+    overflow: hidden;
+}
+
+/* pink/lav accent line at top — mirrors the nav */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    height: 2px; width: 100%;
+    background: linear-gradient(90deg, #e07ab8, #9b93ea);
+    opacity: 0.8;
+}
+
+.footer-inner {
+    position: relative; z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+/* brand */
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: -0.2px;
+}
+.footer-brand img {
+    width: 28px; height: 28px;
+    object-fit: contain; border-radius: 50%;
+    opacity: 0.85;
+}
+.footer-brand span { font-style: italic; color: #e07ab8; }
+
+/* social icons */
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.footer-socials a {
+    display: flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(180, 140, 170, 0.2);
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.18s;
+}
+.footer-socials a:hover {
+    color: #fff;
+    background: rgba(192, 80, 154, 0.22);
+    border-color: rgba(192, 80, 154, 0.5);
+    transform: translateY(-2px);
+}
+
+/* copyright */
+.footer-copy {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+.footer-copy span { color: rgba(255, 255, 255, 0.45); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+    .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+    .footer-copy { white-space: normal; }
+}
