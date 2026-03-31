@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../navbar.css">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home — UC Quants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="stylesheet" href="home.css"/>
 </head>
 <body>
-<nav class="nav">
+
+<!-- ── NAV ── -->
+<nav class="nav" id="mainNav">
     <div class="wrap nav-inner">
         <div class="brand">
-            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo" />
+            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
             <span>Quantitative Investment Society</span>
         </div>
-
         <div class="nav-links">
             <a href="../home/home.html" class="active">Home</a>
-            <a href="../about/about.html" >About</a>
+            <a href="../about/about.html">About</a>
             <a href="../events/events.html">Events</a>
             <a href="../meet%20the%20team/mtt.html">Meet Us</a>
             <a href="../projects/projects.html">Projects</a>
@@ -24,5 +30,131 @@
     </div>
 </nav>
 
+<!-- ── HERO ── -->
+<section class="hero">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="wrap hero-inner">
+        <div class="hero-label">University of Calgary</div>
+        <h1 class="hero-title" id="heroTitle"></h1>
+        <p class="hero-subtitle" id="heroSub">
+            <span id="typedSub"></span><span class="typed-cursor">|</span>
+        </p>
+        <p class="hero-desc fade-up">
+            To establish a leading student platform dedicated to advancing expertise
+            in quantitative finance, programming, and financial innovation.
+        </p>
+        <div class="hero-actions fade-up" style="transition-delay: 0.1s">
+            <a href="../about/about.html" class="btn-primary">
+                Learn More <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="../events/events.html" class="btn-secondary">
+                Upcoming Events <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="hero-stats fade-up" style="transition-delay: 0.2s">
+            <div class="stat-pill">
+                <strong><span class="count-num" data-target="20" data-suffix="+">0+</span></strong>
+                <span>Members</span>
+            </div>
+            <div class="stat-pill">
+                <strong><span class="count-num" data-target="3" data-suffix="">0</span></strong>
+                <span>Projects</span>
+            </div>
+            <div class="stat-pill">
+                <strong>2025</strong>
+                <span>Founded</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── VISION / MISSION ── -->
+<section class="vision">
+    <div class="wrap vision-inner">
+        <div class="fade-up">
+            <div class="section-label">Our Mission</div>
+            <h2>Built by students,<br><em>for the markets.</em></h2>
+            <p>
+                UC Quants is a multidisciplinary student society at the University of Calgary
+                uniting programmers, financial analysts, and researchers under one roof.
+            </p>
+            <p>
+                We bridge theory and practice — from Black-Scholes to live backtesting,
+                from probability puzzles to quant job offers.
+            </p>
+            <a href="../about/about.html" class="vision-cta">
+                See what we do <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="roles-grid">
+            <div class="role-card" data-delay="50">
+                <div class="role-card-top">
+                    <div class="role-icon"><i class="fa-solid fa-code"></i></div>
+                    <span class="role-title">Programmers</span>
+                </div>
+                <p>Build the technical infrastructure — coding environments, APIs, trading simulation platforms, and quantitative model implementations in Python.</p>
+            </div>
+            <div class="role-card" data-delay="180">
+                <div class="role-card-top">
+                    <div class="role-icon"><i class="fa-solid fa-chart-line"></i></div>
+                    <span class="role-title">Financial Analysts</span>
+                </div>
+                <p>Acquire, clean, and organize financial data. Identify relevant data sources and support feature engineering and analytical workflows.</p>
+            </div>
+            <div class="role-card" data-delay="310">
+                <div class="role-card-top">
+                    <div class="role-icon"><i class="fa-solid fa-flask"></i></div>
+                    <span class="role-title">Researchers</span>
+                </div>
+                <p>Develop quantitative investment ideas, explore financial theory, coordinate backtesting, and present findings to the organization.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── NEWSLETTER ── -->
+<section class="newsletter">
+    <div class="wrap newsletter-inner">
+        <div class="fade-up">
+            <div class="section-label">Stay Informed</div>
+            <h2>Monthly<br><em>Newsletter</em></h2>
+            <p>
+                Get quant finance insights, club updates, market research, and
+                upcoming event announcements delivered straight to your inbox every month.
+            </p>
+            <div class="nl-form">
+                <input class="nl-input" type="email" placeholder="your@ucalgary.ca"/>
+                <button class="nl-btn">Subscribe <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+        <div class="nl-preview fade-up" style="transition-delay: 0.12s">
+            <div class="nl-preview-header">
+                <span class="nl-icon"><i class="fa-solid fa-envelope-open-text"></i></span>
+                <div>
+                    <strong>UC Quants Monthly</strong>
+                    <span>March 2026 Edition</span>
+                </div>
+            </div>
+            <div class="nl-preview-body">
+                <h4>This month: Factor Models & the Rate Environment</h4>
+                <p>
+                    We break down how rising rate regimes affect multi-factor equity strategies,
+                    explore a deep-dive on the Fama-French 5-factor model, and recap our
+                    Black-Litterman project presentation from February.
+                </p>
+                <div class="nl-preview-tags">
+                    <span class="nl-tag">Factor Models</span>
+                    <span class="nl-tag">Rates</span>
+                    <span class="nl-tag">Fama-French</span>
+                    <span class="nl-tag">Portfolio Theory</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="home.js"></script>
 </body>
 </html>
