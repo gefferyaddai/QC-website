@@ -27,7 +27,10 @@
             <a href="../events/events.html">Events</a>
             <a href="../meet%20the%20team/mtt.html">Meet Us</a>
             <a href="../projects/projects.html">Projects</a>
-            <a href="../sponsors/sponsors.html">Partner</a>
+            <a href="../partner/partner.html">Partner</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_9aNNyNV88GmFGjm4Hs45p0WVKEN5c3t2-Ca4AA0bUAXvmw/viewform?usp=sharing&ouid=111469209547493174522" class="nav-join" target="_blank" rel="noopener">
+                Join Us
+            </a>
         </div>
     </div>
 </nav>
@@ -129,20 +132,20 @@
             </p>
         </div>
 
-        <!-- Right: form card -->
+<!-- Right: form card -->
         <div class="nl-card fade-up" style="transition-delay: 0.12s">
-            <form class="nl-form" id="nlForm">
+            <form class="nl-form" id="nlForm" action="https://formspree.io/f/xnjownnv" method="POST">
                 <div class="nl-field">
                     <label for="nlFirst">First Name</label>
-                    <input type="text" id="nlFirst" placeholder="Enter your first name" required/>
+                    <input type="text" id="nlFirst" name="first_name" placeholder="Enter your first name" required/>
                 </div>
                 <div class="nl-field">
                     <label for="nlLast">Last Name</label>
-                    <input type="text" id="nlLast" placeholder="Enter your last name" required/>
+                    <input type="text" id="nlLast" name="last_name" placeholder="Enter your last name" required/>
                 </div>
                 <div class="nl-field">
                     <label for="nlEmail">Email Address</label>
-                    <input type="email" id="nlEmail" placeholder="Enter your email" required/>
+                    <input type="email" id="nlEmail" name="email" placeholder="Enter your email" required/>
                 </div>
                 <button type="submit" class="nl-btn">Join the Newsletter</button>
             </form>
@@ -150,9 +153,10 @@
                 <i class="fa-solid fa-circle-check"></i>
                 <p>You're subscribed! Welcome to UC Quants Monthly.</p>
             </div>
-        </div>
-    </div>
-</section>
+        </div>       <!-- closes nl-card -->
+
+    </div>           <!-- closes newsletter-inner -->
+</section>           <!-- closes newsletter -->
 
 <!-- ── FOOTER ── -->
 <footer class="footer">
@@ -162,34 +166,40 @@
             <span>Quantitative Investment Society</span>
         </div>
         <div class="footer-socials">
-            <a href="https://x.com/ucquants" target="_blank" rel="noopener" aria-label="X / Twitter">
-                <i class="fa-brands fa-x-twitter"></i>
-            </a>
             <a href="https://www.instagram.com/ucquants/" target="_blank" rel="noopener" aria-label="Instagram">
                 <i class="fa-brands fa-instagram"></i>
             </a>
             <a href="https://www.linkedin.com/company/ucquants/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <i class="fa-brands fa-linkedin-in"></i>
             </a>
-            <a href="mailto:ucquants@ucalgary.ca" aria-label="Email">
+            <a href="mailto:ucquants@gmail.com" aria-label="Email">
                 <i class="fa-regular fa-envelope"></i>
-            </a>
-            <a href="https://www.facebook.com/ucquants" target="_blank" rel="noopener" aria-label="Facebook">
-                <i class="fa-brands fa-facebook-f"></i>
             </a>
         </div>
         <div class="footer-divider"></div>
-        <p class="footer-copy">© 2025 <span>UC Quants</span> — University of Calgary. All rights reserved.</p>
+        <p class="footer-copy">© 2025 <span>UCQuants</span> — University of Calgary. All rights reserved.</p>
     </div>
 </footer>
 
 <script src="home.js"></script>
 <script>
-    // Newsletter form submit
-    document.getElementById('nlForm').addEventListener('submit', function(e) {
+    document.getElementById('nlForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        this.style.display = 'none';
-        document.getElementById('nlSuccess').style.display = 'flex';
+        const form = this;
+        const data = new FormData(form);
+
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('nlSuccess').style.display = 'flex';
+        } else {
+            alert('Something went wrong. Please try again or email us directly at ucquants@gmail.com');
+        }
     });
 </script>
 </body>
