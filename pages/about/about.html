@@ -16,23 +16,28 @@
 
 </head>
 <body>
-<nav class="nav">
+<nav class="nav" id="mainNav">
     <div class="wrap nav-inner">
         <div class="brand">
-            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo" />
+            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
             <span>Quantitative Investment Society</span>
         </div>
 
-        <div class="nav-links">
+        <!-- hamburger button -->
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
             <a href="../home/home.html">Home</a>
-            <a href="../about/about.html" class="active">About</a>
+            <a href="../about/about.html">About</a>
             <a href="../events/events.html">Events</a>
             <a href="../meet%20the%20team/mtt.html">Meet Us</a>
             <a href="../projects/projects.html">Projects</a>
             <a href="../partner/partner.html">Partner</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_9aNNyNV88GmFGjm4Hs45p0WVKEN5c3t2-Ca4AA0bUAXvmw/viewform?usp=sharing&ouid=111469209547493174522" class="nav-join" target="_blank" rel="noopener">
-                Join Us
-            </a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_9aNNyNV88GmFGjm4Hs45p0WVKEN5c3t2-Ca4AA0bUAXvmw/viewform?usp=sharing&ouid=111469209547493174522" class="nav-join" target="_blank" rel="noopener">Join Us</a>
         </div>
     </div>
 </nav>
@@ -165,5 +170,20 @@
   </div>
 </footer>
 <script src="about.js"></script>
+<script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('open');
+        links.classList.toggle('open');
+    });
+    // close menu when a link is clicked
+    links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            toggle.classList.remove('open');
+            links.classList.remove('open');
+        });
+    });
+</script>
 </body>
 </html>

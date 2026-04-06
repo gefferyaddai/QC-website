@@ -262,7 +262,7 @@ body {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-inner { flex-direction: row; align-items: flex-start; }
     .nav-links { width: 100%; }
     .nav-links a { padding: 7px 13px; font-size: 0.85rem; }
     .upcoming-header { flex-direction: column; }

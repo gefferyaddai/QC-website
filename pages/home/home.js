@@ -83,3 +83,18 @@ const roleObs = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.25 });
 document.querySelectorAll('.role-card').forEach(c => roleObs.observe(c));
+
+
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('open');
+        links.classList.toggle('open');
+    });
+    // close menu when a link is clicked
+    links.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            toggle.classList.remove('open');
+            links.classList.remove('open');
+        });
+    });

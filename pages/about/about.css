@@ -339,3 +339,35 @@ h2 em {
   .cards { grid-template-columns: 1fr 1fr; }
   .cards .card:last-child { grid-column: 1 / -1; max-width: 560px; }
 }
+
+/* Ensure the section can grow with its content */
+.what-we-do {
+    height: auto;
+    min-height: 100vh;
+    padding: 60px 0; /* Add padding so it doesn't touch the footer */
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+    .bottom-row {
+        flex-direction: column; /* Stack the stats and the Join button */
+        align-items: center;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .bottom-stats {
+        flex-direction: column; /* Stack Interview, Industry, Real vertically */
+        gap: 20px;
+        width: 100%;
+    }
+
+    .bottom-stats > div {
+        margin-bottom: 15px; /* Add space between each stat item */
+    }
+
+    .stat-num {
+        display: block;
+        font-size: 1.5rem; /* Slightly smaller for mobile if needed */
+    }
+}
