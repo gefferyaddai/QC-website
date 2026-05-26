@@ -8,6 +8,6 @@ const observer = new IntersectionObserver(
   },
   { threshold: 0.1 }
 );
-// remember to add interactive aspects to the website very important
+// remember to add feature
 
 document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
