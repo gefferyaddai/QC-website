@@ -6,13 +6,10 @@
 
 let timers = [];
 let observers = [];
-let raf = null;
 let plx = [];
 let onScroll = null;
-let onPointerMove = null;
-let onResize = null;
 let onRespResize = null;
-let renderer = null;
+let activeCleanup = null;
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -30,12 +27,9 @@ export function destroy() {
     timers = [];
     observers.forEach((o) => o.disconnect());
     observers = [];
-    if (raf) { cancelAnimationFrame(raf); raf = null; }
     if (onScroll) { window.removeEventListener('scroll', onScroll); onScroll = null; }
-    if (onPointerMove) { window.removeEventListener('pointermove', onPointerMove); onPointerMove = null; }
-    if (onResize) { window.removeEventListener('resize', onResize); onResize = null; }
     if (onRespResize) { window.removeEventListener('resize', onRespResize); onRespResize = null; }
-    if (renderer) { renderer.dispose(); renderer.domElement.remove(); renderer = null; }
+    if (activeCleanup) { activeCleanup(); activeCleanup = null; }
     plx = [];
 }
 
@@ -144,6 +138,24 @@ async function rings3d(root) {
     const stage = root.querySelector('#ringsStage');
     if (!stage || reduced()) return;
 
+    // Local to this call — never shared with any other in-flight or past
+    // instance, so a stale async continuation (e.g. the user navigated away
+    // and back before this finished setting up) can't clobber a newer
+    // instance's renderer/raf, and can't be clobbered by one either.
+    let alive = true;
+    let raf = null;
+    let renderer = null;
+    let onPointerMove = null;
+    let onResize = null;
+    const cleanup = () => {
+        alive = false;
+        if (raf) cancelAnimationFrame(raf);
+        if (onPointerMove) window.removeEventListener('pointermove', onPointerMove);
+        if (onResize) window.removeEventListener('resize', onResize);
+        if (renderer) { renderer.dispose(); renderer.domElement.remove(); }
+    };
+    activeCleanup = cleanup;
+
     let THREE;
     try {
         THREE = await import('https://esm.sh/three@0.164.1');
@@ -151,6 +163,7 @@ async function rings3d(root) {
         console.warn('three.js unavailable — rings skipped', err);
         return;
     }
+    if (!alive) return; // destroy() ran while three.js was loading
 
     const w = () => stage.clientWidth;
     const h = () => stage.clientHeight;
@@ -240,9 +253,10 @@ async function rings3d(root) {
     window.addEventListener('resize', onResize);
 
     const clock = new THREE.Clock();
-    timers.push(setTimeout(() => stage.classList.add('ready'), 260));
+    timers.push(setTimeout(() => { if (alive) stage.classList.add('ready'); }, 260));
 
     const animate = () => {
+        if (!alive) return;
         raf = requestAnimationFrame(animate);
         const t = clock.getElapsedTime();
 
@@ -262,9 +276,6 @@ async function rings3d(root) {
     animate();
     } catch (err) {
         console.warn('rings3d setup failed — rings skipped', err);
-        if (onPointerMove) { window.removeEventListener('pointermove', onPointerMove); onPointerMove = null; }
-        if (onResize) { window.removeEventListener('resize', onResize); onResize = null; }
-        if (raf) { cancelAnimationFrame(raf); raf = null; }
-        if (renderer) { renderer.dispose(); renderer.domElement.remove(); renderer = null; }
+        cleanup();
     }
 }
