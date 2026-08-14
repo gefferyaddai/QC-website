@@ -1,12 +1,4 @@
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  },
-  { threshold: 0.1 }
-);
-
-document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+// Fade-up reveal is handled globally by the router (pages/app.js).
+// Nothing page-specific to initialize on Projects.
+export function init(root) {}
+export function destroy() {}

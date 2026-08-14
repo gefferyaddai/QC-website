@@ -1,41 +1,8 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* ── VARIABLES ── */
-:root {
-    --pink-50:   #fdf3f8;
-    --pink-100:  #f9dff0;
-    --pink-200:  #f2bade;
-    --pink-400:  #e07ab8;
-    --pink-600:  #c0509a;
-    --pink-900:  #5a1a44;
-    --lav-50:    #f3f2ff;
-    --lav-100:   #e4e0fc;
-    --lav-200:   #c9c4f7;
-    --lav-400:   #9b93ea;
-    --lav-600:   #6c61cc;
-    --off-white: #fdfaf8;
-    --text-dark: #1a1018;
-    --text-mid:  #5c4d58;
-    --text-light:#9e8ea0;
-    --border:    rgba(180, 140, 170, 0.18);
-}
-
-body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--off-white);
-    color: var(--text-dark);
-    overflow-x: hidden;
-}
-
 /* ── SECTION LABEL ── */
 .section-label {
     display: inline-flex; align-items: center; gap: 10px;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase;
+    font-size: var(--fs-label); font-weight: 600;
+    letter-spacing: var(--ls-label); line-height: var(--lh-label); text-transform: uppercase;
     color: var(--pink-600); margin-bottom: 20px;
 }
 .section-label::before {
@@ -87,7 +54,7 @@ body {
 .hero h1 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2.4rem, 5.5vw, 4.2rem);
-    line-height: 1.08; letter-spacing: -0.03em;
+    line-height: var(--lh-display); letter-spacing: var(--ls-display);
     color: #fff; margin-bottom: 20px;
 }
 .hero h1 em { color: var(--pink-400); font-style: italic; }
@@ -104,8 +71,23 @@ body {
     text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 20px rgba(192, 80, 154, 0.35);
+    position: relative; overflow: hidden;
 }
 .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(192, 80, 154, 0.45); }
+.hero-cta:active {
+    transform: scale(0.96);
+    transition-duration: var(--dur-instant);
+    transition-timing-function: var(--ease-out-quick);
+}
+.hero-cta::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--silver-sheen);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+.hero-cta:hover::after { transform: translateX(120%); }
 
 /* ── WHY / HOW TO GET INVOLVED ── */
 .why {
@@ -125,7 +107,7 @@ body {
 .why-header h2 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 14px;
+    line-height: var(--lh-h2); letter-spacing: var(--ls-h2); margin-bottom: 14px;
 }
 .why-header h2 em { font-style: italic; color: var(--pink-600); }
 .why-header p { color: var(--text-mid); font-size: 1rem; line-height: 1.75; font-weight: 300; }
@@ -136,7 +118,8 @@ body {
     gap: 20px;
 }
 .benefit-card {
-    background: #fff; border: 1px solid var(--border);
+    background: linear-gradient(#fff, #fff) padding-box, var(--metallic-border) border-box;
+    border: 1px solid transparent;
     border-radius: 24px; padding: 28px 26px;
     transition: transform 0.3s cubic-bezier(.22,.68,0,1.2), box-shadow 0.3s ease;
 }
@@ -173,7 +156,7 @@ body {
 .who-text h2 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.12; letter-spacing: -0.02em;
+    line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
     margin-bottom: 16px;
 }
 .who-text h2 em { font-style: italic; color: var(--pink-600); }
@@ -264,7 +247,7 @@ body {
 .contact-inner h2 {
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.02em; margin-bottom: 16px;
+    letter-spacing: var(--ls-h2); line-height: var(--lh-h2); margin-bottom: 16px;
 }
 .contact-inner h2 em { font-style: italic; color: var(--pink-600); }
 .contact-inner p {
@@ -279,15 +262,8 @@ body {
     text-decoration: none; transition: all 0.2s;
 }
 .contact-email:hover { background: var(--lav-600); transform: translateY(-1px); }
+.contact-email:active { transform: scale(0.94); transition-duration: var(--dur-instant); }
 .contact-note { margin-top: 20px; font-size: 12px; color: var(--text-light); }
-
-/* ── FADE UP ── */
-.fade-up {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.fade-up.visible { opacity: 1; transform: none; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
