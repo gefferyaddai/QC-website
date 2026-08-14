@@ -88,20 +88,26 @@
   text-wrap: pretty;
 }
 
-/* 3D rings — the canvas is absolutely positioned, so this box MUST keep an
-   explicit height or the canvas collapses to zero. */
+/* static 2D rings graphic — pure CSS/SVG, no canvas, no JS */
 .wwd-visual { position: relative; height: min(46vh, 400px); min-height: 300px; }
 
-.rings-stage {
+.rings-graphic {
   position: absolute;
   inset: 0;
-  opacity: 0;
-  transition: opacity 1.4s var(--ease-out-smooth);
+  width: 100%;
+  height: 100%;
   -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 40%, transparent 100%);
           mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 40%, transparent 100%);
 }
-.rings-stage.ready { opacity: 1; }
-.rings-stage canvas { display: block; width: 100%; height: 100%; }
+.rings-graphic .ring {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: ringSpin linear infinite;
+}
+.rings-graphic .ring-pink { animation-duration: 46s; }
+.rings-graphic .ring-chrome { animation-duration: 34s; animation-direction: reverse; }
+.rings-graphic .ring-lav { animation-duration: 58s; }
+@keyframes ringSpin { to { transform: rotate(360deg); } }
 
 .rings-caption {
   position: absolute;
@@ -334,9 +340,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card, .rings-stage {
+  .card {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
   }
+  .rings-graphic .ring { animation: none !important; }
 }
