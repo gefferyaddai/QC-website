@@ -1,10 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>GHSA UCalgary</title>
-    <meta http-equiv="refresh" content="0; url=pages/home/home.html" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>UC Quants — Quantitative Investment Society</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+    <link rel="stylesheet" href="/pages/theme.css"/>
+    <link rel="stylesheet" href="/pages/navbar.css"/>
+    <link rel="stylesheet" href="/pages/footer.css"/>
+
+    <!-- Per-page stylesheets — preloaded but inert. The router (app.js) enables
+         exactly one at a time, since each was authored assuming it would be the
+         only page stylesheet in the DOM (some share class names with different
+         rules, e.g. .hero, .page-header). -->
+    <link rel="stylesheet" href="/pages/home/home.css" id="css-home" disabled/>
+    <link rel="stylesheet" href="/pages/about/about.css" id="css-about" disabled/>
+    <link rel="stylesheet" href="/pages/events/events.css" id="css-events" disabled/>
+    <link rel="stylesheet" href="/pages/meet-the-team/mtt.css" id="css-team" disabled/>
+    <link rel="stylesheet" href="/pages/projects/projects.css" id="css-projects" disabled/>
+    <link rel="stylesheet" href="/pages/partner/partner.css" id="css-partner" disabled/>
 </head>
 <body>
+
+<!-- ── NAV (shell — rendered once, never re-injected) ── -->
+<nav class="nav" id="mainNav">
+    <div class="wrap nav-inner">
+        <div class="brand">
+            <img src="/assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
+            <span>Quantitative Investment Society</span>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+            <a href="/" data-route="home">Home</a>
+            <a href="/" data-route="about">About</a>
+            <a href="/" data-route="events">Events</a>
+            <a href="/" data-route="team">Meet Us</a>
+            <a href="/" data-route="projects">Projects</a>
+            <a href="/" data-route="partner">Partner</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_9aNNyNV88GmFGjm4Hs45p0WVKEN5c3t2-Ca4AA0bUAXvmw/viewform?usp=sharing&ouid=111469209547493174522" class="nav-join" target="_blank" rel="noopener">Join Us</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ── ROUTED CONTENT — swapped by pages/app.js, URL never changes ── -->
+<main id="app-content" tabindex="-1"></main>
+
+<!-- ── FOOTER (shell — rendered once, never re-injected) ── -->
+<footer class="footer">
+    <div class="wrap footer-inner">
+        <div class="footer-brand">
+            <img src="/assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
+            <span>Quantitative Investment Society</span>
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.instagram.com/ucquants/" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/ucquants/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:ucquants@gmail.com" aria-label="Email">
+                <i class="fa-regular fa-envelope"></i>
+            </a>
+        </div>
+        <div class="footer-divider"></div>
+        <p class="footer-copy">© 2025 <span>UCQuants</span> — University of Calgary. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="/pages/nav.js"></script>
+<script type="module" src="/pages/app.js"></script>
 </body>
 </html>

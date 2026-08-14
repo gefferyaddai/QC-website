@@ -1,231 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-    <link rel="stylesheet" href="home.css"/>
-    <link rel="stylesheet" href="../navbar.css"/>
-    <link rel="stylesheet" href="../footer.css"/>
-</head>
-<body>
-
-<!-- ── NAV ── -->
-<nav class="nav" id="mainNav">
-    <div class="wrap nav-inner">
-        <div class="brand">
-            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
-            <span>Quantitative Investment Society</span>
-        </div>
-
-        <!-- hamburger button -->
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <div class="nav-links" id="navLinks">
-            <a href="../home/home.html">Home</a>
-            <a href="../about/about.html">About</a>
-            <a href="../events/events.html">Events</a>
-            <a href="../meet%20the%20team/mtt.html">Meet Us</a>
-            <a href="../projects/projects.html">Projects</a>
-            <a href="../partner/partner.html">Partner</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_9aNNyNV88GmFGjm4Hs45p0WVKEN5c3t2-Ca4AA0bUAXvmw/viewform?usp=sharing&ouid=111469209547493174522" class="nav-join" target="_blank" rel="noopener">Join Us</a>
-        </div>
-    </div>
-</nav>
-
 <!-- ── HERO ── -->
 <section class="hero">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <div class="wrap hero-inner">
+    <div class="hero-grid-bg"></div>
+    <div class="blob blob-1" data-plx="0.18"></div>
+    <div class="blob blob-2" data-plx="0.30"></div>
+    <div class="blob blob-3" data-plx="0.45"></div>
+    <div class="silver-glow" data-plx="0.10"></div>
+    <div class="hero-fade"></div>
 
-        <h1 class="hero-title" id="heroTitle"></h1>
-        <p class="hero-subtitle" id="heroSub">
-            <span id="typedSub"></span><span class="typed-cursor">|</span>
-        </p>
-        <p class="hero-desc fade-up">
-            To establish a leading student platform dedicated to advancing expertise
-            in quantitative finance, programming, and financial innovation.
-        </p>
-        <div class="hero-actions fade-up" style="transition-delay: 0.1s">
-            <a href="../about/about.html" class="btn-primary">
-                Learn More <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <a href="../events/events.html" class="btn-secondary">
-                Upcoming Events <i class="fa-solid fa-arrow-right"></i>
-            </a>
+    <div class="home-wrap hero-inner" data-grid="hero">
+        <div class="hero-copy">
+            <h1 class="hero-title">
+                <span class="word">Quantitative</span>
+                <span class="word">Investment</span>
+                <span class="word">Society</span>
+            </h1>
+
+            <p class="hero-sub fade-up">University of Calgary - Student Investment Fund<span class="caret" id="heroCaret">|</span></p>
+
+            <p class="hero-lede fade-up">To establish a leading student platform dedicated to advancing expertise in quantitative finance, programming, and financial innovation.</p>
+
+            <div class="hero-actions fade-up">
+                <a href="/" data-route="about" class="btn-fill">Learn More <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="/" data-route="events" class="btn-line">Upcoming Events <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="hero-stats fade-up">
+                <div class="stat">
+                    <strong class="stat-num count-num" data-target="40" data-suffix="+">0+</strong>
+                    <span class="stat-label">Members</span>
+                </div>
+                <div class="stat">
+                    <strong class="stat-num count-num" data-target="3" data-suffix="">0</strong>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat">
+                    <strong class="stat-num">2025</strong>
+                    <span class="stat-label">Founded</span>
+                </div>
+            </div>
         </div>
-        <div class="hero-stats fade-up" style="transition-delay: 0.2s">
-            <div class="stat-pill">
-                <strong><span class="count-num" data-target="30" data-suffix="+">0+</span></strong>
-                <span>Members</span>
-            </div>
-            <div class="stat-pill">
-                <strong><span class="count-num" data-target="5" data-suffix="+">0+</span></strong>
-                <span>models</span>
-            </div>
-            <div class="stat-pill">
-                <strong>2025</strong>
-                <span>Founded</span>
-            </div>
+
+        <div class="hero-visual" data-plx="-0.12">
+            <div class="chart-stage" id="chartStage"></div>
+            <div class="chart-caption fade-up"><span class="caption-rule"></span>Live market simulation</div>
         </div>
     </div>
 </section>
 
-<!-- ── VISION / MISSION ── -->
-<section class="vision">
-    <div class="wrap vision-inner">
-        <div class="fade-up">
-            <div class="section-label">Our Mission</div>
-            <h2>Built by students,<br><em>for the markets.</em></h2>
-            <p>
-                UCQuants is a multidisciplinary student society at the University of Calgary
-                uniting software engineers, financial analysts, and quant analysts under one roof.
-            </p>
-            <p>
-                We bridge theory and practice — from Black-Scholes to live backtesting,
-                from probability puzzles to quant job offers.
-            </p>
-            <a href="../about/about.html" class="vision-cta">
-                See what we do <i class="fa-solid fa-arrow-right"></i>
-            </a>
+<!-- ── MISSION ── -->
+<section class="mission">
+    <div class="mission-grid-bg" data-plx="0.06"></div>
+    <div class="home-wrap mission-inner" data-grid="vision">
+        <div class="mission-copy fade-up">
+            <div class="eyebrow"><span class="eyebrow-rule"></span>Our Mission</div>
+            <h2 class="section-title">Built by students,<br/><em>for the markets.</em></h2>
+            <p>UC Quants is a multidisciplinary student society at the University of Calgary uniting programmers, financial analysts, and researchers under one roof.</p>
+            <p>We bridge theory and practice — from Black-Scholes to live backtesting, from probability puzzles to quant job offers.</p>
+            <a href="/" data-route="projects" class="link-arrow">See what we do <i class="fa-solid fa-arrow-right"></i></a>
         </div>
-        <div class="roles-grid">
+
+        <div class="role-stack">
             <div class="role-card" data-delay="50">
-                <div class="role-card-top">
+                <div class="role-head">
                     <div class="role-icon"><i class="fa-solid fa-code"></i></div>
-                    <span class="role-title">Software Engineer</span>
+                    <span class="role-name">Programmers</span>
                 </div>
-                <p>Build the technical infrastructure — coding environments, APIs, trading simulation platforms, and quantitative model implementations in Python.</p>
+                <p class="role-body">Build the technical infrastructure — coding environments, APIs, trading simulation platforms, and quantitative model implementations in Python.</p>
+                <div class="role-orb"></div>
             </div>
             <div class="role-card" data-delay="180">
-                <div class="role-card-top">
+                <div class="role-head">
                     <div class="role-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <span class="role-title">Financial Analyst</span>
+                    <span class="role-name">Financial Analysts</span>
                 </div>
-                <p>Conduct market research and financial analysis to identify investment opportunities, industry trends, and macroeconomic developments. Acquire, clean, and organize financial data, evaluate company and sector performance, and support analytical workflows used in investment research and portfolio decision-making.
-
-                </p>
+                <p class="role-body">Acquire, clean, and organize financial data. Identify relevant data sources and support feature engineering and analytical workflows.</p>
+                <div class="role-orb"></div>
             </div>
             <div class="role-card" data-delay="310">
-                <div class="role-card-top">
+                <div class="role-head">
                     <div class="role-icon"><i class="fa-solid fa-flask"></i></div>
-                    <span class="role-title">Quant Analyst</span>
+                    <span class="role-name">Researchers</span>
                 </div>
-                <p>Develop and research quantitative financial models, conduct backtesting and data analysis, evaluate market trends and risk factors, and present data-driven investment insights to the organization.
-
-                </p>
+                <p class="role-body">Develop quantitative investment ideas, explore financial theory, coordinate backtesting, and present findings to the organization.</p>
+                <div class="role-orb"></div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ── NEWSLETTER ── -->
-<section class="newsletter">
-    <div class="wrap newsletter-inner">
-        <!-- Left: label + heading + description -->
-        <div class="fade-up">
-            <div class="section-label">Stay Connected</div>
-            <h2>Get the<br><em>Newsletter</em></h2>
-            <p>
-                Stay up to date on upcoming events, market insights, research
-                highlights, and announcements — straight to your inbox.
-            </p>
+<!-- ── SOCIAL PROOF ── -->
+<section class="proof">
+    <div class="proof-grid-bg"></div>
+    <div class="proof-glow proof-glow-1" data-plx="0.14"></div>
+    <div class="proof-glow proof-glow-2" data-plx="0.20"></div>
+
+    <div class="home-wrap">
+        <div class="proof-head fade-up">
+            <div class="eyebrow"><span class="eyebrow-rule"></span>Social Proof</div>
+            <h2 class="section-title">Proof of work,<br/><em>not promises.</em></h2>
+            <p class="proof-lede">The partners we work with, the research we publish, and the students who came through the society.</p>
         </div>
 
-<!-- Right: form card -->
-        <div class="nl-card fade-up" style="transition-delay: 0.12s">
-            <form class="nl-form" id="nlForm" action="https://formspree.io/f/xnjownnv" method="POST">
-                <div class="nl-field">
-                    <label for="nlFirst">First Name</label>
-                    <input type="text" id="nlFirst" name="first_name" placeholder="Enter your first name" required/>
-                </div>
-                <div class="nl-field">
-                    <label for="nlLast">Last Name</label>
-                    <input type="text" id="nlLast" name="last_name" placeholder="Enter your last name" required/>
-                </div>
-                <div class="nl-field">
-                    <label for="nlEmail">Email Address</label>
-                    <input type="email" id="nlEmail" name="email" placeholder="Enter your email" required/>
-                </div>
-                <button type="submit" class="nl-btn">Join the Newsletter</button>
-            </form>
-            <div class="nl-success" id="nlSuccess" style="display:none">
-                <i class="fa-solid fa-circle-check"></i>
-                <p>You're subscribed! Welcome to UC Quants Monthly.</p>
+        <div class="partner-strip fade-up">
+            <span class="partner-label">Partnered with</span>
+            <span class="partner-wso">
+                <img src="/assets/home/wso-logo.png" alt="Wall Street Oasis"/>
+                <span>Wall Street Oasis</span>
+            </span>
+            <span class="partner-sep"></span>
+            <span class="partner-vantedge"><span>VANTEDGE</span></span>
+            <span class="partner-rule"></span>
+        </div>
+
+        <div class="proof-stats fade-up">
+            <div class="proof-stat">
+                <div class="proof-num">3</div>
+                <div class="proof-label">Research papers published</div>
             </div>
-        </div>       <!-- closes nl-card -->
-
-    </div>           <!-- closes newsletter-inner -->
-</section>           <!-- closes newsletter -->
-
-<!-- ── FOOTER ── -->
-<footer class="footer">
-    <div class="wrap footer-inner">
-        <div class="footer-brand">
-            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
-            <span>Quantitative Investment Society</span>
+            <div class="proof-stat">
+                <div class="proof-num">20+</div>
+                <div class="proof-label">Active members</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-num">2025</div>
+                <div class="proof-label">Founded at UCalgary</div>
+            </div>
+            <div class="proof-cta">
+                <a href="/" data-route="projects" class="link-arrow">Read the research <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
         </div>
-        <div class="footer-socials">
-            <a href="https://www.instagram.com/ucquants/" target="_blank" rel="noopener" aria-label="Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.linkedin.com/company/ucquants/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <i class="fa-brands fa-linkedin-in"></i>
-            </a>
-            <a href="mailto:ucquants@gmail.com" aria-label="Email">
-                <i class="fa-regular fa-envelope"></i>
-            </a>
-        </div>
-        <div class="footer-divider"></div>
-        <p class="footer-copy">© 2025 <span>UCQuants</span> — University of Calgary. All rights reserved.</p>
     </div>
-</footer>
-
-<script src="home.js"></script>
-<script>
-    document.getElementById('nlForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const form = this;
-        const data = new FormData(form);
-
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            form.style.display = 'none';
-            document.getElementById('nlSuccess').style.display = 'flex';
-        } else {
-            alert('Something went wrong. Please try again or email us directly at ucquants@gmail.com');
-        }
-    });
-</script>
-<script>
-    const toggle = document.getElementById('navToggle');
-    const links  = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-        toggle.classList.toggle('open');
-        links.classList.toggle('open');
-    });
-    // close menu when a link is clicked
-    links.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            toggle.classList.remove('open');
-            links.classList.remove('open');
-        });
-    });
-</script>
-</body>
-</html>
+</section>

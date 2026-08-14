@@ -1,24 +1,24 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body { font-family: 'DM Sans', sans-serif; }
-
 .nav {
     position: sticky; top: 0; z-index: 1000;
     width: 100%; padding: 16px 0;
     background: rgba(253, 250, 248, 0.92);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(180, 140, 170, 0.18);
     transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
     overflow: visible; /* important for dropdown */
 }
 
+/* metallic hairline — only shown once there's content scrolled underneath;
+   a hard divider with nothing beneath it at scroll-top reads as a mistake */
 .nav::before {
     content: "";
     position: absolute; top: 0; left: 0;
     height: 2px; width: 100%;
-    background: linear-gradient(90deg, #e07ab8, #9b93ea);
+    background: linear-gradient(90deg, var(--pink-400), var(--chrome-300) 45%, #fff 50%, var(--chrome-300) 55%, var(--lav-400));
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out-smooth);
 }
+.nav.scrolled::before { opacity: 1; }
 
 .nav.scrolled {
     background: rgba(253, 250, 248, 0.97);
@@ -45,8 +45,12 @@ body { font-family: 'DM Sans', sans-serif; }
     letter-spacing: -0.5px;
     flex-shrink: 0;
 }
-.brand span { font-style: italic; color: #c0509a; }
-.brand img { width: 42px; height: 42px; object-fit: contain; border-radius: 50%; }
+.brand span { font-style: italic; color: var(--pink-600); }
+.brand img {
+    width: 42px; height: 42px; object-fit: contain; border-radius: 50%;
+    border: 1px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box, var(--metallic-border) border-box;
+}
 
 /* ── DESKTOP LINKS ── */
 .nav-links {
@@ -55,7 +59,7 @@ body { font-family: 'DM Sans', sans-serif; }
 }
 
 .nav-links a {
-    text-decoration: none; color: #5c4d58;
+    text-decoration: none; color: var(--text-mid);
     font-size: 0.925rem; font-weight: 600;
     letter-spacing: 0.03em;
     padding: 8px 16px; border-radius: 999px;
@@ -63,13 +67,19 @@ body { font-family: 'DM Sans', sans-serif; }
     white-space: nowrap;
 }
 .nav-links a:hover {
-    color: #1a1018;
+    color: var(--text-dark);
     background: rgba(192, 80, 154, 0.07);
     transform: translateY(-1px);
 }
+.nav-links a:active {
+    transform: scale(0.96);
+    background: rgba(192, 80, 154, 0.12);
+    transition-duration: var(--dur-instant);
+    transition-timing-function: var(--ease-out-quick);
+}
 .nav-links a.active {
-    background: #f9dff0; color: #c0509a;
-    font-weight: 600; border: 1px solid #f2bade;
+    background: var(--pink-100); color: var(--pink-600);
+    font-weight: 600; border: 1px solid var(--pink-200);
 }
 
 /* ── HAMBURGER BUTTON ── */
@@ -85,11 +95,15 @@ body { font-family: 'DM Sans', sans-serif; }
     flex-shrink: 0;
 }
 .nav-toggle:hover { background: rgba(192, 80, 154, 0.08); }
+.nav-toggle:active {
+    transform: scale(0.92);
+    transition: transform var(--dur-instant) var(--ease-out-quick);
+}
 
 .nav-toggle span {
     display: block;
     width: 22px; height: 2px;
-    background: #1a1018; border-radius: 2px;
+    background: var(--text-dark); border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
     transform-origin: center;
 }
@@ -113,7 +127,7 @@ body { font-family: 'DM Sans', sans-serif; }
     }
 
     .nav-links {
-        display: none;
+        display: flex;
         position: absolute;
         top: calc(100% + 12px);
         left: 0; right: 0;
@@ -126,15 +140,29 @@ body { font-family: 'DM Sans', sans-serif; }
         border-radius: 16px;
         padding: 12px;
         box-shadow: 0 16px 48px rgba(192, 80, 154, 0.12);
-        animation: dropIn 0.25s ease;
+        transform-origin: top right; /* anchored to the hamburger button */
+        opacity: 0;
+        transform: scale(0.9) translateY(-8px);
+        filter: blur(4px);
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity var(--dur-base) var(--ease-spring-bounce),
+                    transform var(--dur-base) var(--ease-spring-bounce),
+                    filter var(--dur-fast) var(--ease-out-smooth),
+                    visibility 0s linear var(--dur-base);
     }
 
-    @keyframes dropIn {
-        from { opacity: 0; transform: translateY(-8px); }
-        to   { opacity: 1; transform: translateY(0); }
+    .nav-links.open {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity var(--dur-base) var(--ease-spring-bounce),
+                    transform var(--dur-base) var(--ease-spring-bounce),
+                    filter var(--dur-fast) var(--ease-out-smooth),
+                    visibility 0s linear 0s;
     }
-
-    .nav-links.open { display: flex; }
 
     .nav-links a {
         padding: 12px 16px;

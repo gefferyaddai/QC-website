@@ -1,47 +1,71 @@
-// ── Nav scroll shadow
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+let modal = null;
+let panel = null;
+let notifyBtn = null;
+let notifyClose = null;
+let notifyForm = null;
+let nameInput = null;
+const handlers = {};
 
-// ── Fade-up observer (matches about.js)
-const observer = new IntersectionObserver(
-    (entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    },
-    { threshold: 0.1 }
-);
-document.querySelectorAll('.fade-up').forEach((el) => observer.observe(el));
+function clamp(v, min, max) { return Math.min(max, Math.max(min, v)); }
 
-// ── COUNTDOWN —
-// Example: const TARGET = new Date('2026-04-18T18:00:00-06:00');
-const TARGET = null;
-
-function updateCountdown() {
-    if (!TARGET) return;
-    const diff = TARGET - Date.now();
-    if (diff <= 0) {
-        document.getElementById('countdownNote').textContent = 'This event has passed!';
-        return;
-    }
-    document.getElementById('countdownNote').style.display = 'none';
-    document.getElementById('cdDays').textContent    = String(Math.floor(diff / 86400000)).padStart(2, '0');
-    document.getElementById('cdHours').textContent   = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
-    document.getElementById('cdMinutes').textContent = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
-    document.getElementById('cdSeconds').textContent = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+// Anchors the modal's transform-origin to the button that opened it, so the
+// panel appears to materialize outward from the trigger rather than the
+// viewport center — measurable even while the panel is still invisible,
+// since it's gated with opacity/visibility, not display:none.
+function setModalOrigin() {
+    const t = notifyBtn.getBoundingClientRect();
+    const p = panel.getBoundingClientRect();
+    if (!p.width || !p.height) return;
+    panel.style.setProperty('--origin-x', clamp(((t.left + t.width / 2 - p.left) / p.width) * 100, -40, 140) + '%');
+    panel.style.setProperty('--origin-y', clamp(((t.top + t.height / 2 - p.top) / p.height) * 100, -40, 140) + '%');
 }
-if (TARGET) { updateCountdown(); setInterval(updateCountdown, 1000); }
 
-// ── Notify modal
-const modal = document.getElementById('notifyModal');
-document.getElementById('notifyBtn').addEventListener('click', () => modal.classList.add('open'));
-document.getElementById('notifyClose').addEventListener('click', () => modal.classList.remove('open'));
-modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('open'); });
-document.getElementById('notifyForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    document.getElementById('notifyFormState').style.display = 'none';
-    document.getElementById('notifySuccessState').style.display = 'block';
-});
+export function init(root) {
+    modal = root.querySelector('#notifyModal');
+    panel = modal && modal.querySelector('.notify-modal');
+    notifyBtn = root.querySelector('#notifyBtn');
+    notifyClose = root.querySelector('#notifyClose');
+    notifyForm = root.querySelector('#notifyForm');
+    nameInput = root.querySelector('#notifyName');
+
+    if (!modal || !notifyBtn || !notifyClose || !notifyForm) return;
+
+    handlers.open = () => {
+        setModalOrigin();
+        modal.classList.add('open');
+        document.addEventListener('keydown', handlers.escape);
+        setTimeout(() => nameInput && nameInput.focus(), 0);
+    };
+    handlers.close = () => {
+        modal.classList.remove('open');
+        document.removeEventListener('keydown', handlers.escape);
+        notifyBtn.focus();
+    };
+    handlers.escape = (e) => { if (e.key === 'Escape') handlers.close(); };
+    handlers.overlay = (e) => { if (e.target === modal) handlers.close(); };
+    handlers.submit = (e) => {
+        e.preventDefault();
+        root.querySelector('#notifyFormState').style.display = 'none';
+        root.querySelector('#notifySuccessState').style.display = 'block';
+    };
+
+    notifyBtn.addEventListener('click', handlers.open);
+    notifyClose.addEventListener('click', handlers.close);
+    modal.addEventListener('click', handlers.overlay);
+    notifyForm.addEventListener('submit', handlers.submit);
+}
+
+export function destroy() {
+    if (!modal) return;
+    notifyBtn.removeEventListener('click', handlers.open);
+    notifyClose.removeEventListener('click', handlers.close);
+    modal.removeEventListener('click', handlers.overlay);
+    notifyForm.removeEventListener('submit', handlers.submit);
+    document.removeEventListener('keydown', handlers.escape);
+    modal = null;
+    panel = null;
+    notifyBtn = null;
+    notifyClose = null;
+    notifyForm = null;
+    nameInput = null;
+}

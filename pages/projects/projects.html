@@ -1,192 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Projects</title>
-    <link rel="stylesheet" href="../navbar.css">
-  <link rel="stylesheet" href="../footer.css">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
-  <link rel="stylesheet" href="home.css"/>
-  <link rel="stylesheet" href="../navbar.css"/>
-  <link rel="stylesheet" href="../footer.css"/>
-</head>
-<body>
-<nav class="nav" id="mainNav">
-    <div class="wrap nav-inner">
-        <div class="brand">
-            <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
-            <span>Quantitative Investment Society</span>
-        </div>
-
-        <!-- hamburger button -->
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <div class="nav-links" id="navLinks">
-            <a href="../home/home.html">Home</a>
-            <a href="../about/about.html">About</a>
-            <a href="../events/events.html">Events</a>
-            <a href="../meet%20the%20team/mtt.html">Meet Us</a>
-            <a href="../projects/projects.html">Projects</a>
-            <a href="../partner/partner.html">Partner</a>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_9aNNyNV88GmFGjm4Hs45p0WVKEN5c3t2-Ca4AA0bUAXvmw/viewform?usp=sharing&ouid=111469209547493174522" class="nav-join" target="_blank" rel="noopener">Join Us</a>
-        </div>
+<!-- ── HEADER ── -->
+<section class="page-header">
+  <div class="inner">
+    <div class="fade-up">
+      <div class="section-label">Our Work</div>
+      <h1>Projects we've<br><em>built.</em></h1>
+      <p class="header-sub">
+        From systematic trading strategies to data-driven research tools —
+        here's what our members have been building.
+      </p>
     </div>
-</nav>
+  </div>
+</section>
 
-</body>
-</html>
+<!-- ── PROJECT SHOWCASE ── -->
+<section class="projects">
+  <div class="inner">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects — UC Quants</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="projects.css"/>
-</head>
-<body>
-
-  <!-- ── HEADER ── -->
-  <section class="page-header">
-    <div class="inner">
-      <div class="fade-up">
-        <div class="section-label">Our Work</div>
-        <h1>Models we've<br><em>built.</em></h1>
-        <p class="header-sub">
-          From systematic trading strategies to data-driven research tools —
-          here's what our members have been building.
-        </p>
+    <!-- PROJECT 1 -->
+    <article class="project-card fade-up" data-index="01">
+      <div class="card-meta">
+        <span class="project-tag">Modeling of option prices</span>
+        <span class="project-year">September 2025</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ── PROJECT SHOWCASE ── -->
-  <section class="projects">
-    <div class="inner">
-
-      <!-- ============================================================
-           PROJECT CARDS — plug in your projects below.
-           For each card, replace:
-             - data-index    : card number (01, 02, 03 …)
-             - .project-tag  : category label (e.g. "Trading Strategy")
-             - h2            : project title (use <em> for italic accent word)
-             - .project-desc : short description
-             - .tags         : technology / skill tags
-             - .project-link : href and link label (or remove if no link)
-      ============================================================ -->
-
-      <!-- PROJECT 1 -->
-      <article class="project-card fade-up" data-index="01">
-        <div class="card-meta">
-          <span class="project-tag">Modeling of option prices</span>
-          <span class="project-year">September 2025</span>
+      <h2 class="project-title">Black-Scholes Framework</h2>
+      <p class="project-desc">
+        A foundational mathematical model used to price options by estimating their fair value based on factors such as the underlying asset price, volatility, time to expiration, risk-free rate, and strike price. It assumes continuous market conditions and provides a closed-form solution for European-style options, making it a cornerstone of modern derivatives pricing.
+      </p>
+      <div class="card-footer">
+        <div class="tags">
+          Research and Strategy, Programming
         </div>
-        <h2 class="project-title">Black-Scholes Framework</h2>
-        <p class="project-desc">
-          A foundational mathematical model used to price options by estimating their fair value based on factors such as the underlying asset price, volatility, time to expiration, risk-free rate, and strike price. It assumes continuous market conditions and provides a closed-form solution for European-style options, making it a cornerstone of modern derivatives pricing.
-        </p>
-        <div class="card-footer">
-          <div class="tags">
-            Quantitative Research
-          </div>
-          <a href="../../assets/projects/Black Scholes Model .pdf" class="project-link">
-            View project <span class="arrow">↗</span>
-          </a>
-        </div>
-      </article>
-
-      <!-- PROJECT 2 -->
-      <article class="project-card fade-up" data-index="02" style="transition-delay: 0.1s">
-        <div class="card-meta">
-          <span class="project-tag">Probablistic Modeling</span>
-          <span class="project-year">November 2025</span>
-        </div>
-        <h2 class="project-title">Simulating Asset returns using Monte Carlo methods</h2>
-        <p class="project-desc">
-          A computational technique that uses repeated random sampling to model uncertainty and simulate a wide range of possible outcomes. In finance, it is commonly used to forecast asset price paths, value complex derivatives, and assess risk by generating thousands of potential scenarios based on probabilistic inputs.
-        </p>
-        <div class="card-footer">
-          <div class="tags">
-            Quantitative Research
-
-          </div>
-          <a href="../../assets/projects/Monte Carlo Option Pricing.pdf" class="project-link">
-            View project <span class="arrow">↗</span>
-          </a>
-        </div>
-      </article>
-
-      <!-- PROJECT 3 -->
-      <article class="project-card fade-up" data-index="03" style="transition-delay: 0.2s">
-        <div class="card-meta">
-          <span class="project-tag">portfolio optimization</span>
-          <span class="project-year">Februrary 2026</span>
-        </div>
-        <h2 class="project-title">Black-Litterman model application</h2>
-        <p class="project-desc">
-          An advanced portfolio optimization framework that combines market equilibrium returns with investor views using a Bayesian approach. It improves upon traditional mean-variance optimization by producing more stable and intuitive asset allocations, allowing investors to systematically incorporate subjective insights into portfolio construction.
-        </p>
-        <div class="card-footer">
-          <div class="tags">
-            Quantitative Research
-          </div>
-          <a href="../../assets/projects/Black-Litterman Model.pdf" class="project-link">
-            View project <span class="arrow">↗</span>
-          </a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div class="footer-brand">
-        <img src="../../assets/home/ucquants-logo.jpg" alt="UC Quants Logo"/>
-        <span>Quantitative Investment Society</span>
-      </div>
-      <div class="footer-socials">
-        <a href="https://www.instagram.com/ucquants/" target="_blank" rel="noopener" aria-label="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://www.linkedin.com/company/ucquants/posts/?feedView=all" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <i class="fa-brands fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:ucquants@gmail.com" aria-label="Email">
-          <i class="fa-regular fa-envelope"></i>
+        <a href="/assets/projects/Black-Scholes-Model.pdf" class="project-link" target="_blank" rel="noopener">
+          View project <span class="arrow">↗</span>
         </a>
       </div>
-      <div class="footer-divider"></div>
-      <p class="footer-copy">© 2025 <span>UCQuants</span> — University of Calgary. All rights reserved.</p>
-    </div>
-  </footer>
-  <script src="projects.js"></script>
-<script>
-    const toggle = document.getElementById('navToggle');
-    const links  = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => {
-        toggle.classList.toggle('open');
-        links.classList.toggle('open');
-    });
-    // close menu when a link is clicked
-    links.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
-            toggle.classList.remove('open');
-            links.classList.remove('open');
-        });
-    });
-</script>
-</body>
-</html>
+    </article>
+
+    <!-- PROJECT 2 -->
+    <article class="project-card fade-up" data-index="02" style="transition-delay: 0.1s">
+      <div class="card-meta">
+        <span class="project-tag">Probablistic Modeling</span>
+        <span class="project-year">November 2025</span>
+      </div>
+      <h2 class="project-title">Simulating Asset returns using Monte Carlo methods</h2>
+      <p class="project-desc">
+        A computational technique that uses repeated random sampling to model uncertainty and simulate a wide range of possible outcomes. In finance, it is commonly used to forecast asset price paths, value complex derivatives, and assess risk by generating thousands of potential scenarios based on probabilistic inputs.
+      </p>
+      <div class="card-footer">
+        <div class="tags">
+          Research and Strategy, Programming
+        </div>
+        <a href="/assets/projects/Monte Carlo Option Pricing.pdf" class="project-link" target="_blank" rel="noopener">
+          View project <span class="arrow">↗</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- PROJECT 3 -->
+    <article class="project-card fade-up" data-index="03" style="transition-delay: 0.2s">
+      <div class="card-meta">
+        <span class="project-tag">portfolio optimization</span>
+        <span class="project-year">Februrary 2026</span>
+      </div>
+      <h2 class="project-title">Black-Litterman model application</h2>
+      <p class="project-desc">
+        An advanced portfolio optimization framework that combines market equilibrium returns with investor views using a Bayesian approach. It improves upon traditional mean-variance optimization by producing more stable and intuitive asset allocations, allowing investors to systematically incorporate subjective insights into portfolio construction.
+      </p>
+      <div class="card-footer">
+        <div class="tags">
+          Research and Strategy, Programming
+        </div>
+        <a href="/assets/projects/Black-Litterman Model.pdf" class="project-link" target="_blank" rel="noopener">
+          View project <span class="arrow">↗</span>
+        </a>
+      </div>
+    </article>
+
+  </div>
+</section>
