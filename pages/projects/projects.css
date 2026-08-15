@@ -15,7 +15,7 @@
   letter-spacing: var(--ls-label);
   line-height: var(--lh-label);
   text-transform: uppercase;
-  color: var(--pink-600);
+  color: var(--pink-700);
   margin-bottom: 20px;
 }
 
@@ -186,7 +186,7 @@ h1 em {
   padding: 4px 12px;
   border-radius: 999px;
   background: var(--pink-100);
-  color: var(--pink-600);
+  color: var(--pink-700);
   border: 1px solid var(--pink-200);
 }
 
@@ -285,7 +285,7 @@ h1 em {
   padding: 4px 11px;
   border-radius: 999px;
   background: var(--pink-100);
-  color: var(--pink-600);
+  color: var(--pink-700);
   border: 1px solid var(--pink-200);
 }
 
@@ -310,7 +310,7 @@ h1 em {
   flex-shrink: 0;
 }
 
-.project-link:hover { color: var(--pink-600); }
+.project-link:hover { color: var(--pink-700); }
 .project-link:active { color: var(--pink-900); }
 .project-link:active .arrow { transform: scale(0.88); }
 

@@ -58,7 +58,7 @@
   letter-spacing: var(--ls-label);
   line-height: var(--lh-label);
   text-transform: uppercase;
-  color: var(--pink-600);
+  color: var(--pink-700);
   margin-bottom: 20px;
 }
 .section-label::before {
@@ -68,7 +68,7 @@
   background: linear-gradient(90deg, var(--pink-400), var(--chrome-300));
 }
 
-.what-we-do h2 {
+.what-we-do h1 {
   font-family: 'DM Serif Display', serif;
   font-size: clamp(2.4rem, 5vw, 3.75rem);
   line-height: var(--lh-h1);
@@ -77,7 +77,7 @@
   margin-bottom: 18px;
   text-shadow: 0 1px 0 rgba(255, 255, 255, .85), 0 2px 4px rgba(90, 26, 68, .08);
 }
-.what-we-do h2 em { font-style: italic; color: var(--pink-600); }
+.what-we-do h1 em { font-style: italic; color: var(--pink-600); }
 
 .header-sub {
   font-size: 1rem;
@@ -239,7 +239,7 @@
   background: var(--white);
   border: 1px solid rgba(163, 171, 182, .42);
   box-shadow: 0 1px 2px rgba(120, 110, 130, .08);
-  color: var(--pink-600);
+  color: var(--pink-700);
 }
 .card-2 .tag { color: var(--lav-600); }
 

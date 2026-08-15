@@ -7,6 +7,7 @@ colors:
   signal-magenta-200: "#f2bade"
   signal-magenta-400: "#e07ab8"
   signal-magenta-600: "#c0509a"
+  signal-magenta-700: "#a53f82"
   signal-magenta-900: "#5a1a44"
   quant-violet-50: "#f3f2ff"
   quant-violet-100: "#e4e0fc"
@@ -21,7 +22,7 @@ colors:
   neutral-white: "#ffffff"
   ink: "#1a1018"
   ink-mid: "#5c4d58"
-  ink-faint: "#9e8ea0"
+  ink-faint: "#7a6b78"
   border-hairline: "rgba(180, 140, 170, 0.18)"
 typography:
   display:
@@ -120,7 +121,8 @@ Explicitly rejected: dark-mode neon-green terminal / crypto-native aesthetics. T
 The palette pairs one warm accent (Signal Magenta) with one cool accent (Quant Violet) over a metallic neutral scale (Instrument Silver), all sitting on a warm off-white canvas rather than pure white or dark.
 
 ### Primary
-- **Signal Magenta** (`#c0509a`, `--pink-600`): the system's one true accent — primary buttons, links, active nav states, eyebrows/labels, price/stat emphasis. Ranges from `#fdf3f8` (wash backgrounds) to `#5a1a44` (pressed/active text, deepest emphasis).
+- **Signal Magenta** (`#c0509a`, `--pink-600`): the system's one true accent — primary buttons, large headline emphasis (`em` accents), and non-text uses (icons, borders, fills) where the 3:1 non-text/large-text contrast floor applies. Ranges from `#fdf3f8` (wash backgrounds) to `#5a1a44` (pressed/active text, deepest emphasis).
+- **Signal Magenta 700** (`#a53f82`, `--pink-700`): the AA-safe variant for small text carrying the accent color — eyebrow labels, tags/badges, nav active state, inline links, hover states. Use whenever Signal Magenta colors text below ~18px; `pink-600` at that size measures under the 4.5:1 WCAG AA minimum.
 
 ### Secondary
 - **Quant Violet** (`#6c61cc`, `--lav-600`): the cool counterpart to Signal Magenta — used in gradient pairings (hero blobs, wave-signal chart, glow accents) and wherever a second hue is needed to avoid a single-accent design reading as flat. Rarely carries text; mostly fills, glows, and gradient stops.
@@ -133,11 +135,13 @@ The palette pairs one warm accent (Signal Magenta) with one cool accent (Quant V
 - **Neutral White** (`#ffffff`): card and control surfaces, sitting on top of Neutral Canvas.
 - **Ink** (`#1a1018`, `--text-dark`): primary text. 18.6:1 on white — excellent contrast.
 - **Ink Mid** (`#5c4d58`, `--text-mid`): secondary/body copy, 7.9:1 on white — safe for any text size.
-- **Ink Faint** (`#9e8ea0`, `--text-light`): captions/notes only, and only at large size or alongside an icon — it measures ~3.1:1 on white/canvas, below the 4.5:1 AA minimum for normal text. Treat as a decorative-tier tone, not a body-text tone.
+- **Ink Faint** (`#7a6b78`, `--text-light`): captions/notes — darkened from the original `#9e8ea0` (~3.1:1) to ~4.8:1 on white/canvas, clearing WCAG AA for normal-size text.
 - **Border Hairline** (`rgba(180, 140, 170, 0.18)`): the default 1px card/divider border, always this translucent mauve, never solid gray.
 
 ### Named Rules
-**The One Accent Rule.** Signal Magenta is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.
+**The One Accent Rule.** Signal Magenta (in its 600 or 700 step) is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.
+
+**The Small-Text-Steps-Down Rule.** Any time Signal Magenta colors text smaller than ~18px, use `pink-700`, not `pink-600` — `pink-600` is reserved for large text (headings, display numerals) and non-text uses (icons, borders, fills), where the 3:1 floor applies instead of 4.5:1.
 
 **The No-Flat-Metal Rule.** Instrument Silver never appears as a flat fill or solid border color. It is always the `--metallic-border` or `--silver-sheen` multi-stop gradient — a flat gray reads as disabled/inert, not instrument-grade.
 
@@ -201,7 +205,7 @@ The system's signature surface: a `linear-gradient(white, white) padding-box, va
 
 ### Inputs / Fields
 - **Style:** white background, `1.5px solid rgba(180,140,170,.35)` border, `border-radius: 12px`, `padding: 11px 16px`, label above in the Label type role.
-- **Focus:** border color shifts to Signal Magenta 600. (Add a visible focus ring/box-shadow alongside the border shift — the current border-only change is a weaker cue than the browser default it replaces.)
+- **Focus:** border color shifts to Signal Magenta 600, plus a `0 0 0 3px` Signal Magenta ring at 25% opacity on `:focus-visible`.
 
 ### Navigation
 Sticky, translucent (`backdrop-filter: blur(16px)`) bar over the Neutral Canvas tint; brand wordmark in italic Signal Magenta; nav links get a rounded pill hover/active background in Signal Magenta 100/600. Mobile collapses to a hamburger (`.nav-toggle`) that slides in a full-width pill-linked menu; the shrink-on-scroll state tightens vertical padding.
@@ -216,6 +220,6 @@ Sticky, translucent (`backdrop-filter: blur(16px)`) bar over the Neutral Canvas 
 - **Do** keep every interactive/container corner at pill, 24px, or 50% — per the No-Sharp-Corners Rule.
 
 ### Don't:
-- **Don't** use `ink-faint` (`#9e8ea0`) for body-weight or small caption text — it measures ~3.1:1 on the canvas/white background, below WCAG AA. Reserve it for large or icon-paired text only, or use `ink-mid` instead.
+- **Don't** use `pink-600` for small text (labels, tags, inline links, hover states) — use `pink-700` per the Small-Text-Steps-Down Rule.
 - **Don't** introduce a dark-mode or neon/terminal palette — explicitly rejected as an anti-reference for this system.
 - **Don't** leave a card's `metallic-border` inconsistent with its neighbors' curve values (`box-shadow`, radius) — Instrument Cards across pages (project, member) should share identical shape and border treatment.

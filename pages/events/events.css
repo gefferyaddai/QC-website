@@ -3,7 +3,7 @@
     display: inline-flex; align-items: center; gap: 10px;
     font-size: var(--fs-label); font-weight: 600;
     letter-spacing: var(--ls-label); line-height: var(--lh-label); text-transform: uppercase;
-    color: var(--pink-600); margin-bottom: 20px;
+    color: var(--pink-700); margin-bottom: 20px;
 }
 .section-label::before {
     content: ''; width: 24px; height: 1px; background: var(--pink-400);
@@ -74,7 +74,7 @@
     display: inline-flex; align-items: center; gap: 8px;
     padding: 11px 22px; border-radius: 999px;
     border: 1.5px solid var(--pink-200);
-    background: var(--pink-100); color: var(--pink-600);
+    background: var(--pink-100); color: var(--pink-700);
     font-weight: 600; font-size: 0.875rem;
     font-family: 'DM Sans', sans-serif; cursor: pointer;
     transition: all 0.2s; white-space: nowrap;
@@ -119,14 +119,14 @@
 .event-card-meta { font-size: 13px; color: var(--text-mid); margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
 .event-card-meta span { display: flex; align-items: center; gap: 5px; }
 .event-card-body p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; font-weight: 300; }
-.event-card-link { display: inline-flex; align-items: center; gap: 6px; color: var(--pink-600); font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: gap 0.2s; }
+.event-card-link { display: inline-flex; align-items: center; gap: 6px; color: var(--pink-700); font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: gap 0.2s; }
 .event-card-link:hover { gap: 10px; }
 .event-card-link:active { gap: 14px; }
 .event-tag {
     display: inline-block; font-size: 11px; font-weight: 700;
     letter-spacing: 0.08em; text-transform: uppercase;
     padding: 4px 11px; border-radius: 999px;
-    background: var(--pink-100); color: var(--pink-600); border: 1px solid var(--pink-200);
+    background: var(--pink-100); color: var(--pink-700); border: 1px solid var(--pink-200);
     margin-bottom: 14px;
 }
 
@@ -234,9 +234,10 @@
     width: 100%; padding: 11px 16px; border-radius: 12px;
     border: 1.5px solid rgba(180, 140, 170, 0.35);
     font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-    outline: none; transition: border-color 0.2s;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .notify-field input:focus { border-color: var(--pink-600); }
+.notify-field input:focus-visible { box-shadow: 0 0 0 3px rgba(192, 80, 154, 0.25); }
 .notify-submit-btn {
     width: 100%; padding: 13px; border-radius: 999px; border: none; cursor: pointer;
     background: var(--pink-600); color: #fff; font-weight: 600; font-size: 0.95rem;

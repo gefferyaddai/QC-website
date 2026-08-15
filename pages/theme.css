@@ -14,6 +14,7 @@
     --pink-200:  #f2bade;
     --pink-400:  #e07ab8;
     --pink-600:  #c0509a;
+    --pink-700:  #a53f82; /* AA-safe accent for small/bold text (labels, tags, links) — pink-600 falls under 4.5:1 below ~18px */
     --pink-900:  #5a1a44;
     --lav-50:    #f3f2ff;
     --lav-100:   #e4e0fc;
@@ -24,7 +25,7 @@
     --white:     #ffffff;
     --text-dark: #1a1018;
     --text-mid:  #5c4d58;
-    --text-light:#9e8ea0;
+    --text-light:#7a6b78; /* darkened from #9e8ea0 (3.07:1) to clear WCAG AA 4.5:1 for small text */
     --border:    rgba(180, 140, 170, 0.18);
 
     /* shorthand aliases (used by home.css) */

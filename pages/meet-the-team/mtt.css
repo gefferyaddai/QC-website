@@ -15,7 +15,7 @@
   letter-spacing: var(--ls-label);
   line-height: var(--lh-label);
   text-transform: uppercase;
-  color: var(--pink-600);
+  color: var(--pink-700);
   margin-bottom: 20px;
 }
 
@@ -205,7 +205,7 @@ h1 em {
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.5px;
-  color: var(--pink-600);
+  color: var(--pink-700);
 }
 
 .member-card:nth-child(2n) .avatar {
@@ -245,7 +245,7 @@ h2.member-name:empty::before {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--pink-600);
+  color: var(--pink-700);
 }
 
 .member-card:nth-child(2n) .member-role { color: var(--lav-600); }
@@ -295,7 +295,7 @@ h2.member-name:empty::before {
   word-break: break-all;
 }
 
-.member-email:hover { color: var(--pink-600); }
+.member-email:hover { color: var(--pink-700); }
 .member-email:active { color: var(--pink-900); }
 
 .member-email:not([href="mailto:"]):empty::before,
@@ -330,7 +330,7 @@ h2.member-name:empty::before {
 .linkedin-btn:hover {
   background: var(--pink-50);
   border-color: var(--pink-200);
-  color: var(--pink-600);
+  color: var(--pink-700);
 }
 
 .linkedin-btn:active {

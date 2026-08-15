@@ -5,10 +5,11 @@
   "extensions": {
     "colorMeta": {
       "signal-magenta-600": { "role": "primary", "displayName": "Signal Magenta", "canonical": "#c0509a", "tonalRamp": ["#3d1030", "#5a1a44", "#7a2860", "#9a3878", "#c0509a", "#e07ab8", "#f2bade", "#f9dff0", "#fdf3f8"] },
+      "signal-magenta-700": { "role": "primary", "displayName": "Signal Magenta (small-text)", "canonical": "#a53f82", "tonalRamp": ["#5a1a44", "#a53f82", "#c0509a"] },
       "quant-violet-600": { "role": "secondary", "displayName": "Quant Violet", "canonical": "#6c61cc", "tonalRamp": ["#221e4d", "#332c73", "#473d9e", "#6c61cc", "#9b93ea", "#c9c4f7", "#e4e0fc", "#f3f2ff"] },
       "instrument-silver-400": { "role": "tertiary", "displayName": "Instrument Silver", "canonical": "linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7)", "tonalRamp": ["#6b7280", "#a3abb6", "#c3c9d1", "#eef0f3"] },
       "neutral-canvas": { "role": "neutral", "displayName": "Neutral Canvas", "canonical": "#fdfaf8", "tonalRamp": ["#fdfaf8", "#ffffff"] },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1a1018", "tonalRamp": ["#1a1018", "#5c4d58", "#9e8ea0"] }
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1a1018", "tonalRamp": ["#1a1018", "#5c4d58", "#7a6b78"] }
     },
     "typographyMeta": {
       "display": { "displayName": "Display", "purpose": "Hero-scale display text (home hero only)." },
@@ -63,7 +64,7 @@
       "name": "Input Field",
       "kind": "input",
       "refersTo": "input-field",
-      "description": "Labeled text input with a hairline mauve border; focus shifts the border to Signal Magenta (a visible focus-ring should be added alongside this per the audit).",
+      "description": "Labeled text input with a hairline mauve border; focus shifts the border to Signal Magenta and adds a visible focus ring.",
       "html": "<div class=\"ds-field\"><label for=\"ds-name\">First Name</label><input id=\"ds-name\" type=\"text\" placeholder=\"Jane\"/></div>",
       "css": ".ds-field { margin-bottom: 16px; } .ds-field label { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; color: #1a1018; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.14em; } .ds-field input { width: 100%; padding: 11px 16px; border-radius: 12px; border: 1.5px solid rgba(180, 140, 170, 0.35); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; } .ds-field input:focus-visible { border-color: #c0509a; box-shadow: 0 0 0 3px rgba(192, 80, 154, 0.25); }"
     },
@@ -87,7 +88,8 @@
       "A repeating hairline grid-line background, radially masked, marks every page's hero as an instrument readout surface"
     ],
     "rules": [
-      { "name": "The One Accent Rule", "body": "Signal Magenta is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.", "section": "colors" },
+      { "name": "The One Accent Rule", "body": "Signal Magenta (in its 600 or 700 step) is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.", "section": "colors" },
+      { "name": "The Small-Text-Steps-Down Rule", "body": "Any time Signal Magenta colors text smaller than ~18px, use pink-700, not pink-600 — pink-600 is reserved for large text (headings, display numerals) and non-text uses (icons, borders, fills), where the 3:1 floor applies instead of 4.5:1.", "section": "colors" },
       { "name": "The No-Flat-Metal Rule", "body": "Instrument Silver never appears as a flat fill or solid border color. It is always the metallic-border or silver-sheen multi-stop gradient — a flat gray reads as disabled/inert, not instrument-grade.", "section": "colors" },
       { "name": "The Single-Word Italic Rule", "body": "Emphasis inside a heading is expressed by italicizing exactly one word or short phrase in DM Serif Display, colored Signal Magenta or Quant Violet — never by bolding, underlining, or changing the whole heading's weight.", "section": "typography" },
       { "name": "The Warm Shadow Rule", "body": "No shadow in this system is ever neutral gray or black — every box-shadow carries the Signal Magenta or Ink tint, even at low opacity.", "section": "elevation" },
@@ -101,7 +103,7 @@
       "Do keep every interactive/container corner at pill, 24px, or 50% — per the No-Sharp-Corners Rule."
     ],
     "donts": [
-      "Don't use ink-faint (#9e8ea0) for body-weight or small caption text — it measures ~3.1:1 on the canvas/white background, below WCAG AA. Reserve it for large or icon-paired text only, or use ink-mid instead.",
+      "Don't use pink-600 for small text (labels, tags, inline links, hover states) — use pink-700 per the Small-Text-Steps-Down Rule.",
       "Don't introduce a dark-mode or neon/terminal palette — explicitly rejected as an anti-reference for this system.",
       "Don't leave a card's metallic-border inconsistent with its neighbors' curve values (box-shadow, radius) — Instrument Cards across pages (project, member) should share identical shape and border treatment."
     ]
