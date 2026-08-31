@@ -68,7 +68,19 @@ body {
     background: var(--off-white);
     color: var(--text-dark);
     overflow-x: hidden;
+    /* sticky footer: the shell always fills the viewport */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
+
+/* Short pages (e.g. Events with no events scheduled) must not leave a band of
+   bare canvas under the footer. The routed content grows to fill the viewport
+   and its final section absorbs the slack, so the section's own background and
+   hairline grid run all the way down to the footer. */
+#app-content { flex: 1 0 auto; display: flex; flex-direction: column; }
+#app-content > section:last-of-type { flex: 1 0 auto; }
+.footer { flex-shrink: 0; }
 
 /* ── FADE-UP (shared scroll-reveal utility, used by every page) ── */
 .fade-up {

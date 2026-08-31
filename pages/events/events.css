@@ -33,7 +33,7 @@
 
 /* ── TYPE ── statement headings, one declarative sentence each ── */
 .page-header h1,
-.upcoming-header h2 {
+.upcoming-header h1 {
     font-family: 'DM Serif Display', serif;
     font-size: var(--fs-h1);
     line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
@@ -41,7 +41,7 @@
     margin-bottom: var(--s3);
 }
 .page-header h1 em,
-.upcoming-header h2 em { font-style: italic; color: var(--pink-600); }
+.upcoming-header h1 em { font-style: italic; color: var(--pink-600); }
 
 .header-sub {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;
