@@ -112,7 +112,7 @@ Explicitly rejected: dark-mode neon-green terminal / crypto-native aesthetics. T
 **Key Characteristics:**
 - Instrument-grade chrome borders (`--metallic-border` gradient) frame the system's signature cards
 - Italic `DM Serif Display` accents single words inside otherwise-sans headings as an emphasis device
-- Every interactive surface (buttons, cards, form controls) is pill or large-radius rounded — no sharp corners anywhere in the UI layer
+- Every interactive surface (buttons, cards, form controls) is pill or large-radius rounded — no sharp corners anywhere in the UI layer *(legacy routes only; the home route is 0px throughout — see The Swiss Grid Rule)*
 - Colored, never-black shadows: every box-shadow in the system is tinted signal-magenta or a dark ink, never neutral gray/black
 - A repeating hairline grid-line background, radially masked, marks every page's hero as an "instrument readout" surface
 
@@ -184,7 +184,9 @@ Depth is structural and always present, not purely a hover response: primary but
 Two form languages coexist by role: **pill** (`border-radius: 999px`) for every button, badge, and pill-shaped control — signaling "interactive, take action" — and **large-radius rounded** (`border-radius: 24px`, occasionally 12–16px for smaller elements) for every card and container surface. Full circles (`50%`) are reserved for avatars, icon badges, and decorative "orb"/blob shapes. No sharp (0px) corners appear anywhere in the interface layer; hairline dividers and gradient rules are the only straight-edge elements.
 
 ### Named Rules
-**The No-Sharp-Corners Rule.** Every interactive or container element uses `pill`, `lg` (24px), or `full` (50%) radius — never a sharp or barely-rounded (≤4px) corner, which is reserved for the rare micro-badge/tooltip case only.
+**The No-Sharp-Corners Rule.** *(Applies to the About, Events, Meet Us, Projects and Partner routes. Superseded on the home route by The Swiss Grid Rule below.)* Every interactive or container element uses `pill`, `lg` (24px), or `full` (50%) radius — never a sharp or barely-rounded (≤4px) corner, which is reserved for the rare micro-badge/tooltip case only.
+
+**The Swiss Grid Rule.** *(Home route today; the target state for all routes.)* Content sits directly on the canvas in a 12-column grid with a 24px gutter — never inside a card. No borders, no divider rules between or around content blocks, no fills, no radius, no shadow. Separation is done by whitespace and by exact column alignment. All corners on this route are 0px, buttons included. The brand persists through the palette (Signal Magenta on the warm canvas), through `DM Serif Display` display type, and through The Single-Word Italic Rule — never through material.
 
 ## Components
 
@@ -196,7 +198,11 @@ Buttons, cards, and inputs read as instrument-grade and confident: dimensional g
 - **Hover / Focus:** `translateY(-2px)` lift with a larger version of the resting shadow; timing uses `--ease-out-smooth` (`cubic-bezier(0.22, 1, 0.36, 1)`).
 - **Secondary / Ghost (`.btn-line`):** transparent background, `1.5px solid rgba(180,140,170,.4)` border, Ink text; on hover the border and text both shift to Signal Magenta — no fill added.
 
+**The Statement Heading Rule.** *(Swiss routes.)* A section is introduced by one full declarative sentence set at h1 scale (`--fs-h1`) — never by a small uppercase eyebrow label stacked above a smaller title, and never by a graphic marker above it. The heading alone marks where a section begins.
+
 ### Cards / Containers — Instrument Card (signature component)
+*Not used on the home route (see The Swiss Grid Rule). Remains the signature surface for project, member, and featured-content containers on the other five routes.*
+
 The system's signature surface: a `linear-gradient(white, white) padding-box, var(--metallic-border) border-box` double-background trick that produces a chrome gradient border around a flat white card — used for project cards, member cards, and any "featured content" container. `border-radius: 24px`, `padding: 40px 44px` (or `28px 24px 24px` for tighter member cards). This is the clearest expression of "The Quant Atelier": a plain white surface framed in brushed metal.
 - **Corner Style:** 24px.
 - **Background:** white fill, metallic-gradient border (see Named Rules → No-Flat-Metal Rule).
