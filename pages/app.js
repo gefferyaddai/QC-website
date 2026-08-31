@@ -41,6 +41,12 @@ const routes = {
         mod: '/pages/partner/partner.js',
         title: 'Quantitative Investment Society',
     },
+    join: {
+        html: '/pages/join/join.html',
+        css: 'css-join',
+        mod: '/pages/join/join.js',
+        title: 'Quantitative Investment Society',
+    },
 };
 
 const appEl = document.getElementById('app-content');
