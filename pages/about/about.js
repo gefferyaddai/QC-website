@@ -1,8 +1,7 @@
 /* ── about / what-we-do behavior ─────────────────────────────────────────
    Same contract as before: init(root) / destroy(), called by pages/app.js.
    The global .fade-up reveal still comes from the router; this file adds the
-   card stagger, the cursor tilt, and parallax. The rings header graphic is
-   static 2D SVG/CSS (see about.html/about.css) — no JS needed for it.
+   card stagger, the cursor tilt, and parallax.
 ────────────────────────────────────────────────────────────────────────── */
 
 let timers = [];

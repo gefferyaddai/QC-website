@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-color",
+        "value": "#b8bec8",
+        "createdAt": "2026-08-15T06:39:32.896Z",
+        "reason": "gradient stop inside pre-existing --metallic-border token, documented as a single gradient (Instrument Silver) in DESIGN.md rather than per-stop"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#9aa1ad",
+        "createdAt": "2026-08-15T06:39:32.939Z",
+        "reason": "gradient stop inside pre-existing --metallic-border token, documented as a single gradient (Instrument Silver) in DESIGN.md rather than per-stop"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#dfe2e7",
+        "createdAt": "2026-08-15T06:39:32.973Z",
+        "reason": "gradient stop inside pre-existing --metallic-border token, documented as a single gradient (Instrument Silver) in DESIGN.md rather than per-stop"
+      }
+    ]
+  }
+}

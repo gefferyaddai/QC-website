@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-15T06:33:12Z",
+  "title": "Design System: UC Quants",
+  "extensions": {
+    "colorMeta": {
+      "signal-magenta-600": {
+        "role": "primary",
+        "displayName": "Signal Magenta",
+        "canonical": "#c0509a",
+        "tonalRamp": [
+          "#3d1030",
+          "#5a1a44",
+          "#7a2860",
+          "#9a3878",
+          "#c0509a",
+          "#e07ab8",
+          "#f2bade",
+          "#f9dff0",
+          "#fdf3f8"
+        ]
+      },
+      "signal-magenta-700": {
+        "role": "primary",
+        "displayName": "Signal Magenta (small-text)",
+        "canonical": "#a53f82",
+        "tonalRamp": [
+          "#5a1a44",
+          "#a53f82",
+          "#c0509a"
+        ]
+      },
+      "quant-violet-600": {
+        "role": "secondary",
+        "displayName": "Quant Violet",
+        "canonical": "#6c61cc",
+        "tonalRamp": [
+          "#221e4d",
+          "#332c73",
+          "#473d9e",
+          "#6c61cc",
+          "#9b93ea",
+          "#c9c4f7",
+          "#e4e0fc",
+          "#f3f2ff"
+        ]
+      },
+      "instrument-silver-400": {
+        "role": "tertiary",
+        "displayName": "Instrument Silver",
+        "canonical": "linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7)",
+        "tonalRamp": [
+          "#6b7280",
+          "#a3abb6",
+          "#c3c9d1",
+          "#eef0f3"
+        ]
+      },
+      "neutral-canvas": {
+        "role": "neutral",
+        "displayName": "Neutral Canvas",
+        "canonical": "#fdfaf8",
+        "tonalRamp": [
+          "#fdfaf8",
+          "#ffffff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1a1018",
+        "tonalRamp": [
+          "#1a1018",
+          "#5c4d58",
+          "#7a6b78"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero-scale display text (home hero only)."
+      },
+      "h1": {
+        "displayName": "H1",
+        "purpose": "Page title, one per route."
+      },
+      "h2": {
+        "displayName": "H2",
+        "purpose": "Section titles; carries the single-word italic emphasis device."
+      },
+      "h3": {
+        "displayName": "H3",
+        "purpose": "Card and subsection titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long-form copy, light weight (300) throughout."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, form field labels, uppercase badges."
+      }
+    },
+    "shadows": [
+      {
+        "name": "resting",
+        "value": "0 4px 18px rgba(192, 80, 154, .32), inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(90,26,68,.35)",
+        "purpose": "Default elevated state for buttons and role cards; target resting state for all elevated surfaces per the elevation invariant."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 10px 30px rgba(192, 80, 154, .4), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(90,26,68,.35)",
+        "purpose": "Hover/press state, paired with a translateY(-2px to -6px) lift."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 20px 50px rgba(192, 80, 154, 0.12)",
+        "purpose": "Softer hover glow used on white instrument cards (event/project/member)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-smooth",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default deceleration for button/card hover and lift transitions."
+      },
+      {
+        "name": "ease-in-smooth",
+        "value": "cubic-bezier(0.64, 0, 0.78, 0)",
+        "purpose": "Symmetric exit easing."
+      },
+      {
+        "name": "ease-out-quick",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Snappy hover/press micro-motion (nav toggle, icon buttons)."
+      },
+      {
+        "name": "ease-spring-bounce",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Gesture-triggered materialize; the shared token some pages duplicate with drifted local values instead of referencing directly."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "primary",
+        "value": "900px"
+      },
+      {
+        "name": "compact",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill-shaped gradient-fill button with a warm resting glow shadow; the main call-to-action treatment.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Learn More</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: .95rem; text-decoration: none; color: #fff; background: linear-gradient(180deg, #cf62a8, #b8478f); box-shadow: 0 4px 18px rgba(192, 80, 154, .32), inset 0 1px 0 rgba(255, 255, 255, .4), inset 0 -1px 0 rgba(90, 26, 68, .35); transition: transform .2s cubic-bezier(0.22, 1, 0.36, 1), box-shadow .2s; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { color: #fff; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(192, 80, 154, .4), inset 0 1px 0 rgba(255, 255, 255, .45), inset 0 -1px 0 rgba(90, 26, 68, .35); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent pill button with a hairline border; secondary call-to-action.",
+      "html": "<a href=\"#\" class=\"ds-btn-secondary\">Upcoming Events</a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-weight: 600; font-size: .95rem; text-decoration: none; color: #1a1018; background: transparent; border: 1.5px solid rgba(180, 140, 170, .4); transition: color .2s, border-color .2s, transform .2s; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { color: #c0509a; border-color: #c0509a; transform: translateY(-2px); }"
+    },
+    {
+      "name": "Instrument Card",
+      "kind": "card",
+      "refersTo": "instrument-card",
+      "description": "Signature surface: a flat white card framed by a brushed-chrome gradient border via the padding-box/border-box double-background technique. Used for project, member, and featured-content cards.",
+      "html": "<div class=\"ds-instrument-card\"><h3>Black-Scholes Model</h3><p>Options pricing research and implementation.</p></div>",
+      "css": ".ds-instrument-card { background: linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7) border-box; border: 1px solid transparent; border-radius: 24px; padding: 40px 44px; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease; } .ds-instrument-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(192, 80, 154, 0.1); } .ds-instrument-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: 8px; color: #1a1018; } .ds-instrument-card p { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 14px; line-height: 1.7; color: #5c4d58; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Labeled text input with a hairline mauve border; focus shifts the border to Signal Magenta and adds a visible focus ring.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-name\">First Name</label><input id=\"ds-name\" type=\"text\" placeholder=\"Jane\"/></div>",
+      "css": ".ds-field { margin-bottom: 16px; } .ds-field label { display: block; font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 700; color: #1a1018; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.14em; } .ds-field input { width: 100%; padding: 11px 16px; border-radius: 12px; border: 1.5px solid rgba(180, 140, 170, 0.35); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; } .ds-field input:focus-visible { border-color: #c0509a; box-shadow: 0 0 0 3px rgba(192, 80, 154, 0.25); }"
+    },
+    {
+      "name": "Nav Bar",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Sticky translucent bar with a brushed-glass blur, italic wordmark, and pill-shaped active/hover link states.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-brand\">UC Quants</span><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Home</a><a class=\"ds-nav-link\" href=\"#\">About</a></nav>",
+      "css": ".ds-nav { position: sticky; top: 0; display: flex; align-items: center; gap: 24px; width: 100%; padding: 16px 24px; background: rgba(253, 250, 248, 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); } .ds-nav-brand { font-family: 'DM Serif Display', serif; font-style: italic; color: #c0509a; font-size: 1.1rem; margin-right: auto; } .ds-nav-link { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; color: #1a1018; text-decoration: none; padding: 8px 16px; border-radius: 999px; transition: background 0.2s, color 0.2s; } .ds-nav-link:hover { background: rgba(192, 80, 154, 0.08); } .ds-nav-link--active { background: #f9dff0; color: #c0509a; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quant Atelier",
+    "overview": "UC Quants presents as a precision instrument built by craftspeople, not a finance-bro pitch deck and not a hacker terminal. The system's technical register comes first: a chrome/metallic materials language (brushed-silver gradient borders, a wave-signal chart motif on the home page) reads as instrumentation — measured, engineered, exact. Signal Magenta and Quant Violet are the atelier's human layer laid over that precision: warm pastel washes, italic DM Serif Display flourishes on key words, and softly rounded pill controls keep the site from reading as cold or corporate. The two registers are meant to coexist in every surface, not alternate between pages.\n\nExplicitly rejected: dark-mode neon-green terminal / crypto-native aesthetics. This is a light, paper-bright system — depth and technicality come from material and structure (chrome gradients, hairline grids, layered blur glows), never from a dark canvas.",
+    "keyCharacteristics": [
+      "Instrument-grade chrome borders (--metallic-border gradient) frame the system's signature cards",
+      "Italic DM Serif Display accents single words inside otherwise-sans headings as an emphasis device",
+      "Every interactive surface (buttons, cards, form controls) is pill or large-radius rounded — no sharp corners anywhere in the UI layer",
+      "Colored, never-black shadows: every box-shadow in the system is tinted signal-magenta or a dark ink, never neutral gray/black",
+      "A repeating hairline grid-line background, radially masked, marks every page's hero as an instrument readout surface"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Signal Magenta (in its 600 or 700 step) is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.",
+        "section": "colors"
+      },
+      {
+        "name": "The Small-Text-Steps-Down Rule",
+        "body": "Any time Signal Magenta colors text smaller than ~18px, use pink-700, not pink-600 — pink-600 is reserved for large text (headings, display numerals) and non-text uses (icons, borders, fills), where the 3:1 floor applies instead of 4.5:1.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Flat-Metal Rule",
+        "body": "Instrument Silver never appears as a flat fill or solid border color. It is always the metallic-border or silver-sheen multi-stop gradient — a flat gray reads as disabled/inert, not instrument-grade.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single-Word Italic Rule",
+        "body": "Emphasis inside a heading is expressed by italicizing exactly one word or short phrase in DM Serif Display, colored Signal Magenta or Quant Violet — never by bolding, underlining, or changing the whole heading's weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Warm Shadow Rule",
+        "body": "No shadow in this system is ever neutral gray or black — every box-shadow carries the Signal Magenta or Ink tint, even at low opacity.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Sharp-Corners Rule",
+        "body": "Every interactive or container element uses pill, lg (24px), or full (50%) radius — never a sharp or barely-rounded (≤4px) corner, which is reserved for the rare micro-badge/tooltip case only.",
+        "section": "elevation"
+      },
+      "**The Swiss Grid Rule.** *(Home route today; the target state for all routes.)* Content sits directly on the canvas in a 12-column grid with a 24px gutter — never inside a card. No borders, no divider rules between or around content blocks, no fills, no radius, no shadow. Separation is done by whitespace and exact column alignment; all corners on this route are 0px, buttons included.",
+      "**The Statement Heading Rule.** *(Swiss routes.)* A section is introduced by one full declarative sentence at h1 scale — never by a small uppercase eyebrow label above a smaller title, and never by a graphic marker above it. The heading alone marks where a section begins."
+    ],
+    "dos": [
+      "Do pair Signal Magenta with Quant Violet in gradients/glows when a second hue is needed — never introduce a third accent hue.",
+      "Do use the metallic-border / silver-sheen gradients for any premium/featured surface, per the No-Flat-Metal Rule.",
+      "Do italicize a single word in DM Serif Display for heading emphasis, per the Single-Word Italic Rule.",
+      "Do tint every shadow Signal Magenta or Ink — never neutral gray/black, per the Warm Shadow Rule.",
+      "Do keep every interactive/container corner at pill, 24px, or 50% — per the No-Sharp-Corners Rule."
+    ],
+    "donts": [
+      "Don't use pink-600 for small text (labels, tags, inline links, hover states) — use pink-700 per the Small-Text-Steps-Down Rule.",
+      "Don't introduce a dark-mode or neon/terminal palette — explicitly rejected as an anti-reference for this system.",
+      "Don't leave a card's metallic-border inconsistent with its neighbors' curve values (box-shadow, radius) — Instrument Cards across pages (project, member) should share identical shape and border treatment."
+    ]
+  }
+}

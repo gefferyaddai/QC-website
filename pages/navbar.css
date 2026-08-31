@@ -45,7 +45,7 @@
     letter-spacing: -0.5px;
     flex-shrink: 0;
 }
-.brand span { font-style: italic; color: var(--pink-600); }
+.brand span { font-style: italic; color: var(--pink-700); }
 .brand img {
     width: 42px; height: 42px; object-fit: contain; border-radius: 50%;
     border: 1px solid transparent;
@@ -78,7 +78,7 @@
     transition-timing-function: var(--ease-out-quick);
 }
 .nav-links a.active {
-    background: var(--pink-100); color: var(--pink-600);
+    background: var(--pink-100); color: var(--pink-700);
     font-weight: 600; border: 1px solid var(--pink-200);
 }
 
