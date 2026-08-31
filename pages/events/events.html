@@ -1,51 +1,20 @@
 <!-- ── PAGE HEADER ── -->
-<section class="page-header">
-    <div class="blob blob-a"></div>
-    <div class="blob blob-b"></div>
-    <div class="wrap inner fade-up">
-        <div class="section-label">What's On</div>
-        <h1>Events &<br><em>gatherings.</em></h1>
-        <p class="header-sub">Workshops, talks, and networking — everything UC Quants has coming up.</p>
-    </div>
-</section>
-
-<!-- ── UPCOMING EVENTS ── -->
 <section class="upcoming-section">
+    <div class="events-grid-bg"></div>
     <div class="wrap">
         <div class="upcoming-header fade-up">
-            <div>
-                <h2>Upcoming <em>Events</em></h2>
-                <p>Stay tuned for UC Quants workshops, speaker sessions, and community activities.</p>
-            </div>
+            <h2>Upcoming <em>events.</em></h2>
+            <p>Stay tuned for UC Quants workshops, speaker sessions, and community activities.</p>
             <button class="notify-btn" id="notifyBtn">
-                <i class="fa-regular fa-bell"></i> Get Notified
+                Get Notified
+                <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i><i class="fa-solid fa-arrow-right"></i></span>
             </button>
         </div>
 
-        <!-- Empty state — remove and replace with events-grid when events are scheduled -->
+        <!-- Empty state — replace with the event rows when events are scheduled -->
         <div class="empty-state fade-up" style="transition-delay: 0.1s">
-            <div class="empty-icon"><i class="fa-regular fa-calendar-xmark"></i></div>
-            <h3>No Upcoming Events</h3>
-            <p>Nothing scheduled right now — check back soon or get notified when new events drop.</p>
-        </div>
-    </div>
-</section>
-
-<!-- ── CALENDAR ── -->
-<section class="calendar-section">
-    <div class="wrap">
-        <div class="calendar-header fade-up">
-            <div class="section-label">Schedule</div>
-            <h2>Event <em>Calendar</em></h2>
-            <p>View the full UC Quants schedule and plan ahead.</p>
-        </div>
-        <div class="calendar-card fade-up" style="transition-delay: 0.1s">
-            <!-- Replace the src with club's Google Calendar embed URL -->
-            <iframe
-                    src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FEdmonton"
-                    style="border: 0" width="100%" height="640" frameborder="0" scrolling="no"
-                    title="UC Quants Event Calendar">
-            </iframe>
+            <h3>No upcoming events</h3>
+            <p>Nothing scheduled right now. Check back soon, or get notified when new events drop.</p>
         </div>
     </div>
 </section>
@@ -53,12 +22,11 @@
 <!-- ── NOTIFY MODAL ── -->
 <div class="notify-modal-overlay" id="notifyModal">
     <div class="notify-modal">
-        <button class="notify-modal-close" id="notifyClose">
+        <button class="notify-modal-close" id="notifyClose" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
         </button>
         <div id="notifyFormState">
-            <div class="notify-modal-icon"><i class="fa-regular fa-bell"></i></div>
-            <h3>Get Notified</h3>
+            <h3>Get notified</h3>
             <p>Be the first to know when UC Quants events are announced.</p>
             <form id="notifyForm">
                 <div class="notify-field">
@@ -69,20 +37,13 @@
                     <label for="notifyEmail">Email Address</label>
                     <input type="email" id="notifyEmail" placeholder="jane@ucalgary.ca" required/>
                 </div>
-                <button type="submit" class="notify-submit-btn">
-                    <i class="fa-regular fa-bell"></i> Notify Me
-                </button>
+                <button type="submit" class="notify-submit-btn">Notify Me</button>
             </form>
-            <p class="notify-modal-note">
-                <i class="fa-solid fa-lock"></i> No spam, ever. Unsubscribe anytime.
-            </p>
+            <p class="notify-modal-note">No spam, ever. Unsubscribe anytime.</p>
         </div>
-        <div id="notifySuccessState" style="display: none; text-align: center; padding: 20px 0">
-            <div class="notify-modal-icon"><i class="fa-solid fa-circle-check"></i></div>
-            <h3>You're on the list!</h3>
-            <p style="margin-top: 10px; color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; font-weight: 300;">
-                We'll let you know as soon as the next UC Quants event is announced.
-            </p>
+        <div id="notifySuccessState" style="display: none">
+            <h3>You're on the list.</h3>
+            <p>We'll let you know as soon as the next UC Quants event is announced.</p>
         </div>
     </div>
 </div>
