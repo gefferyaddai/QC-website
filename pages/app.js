@@ -9,37 +9,37 @@ const routes = {
         html: '/pages/home/home.html',
         css: 'css-home',
         mod: '/pages/home/home.js',
-        title: 'UC Quants — Quantitative Investment Society',
+        title: 'Quantitative Investment Society',
     },
     about: {
         html: '/pages/about/about.html',
         css: 'css-about',
         mod: '/pages/about/about.js',
-        title: 'About — UC Quants',
+        title: 'Quantitative Investment Society',
     },
     events: {
         html: '/pages/events/events.html',
         css: 'css-events',
         mod: '/pages/events/events.js',
-        title: 'Events — UC Quants',
+        title: 'Quantitative Investment Society',
     },
     team: {
         html: '/pages/meet-the-team/mtt.html',
         css: 'css-team',
         mod: '/pages/meet-the-team/mtt.js',
-        title: 'Meet the Team — UC Quants',
+        title: 'Quantitative Investment Society',
     },
     projects: {
         html: '/pages/projects/projects.html',
         css: 'css-projects',
         mod: '/pages/projects/projects.js',
-        title: 'Projects — UC Quants',
+        title: 'Quantitative Investment Society',
     },
     partner: {
         html: '/pages/partner/partner.html',
         css: 'css-partner',
         mod: '/pages/partner/partner.js',
-        title: 'Partner — UC Quants',
+        title: 'Quantitative Investment Society',
     },
 };
 
@@ -108,7 +108,8 @@ async function navigate(key, { scroll = true } = {}) {
     currentKey = key;
 
     if (scroll) {
-        window.scrollTo(0, 0);
+        if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
+        else window.scrollTo(0, 0);
         appEl.focus({ preventScroll: true });
     }
 }
@@ -126,7 +127,9 @@ document.addEventListener('click', (e) => {
     if (scrollEl) {
         e.preventDefault();
         const target = document.getElementById(scrollEl.dataset.scroll);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!target) return;
+        if (window.__lenis) window.__lenis.scrollTo(target);
+        else target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 });
 

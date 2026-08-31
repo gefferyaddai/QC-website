@@ -108,3 +108,8 @@ body {
     .nav { background: var(--off-white); border-bottom: 1px solid var(--text-dark); backdrop-filter: none; }
     .notify-modal, .event-card, .calendar-card, .project-card, .member-card { border: 1.5px solid var(--text-dark); }
 }
+
+/* ── Lenis smooth scroll (pages/smooth.js) ──────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }

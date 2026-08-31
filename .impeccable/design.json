@@ -4,35 +4,152 @@
   "title": "Design System: UC Quants",
   "extensions": {
     "colorMeta": {
-      "signal-magenta-600": { "role": "primary", "displayName": "Signal Magenta", "canonical": "#c0509a", "tonalRamp": ["#3d1030", "#5a1a44", "#7a2860", "#9a3878", "#c0509a", "#e07ab8", "#f2bade", "#f9dff0", "#fdf3f8"] },
-      "signal-magenta-700": { "role": "primary", "displayName": "Signal Magenta (small-text)", "canonical": "#a53f82", "tonalRamp": ["#5a1a44", "#a53f82", "#c0509a"] },
-      "quant-violet-600": { "role": "secondary", "displayName": "Quant Violet", "canonical": "#6c61cc", "tonalRamp": ["#221e4d", "#332c73", "#473d9e", "#6c61cc", "#9b93ea", "#c9c4f7", "#e4e0fc", "#f3f2ff"] },
-      "instrument-silver-400": { "role": "tertiary", "displayName": "Instrument Silver", "canonical": "linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7)", "tonalRamp": ["#6b7280", "#a3abb6", "#c3c9d1", "#eef0f3"] },
-      "neutral-canvas": { "role": "neutral", "displayName": "Neutral Canvas", "canonical": "#fdfaf8", "tonalRamp": ["#fdfaf8", "#ffffff"] },
-      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1a1018", "tonalRamp": ["#1a1018", "#5c4d58", "#7a6b78"] }
+      "signal-magenta-600": {
+        "role": "primary",
+        "displayName": "Signal Magenta",
+        "canonical": "#c0509a",
+        "tonalRamp": [
+          "#3d1030",
+          "#5a1a44",
+          "#7a2860",
+          "#9a3878",
+          "#c0509a",
+          "#e07ab8",
+          "#f2bade",
+          "#f9dff0",
+          "#fdf3f8"
+        ]
+      },
+      "signal-magenta-700": {
+        "role": "primary",
+        "displayName": "Signal Magenta (small-text)",
+        "canonical": "#a53f82",
+        "tonalRamp": [
+          "#5a1a44",
+          "#a53f82",
+          "#c0509a"
+        ]
+      },
+      "quant-violet-600": {
+        "role": "secondary",
+        "displayName": "Quant Violet",
+        "canonical": "#6c61cc",
+        "tonalRamp": [
+          "#221e4d",
+          "#332c73",
+          "#473d9e",
+          "#6c61cc",
+          "#9b93ea",
+          "#c9c4f7",
+          "#e4e0fc",
+          "#f3f2ff"
+        ]
+      },
+      "instrument-silver-400": {
+        "role": "tertiary",
+        "displayName": "Instrument Silver",
+        "canonical": "linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7)",
+        "tonalRamp": [
+          "#6b7280",
+          "#a3abb6",
+          "#c3c9d1",
+          "#eef0f3"
+        ]
+      },
+      "neutral-canvas": {
+        "role": "neutral",
+        "displayName": "Neutral Canvas",
+        "canonical": "#fdfaf8",
+        "tonalRamp": [
+          "#fdfaf8",
+          "#ffffff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1a1018",
+        "tonalRamp": [
+          "#1a1018",
+          "#5c4d58",
+          "#7a6b78"
+        ]
+      }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "Hero-scale display text (home hero only)." },
-      "h1": { "displayName": "H1", "purpose": "Page title, one per route." },
-      "h2": { "displayName": "H2", "purpose": "Section titles; carries the single-word italic emphasis device." },
-      "h3": { "displayName": "H3", "purpose": "Card and subsection titles." },
-      "body": { "displayName": "Body", "purpose": "Long-form copy, light weight (300) throughout." },
-      "label": { "displayName": "Label", "purpose": "Eyebrows, form field labels, uppercase badges." }
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero-scale display text (home hero only)."
+      },
+      "h1": {
+        "displayName": "H1",
+        "purpose": "Page title, one per route."
+      },
+      "h2": {
+        "displayName": "H2",
+        "purpose": "Section titles; carries the single-word italic emphasis device."
+      },
+      "h3": {
+        "displayName": "H3",
+        "purpose": "Card and subsection titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Long-form copy, light weight (300) throughout."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, form field labels, uppercase badges."
+      }
     },
     "shadows": [
-      { "name": "resting", "value": "0 4px 18px rgba(192, 80, 154, .32), inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(90,26,68,.35)", "purpose": "Default elevated state for buttons and role cards; target resting state for all elevated surfaces per the elevation invariant." },
-      { "name": "hover-lift", "value": "0 10px 30px rgba(192, 80, 154, .4), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(90,26,68,.35)", "purpose": "Hover/press state, paired with a translateY(-2px to -6px) lift." },
-      { "name": "card-hover", "value": "0 20px 50px rgba(192, 80, 154, 0.12)", "purpose": "Softer hover glow used on white instrument cards (event/project/member)." }
+      {
+        "name": "resting",
+        "value": "0 4px 18px rgba(192, 80, 154, .32), inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(90,26,68,.35)",
+        "purpose": "Default elevated state for buttons and role cards; target resting state for all elevated surfaces per the elevation invariant."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 10px 30px rgba(192, 80, 154, .4), inset 0 1px 0 rgba(255,255,255,.45), inset 0 -1px 0 rgba(90,26,68,.35)",
+        "purpose": "Hover/press state, paired with a translateY(-2px to -6px) lift."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 20px 50px rgba(192, 80, 154, 0.12)",
+        "purpose": "Softer hover glow used on white instrument cards (event/project/member)."
+      }
     ],
     "motion": [
-      { "name": "ease-out-smooth", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Default deceleration for button/card hover and lift transitions." },
-      { "name": "ease-in-smooth", "value": "cubic-bezier(0.64, 0, 0.78, 0)", "purpose": "Symmetric exit easing." },
-      { "name": "ease-out-quick", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Snappy hover/press micro-motion (nav toggle, icon buttons)." },
-      { "name": "ease-spring-bounce", "value": "cubic-bezier(0.34, 1.56, 0.64, 1)", "purpose": "Gesture-triggered materialize; the shared token some pages duplicate with drifted local values instead of referencing directly." }
+      {
+        "name": "ease-out-smooth",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default deceleration for button/card hover and lift transitions."
+      },
+      {
+        "name": "ease-in-smooth",
+        "value": "cubic-bezier(0.64, 0, 0.78, 0)",
+        "purpose": "Symmetric exit easing."
+      },
+      {
+        "name": "ease-out-quick",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Snappy hover/press micro-motion (nav toggle, icon buttons)."
+      },
+      {
+        "name": "ease-spring-bounce",
+        "value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "purpose": "Gesture-triggered materialize; the shared token some pages duplicate with drifted local values instead of referencing directly."
+      }
     ],
     "breakpoints": [
-      { "name": "primary", "value": "900px" },
-      { "name": "compact", "value": "480px" }
+      {
+        "name": "primary",
+        "value": "900px"
+      },
+      {
+        "name": "compact",
+        "value": "480px"
+      }
     ]
   },
   "components": [
@@ -88,12 +205,38 @@
       "A repeating hairline grid-line background, radially masked, marks every page's hero as an instrument readout surface"
     ],
     "rules": [
-      { "name": "The One Accent Rule", "body": "Signal Magenta (in its 600 or 700 step) is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.", "section": "colors" },
-      { "name": "The Small-Text-Steps-Down Rule", "body": "Any time Signal Magenta colors text smaller than ~18px, use pink-700, not pink-600 — pink-600 is reserved for large text (headings, display numerals) and non-text uses (icons, borders, fills), where the 3:1 floor applies instead of 4.5:1.", "section": "colors" },
-      { "name": "The No-Flat-Metal Rule", "body": "Instrument Silver never appears as a flat fill or solid border color. It is always the metallic-border or silver-sheen multi-stop gradient — a flat gray reads as disabled/inert, not instrument-grade.", "section": "colors" },
-      { "name": "The Single-Word Italic Rule", "body": "Emphasis inside a heading is expressed by italicizing exactly one word or short phrase in DM Serif Display, colored Signal Magenta or Quant Violet — never by bolding, underlining, or changing the whole heading's weight.", "section": "typography" },
-      { "name": "The Warm Shadow Rule", "body": "No shadow in this system is ever neutral gray or black — every box-shadow carries the Signal Magenta or Ink tint, even at low opacity.", "section": "elevation" },
-      { "name": "The No-Sharp-Corners Rule", "body": "Every interactive or container element uses pill, lg (24px), or full (50%) radius — never a sharp or barely-rounded (≤4px) corner, which is reserved for the rare micro-badge/tooltip case only.", "section": "elevation" }
+      {
+        "name": "The One Accent Rule",
+        "body": "Signal Magenta (in its 600 or 700 step) is the only color ever used as an interactive/emphasis text color. Quant Violet never carries clickable text — it fills, glows, and gradients only.",
+        "section": "colors"
+      },
+      {
+        "name": "The Small-Text-Steps-Down Rule",
+        "body": "Any time Signal Magenta colors text smaller than ~18px, use pink-700, not pink-600 — pink-600 is reserved for large text (headings, display numerals) and non-text uses (icons, borders, fills), where the 3:1 floor applies instead of 4.5:1.",
+        "section": "colors"
+      },
+      {
+        "name": "The No-Flat-Metal Rule",
+        "body": "Instrument Silver never appears as a flat fill or solid border color. It is always the metallic-border or silver-sheen multi-stop gradient — a flat gray reads as disabled/inert, not instrument-grade.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single-Word Italic Rule",
+        "body": "Emphasis inside a heading is expressed by italicizing exactly one word or short phrase in DM Serif Display, colored Signal Magenta or Quant Violet — never by bolding, underlining, or changing the whole heading's weight.",
+        "section": "typography"
+      },
+      {
+        "name": "The Warm Shadow Rule",
+        "body": "No shadow in this system is ever neutral gray or black — every box-shadow carries the Signal Magenta or Ink tint, even at low opacity.",
+        "section": "elevation"
+      },
+      {
+        "name": "The No-Sharp-Corners Rule",
+        "body": "Every interactive or container element uses pill, lg (24px), or full (50%) radius — never a sharp or barely-rounded (≤4px) corner, which is reserved for the rare micro-badge/tooltip case only.",
+        "section": "elevation"
+      },
+      "**The Swiss Grid Rule.** *(Home route today; the target state for all routes.)* Content sits directly on the canvas in a 12-column grid with a 24px gutter — never inside a card. No borders, no divider rules between or around content blocks, no fills, no radius, no shadow. Separation is done by whitespace and exact column alignment; all corners on this route are 0px, buttons included.",
+      "**The Statement Heading Rule.** *(Swiss routes.)* A section is introduced by one full declarative sentence at h1 scale — never by a small uppercase eyebrow label above a smaller title, and never by a graphic marker above it. The heading alone marks where a section begins."
     ],
     "dos": [
       "Do pair Signal Magenta with Quant Violet in gradients/glows when a second hue is needed — never introduce a third accent hue.",
