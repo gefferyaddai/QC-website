@@ -40,7 +40,7 @@
 }
 
 /* label — the single small-type role */
-.track-head h3, .join-label {
+.join-label {
   font-family: 'DM Sans', sans-serif;
   font-size: var(--fs-label);
   line-height: var(--lh-label);
@@ -65,6 +65,7 @@
 }
 .header-sub { margin-bottom: var(--s4); }
 .section-head { margin-bottom: var(--s5); }
+.tracks-section .section-head { margin-bottom: 0; }
 
 /* ── PRIMARY CTA ── squared, flat, no bevel and no lift ── */
 .join-cta {
@@ -82,20 +83,6 @@
 .arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
 .arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 .join-cta:hover .arrow i { transform: translateX(-100%); }
-
-/* ── TRACKS ── stacked rows; the row gap does the separating ── */
-.tracks { display: grid; row-gap: var(--s4); }
-
-.track { display: flex; flex-direction: column; gap: var(--s2); }
-.track-head { display: flex; align-items: baseline; gap: 12px; }
-.track-icon { font-size: .875rem; color: var(--pink-700); flex-shrink: 0; }
-.track-head h3 { color: var(--text-dark); margin: 0; }
-
-.track p {
-  max-width: 78ch;
-  font-size: .9375rem; line-height: 1.75;
-  color: var(--text-mid); font-weight: 300; text-wrap: pretty;
-}
 
 /* ── EMPLOYERS ── a bare logo field. Every mark is pre-normalised to the same
    optical area and centred in an identical 180x60 box, so no logo outweighs
