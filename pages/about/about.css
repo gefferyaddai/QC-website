@@ -55,8 +55,8 @@
   column-gap: var(--gutter);
 }
 
-/* label — the single small-type role: pillar titles, stat labels, tags */
-.card-title, .stat-label, .tag {
+/* label — the single small-type role: pillar titles and tags */
+.card-title, .tag {
   font-family: 'DM Sans', sans-serif;
   font-size: var(--fs-label);
   line-height: var(--lh-label);
@@ -171,51 +171,6 @@
 .tag { color: var(--pink-700); }
 .card-2 .tag { color: var(--lav-600); }
 
-/* ── BOTTOM ROW ── bare grid, no rule above ── */
-.bottom-row { align-items: end; row-gap: var(--s4); margin-top: var(--s6); }
-.bottom-stats { grid-column: 1 / 10; row-gap: var(--s4); }
-.bottom-stats > div { grid-column: span 4; }
-
-.stat-num {
-  display: block;
-  font-family: 'DM Serif Display', serif;
-  font-size: 2rem;
-  letter-spacing: -.02em;
-  line-height: 1;
-  color: var(--text-dark);
-}
-.stat-label { display: block; margin-top: var(--s1); color: var(--text-mid); }
-
-/* CTA — pill: the interactive layer is the one place the system rounds
-   off. Flat still — no bevel, no lift. */
-.bottom-cta {
-  grid-column: 10 / 13;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 32px;
-  border-radius: var(--radius-pill);
-  background: var(--pink-600);
-  border: 1px solid var(--pink-600);
-  color: #fff;
-  font-size: .95rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color .2s, border-color .2s;
-}
-.bottom-cta:hover {
-  color: #fff;
-  background: var(--pink-700);
-  border-color: var(--pink-700);
-}
-.bottom-cta:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
-
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
-.bottom-cta:hover .arrow i { transform: translateX(-100%); }
-
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   /* three 4-column tracks fall under a workable measure here — stack them */
@@ -229,12 +184,6 @@
   .about-intro { padding: var(--s5) 0 var(--s4); }
   .what-we-do  { padding: var(--s4) 0; }
   .cards { row-gap: var(--s4); }
-  .bottom-stats { grid-column: 1 / -1; }
-  .bottom-stats > div { grid-column: span 4; }
-  .bottom-cta { grid-column: 1 / -1; }
-}
-@media (max-width: 480px) {
-  .bottom-stats > div { grid-column: 1 / -1; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -243,5 +192,4 @@
     transform: none !important;
     transition: none !important;
   }
-  .arrow i { transition: none !important; }
 }
