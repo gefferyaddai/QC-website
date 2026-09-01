@@ -39,7 +39,7 @@
 /* ── TYPE ROLES ───────────────────────────────────────────────────────── */
 /* label — the single small-type role: role names, partner names,
    captions. DM Sans has no 700 weight loaded, so 600. */
-.role-name, .partner-name, .chart-caption {
+.role-name, .chart-caption {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label);
     line-height: var(--lh-label);
@@ -48,12 +48,17 @@
     text-transform: uppercase;
 }
 
-/* statement heading — one declarative sentence carries the section */
+/* statement heading — one declarative sentence carries the section. Sits a
+   full tier below .hero-title: the hero is the only display-size type on the
+   page, so the eye lands there first and these read as section markers. */
 .section-title {
     font-family: 'DM Serif Display', serif;
-    font-size: var(--fs-h1);
-    line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
     color: var(--text-dark); margin-bottom: var(--s3);
+    /* headings now set inside a column rather than the full measure — balance
+       the rag so a narrow track can't leave a one-word orphan line */
+    text-wrap: balance;
 }
 .section-title em { font-style: italic; color: var(--pink-600); }
 
@@ -75,14 +80,22 @@
 .btn-fill:focus-visible,
 .btn-line:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
-/* the hairline module field — the one decorative layer Swiss keeps */
+/* the hairline module field — the one decorative layer Swiss keeps.
+   It is a masthead device, not a global backdrop: full strength behind the
+   hero, dissolving before the running text starts, and only a whisper of
+   texture below. At the old .5 an unfilled column read as graph paper. */
 .hero-grid-bg, .mission-grid-bg, .proof-grid-bg {
-    position: absolute; inset: 0; z-index: 0; opacity: .5; pointer-events: none;
+    position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
     background-image:
         linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
         linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
     background-size: 64px 64px;
 }
+.hero-grid-bg {
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+}
+.mission-grid-bg, .proof-grid-bg { opacity: .16; }
 
 /* ── HERO ─────────────────────────────────────────────────────────────── */
 .hero {
@@ -95,11 +108,12 @@
 .hero-copy { grid-column: 1 / 7; }
 .hero-visual { grid-column: 7 / 13; }
 
+/* the one display-tier element on the site — nothing else competes with it */
 .hero-title {
     font-family: 'DM Serif Display', serif;
-    font-size: var(--fs-h1);
-    line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
-    color: var(--text-dark); margin-bottom: var(--s3);
+    font-size: var(--fs-display);
+    line-height: var(--lh-display); letter-spacing: var(--ls-display);
+    color: var(--text-dark); margin-bottom: var(--s4);
 }
 /* words are visible by default; home.js applies the blur-up on top */
 .hero-title .word { display: inline-block; }
@@ -122,11 +136,12 @@
     line-height: 1.75; margin-bottom: var(--s4); font-weight: 300; text-wrap: pretty;
 }
 
-/* buttons — squared, flat, no bevel and no lift */
+/* buttons — pill: the interactive layer is the one place the system
+   rounds off. Flat still — no bevel, no lift. */
 .hero-actions { display: flex; gap: var(--s2); flex-wrap: wrap; }
 .btn-fill, .btn-line {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: 0;
+    padding: 16px 32px; border-radius: var(--radius-pill);
     font-weight: 600; font-size: .95rem; text-decoration: none;
     transition: background-color .2s, color .2s, border-color .2s;
 }
@@ -190,11 +205,26 @@
 .mission { position: relative; overflow: hidden; padding: var(--s5) 0; }
 .mission-inner { position: relative; z-index: 1; align-items: start; row-gap: var(--s5); }
 
-/* the section is a sequence of full-width rows, separated by air alone */
+/* the section is composed on the 12-column field: the statement heading holds
+   the left half, the supporting copy is offset into the right half with a
+   column of air between them. The role stack below runs the full measure as
+   three equal 4-column tracks, so the row reads horizontally, not as a list. */
 .mission-copy { grid-column: 1 / -1; align-items: start; row-gap: var(--s3); }
-.mission-head { grid-column: 1 / -1; }
-.mission-body { grid-column: 1 / -1; }
-.role-stack { grid-column: 1 / -1; display: grid; row-gap: var(--s4); }
+.mission-head { grid-column: 1 / 7; }
+.mission-body { grid-column: 8 / 13; }
+
+.role-stack {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+    row-gap: var(--s4);
+    align-items: start;
+    counter-reset: role;
+}
+.role-stack > :nth-child(1) { grid-column: 1 / 5; }
+.role-stack > :nth-child(2) { grid-column: 5 / 9; }
+.role-stack > :nth-child(3) { grid-column: 9 / 13; }
 
 .mission-body p {
     color: var(--text-mid); font-size: 1rem; line-height: 1.8;
@@ -202,10 +232,22 @@
 }
 .mission-body .link-arrow { margin-top: var(--s1); }
 
-/* roles — stacked rows: the name sits on its own line above its copy.
-   No card, no rule between rows; the row gap does the separating. */
+/* roles — three columns of the same system. No card, no fill, no radius:
+   the structure is a rule across the top, a serif numeral marking position
+   in the sequence, then label and copy. Swiss builds hierarchy out of rules,
+   figures and scale jumps, which is what a card would otherwise have done. */
+.role-card::before {
+    counter-increment: role;
+    content: counter(role, decimal-leading-zero);
+    grid-column: 1 / -1;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--pink-600);
+}
 .role-card {
     align-items: start; row-gap: var(--s2);
+    border-top: 1px solid var(--text-dark); padding-top: var(--s2);
     opacity: 0; transform: translateY(20px);
     transition: opacity .5s ease, transform .55s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -224,45 +266,75 @@
 .proof .home-wrap { position: relative; z-index: 1; }
 /* section head is a row: title left, framing copy right, logos directly below */
 .proof-head { align-items: start; row-gap: var(--s3); margin-bottom: var(--s3); }
-.proof-head-title { grid-column: 1 / -1; }
+.proof-head-title { grid-column: 1 / 8; }
 .proof-head-title .section-title { margin-bottom: 0; }
 .proof-lede {
-    grid-column: 1 / -1; max-width: 78ch;
+    grid-column: 8 / 13; align-self: end;
     color: var(--text-mid); font-size: 1rem; line-height: 1.78;
     font-weight: 300; text-wrap: pretty;
 }
 
-/* partners — a typographic specimen row: marks share a baseline, names
-   share a line beneath. No panel, no chips, no separators. */
-.partner-strip { align-items: start; row-gap: var(--s4); }
-.partner-link { grid-column: 1 / -1; justify-self: start; margin-top: var(--s1); margin-bottom: var(--s2); }
-.partner { display: flex; flex-direction: column; gap: var(--s3); }
-.partner-wso { grid-column: 1 / 5; }
-.partner-vantedge { grid-column: 5 / 9; }
-.partner-calgary { grid-column: 9 / 13; }
-.partner-mark { display: flex; align-items: flex-end; height: 56px; }
-.partner-mark img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; }
-.partner-wso .partner-mark img { max-height: 52px; }
-.partner-calgary .partner-mark img { max-height: 42px; }
+/* partners — a typographic specimen row: three marks on one baseline, each
+   carrying its own name already. No panel, no chips, no separators, and no
+   caption beneath: a label repeating what the mark says is noise.
+   The marks group as one centred specimen instead of spanning the full
+   measure — spread over 12 columns they read as three unrelated items.
+   Brand colour is left intact: these marks do not reduce to a single ink.
+   WSO's icon is two-tone with white counters, so any silhouette collapses it
+   into a solid disc, and desaturating all three only muddied them. */
+.partner-strip { display: block; }
+.partner-link { display: inline-flex; margin-bottom: var(--s5); }
+.partner-marks {
+    display: flex; flex-wrap: wrap;
+    align-items: flex-end; justify-content: center;
+    column-gap: var(--s7); row-gap: var(--s4);
+}
+.partner { display: block; }
+.partner-mark { display: flex; align-items: flex-end; justify-content: center; height: 60px; }
+.partner-mark img {
+    max-height: 100%; max-width: 100%; width: auto;
+    object-fit: contain; object-position: center bottom; display: block;
+}
+/* sized to a shared cap-height, not a shared box: WSO is a stacked lockup
+   (wordmark ~31% of the file), Calgary a horizontal one (~28%), so equal box
+   heights would leave Calgary's wordmark visibly the smaller of the two */
+.partner-wso .partner-mark img { max-height: 54px; }
+.partner-calgary .partner-mark img {
+    max-height: 52px;
+    /* the crest descends below the wordmark, so bottom-aligning the file sets
+       "CALGARY" ~9px high against the other two. Nudge onto the shared
+       baseline — optical alignment, not box alignment. */
+    transform: translateY(9px);
+}
 .partner-wordmark {
     font-family: 'DM Sans', sans-serif; font-weight: 600;
-    font-size: 1.25rem; letter-spacing: .22em; text-transform: uppercase;
+    font-size: 1.375rem; letter-spacing: .22em; text-transform: uppercase;
     color: var(--text-dark); line-height: 1;
 }
-.partner-name { color: var(--text-light); }
 
 
 /* ── RESPONSIVE ───────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+    /* three 4-column tracks fall under a workable measure here — stack them */
+    .role-stack > :nth-child(1),
+    .role-stack > :nth-child(2),
+    .role-stack > :nth-child(3) { grid-column: 1 / -1; }
+}
 @media (max-width: 900px) {
     .hero { min-height: auto; padding: var(--s5) 0 var(--s4); }
     .mission, .proof { padding: var(--s4) 0; }
     .hero-copy, .hero-visual,
-    .mission-copy, .role-stack { grid-column: 1 / -1; }
+    .mission-copy, .mission-head, .mission-body,
+    .role-stack, .proof-head-title { grid-column: 1 / -1; }
+    .proof-lede { grid-column: 1 / -1; align-self: auto; max-width: 78ch; }
     .role-stack { row-gap: var(--s4); }
     .hero-visual { height: 44vh; min-height: 300px; }
 }
+@media (max-width: 900px) {
+    .partner-marks { column-gap: var(--s5); }
+}
 @media (max-width: 480px) {
-    .partner-wso, .partner-vantedge, .partner-calgary { grid-column: 1 / -1; }
+    .partner-marks { column-gap: var(--s4); }
     .partner-mark { height: auto; }
 }
 

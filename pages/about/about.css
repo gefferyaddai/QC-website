@@ -25,13 +25,20 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.28;
   pointer-events: none;
   background-image:
     linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
   background-size: 64px 64px;
 }
+/* the module field is a masthead device: full strength behind the opening
+   statement, dissolving before the running text, a whisper below it */
+.intro-grid-bg {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+          mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+}
+.wwd-grid-bg { opacity: 0.16; }
 
 .inner {
   position: relative;
@@ -61,15 +68,39 @@
 /* ── HEADER ── statement heading, one declarative sentence ── */
 .wwd-head { margin-bottom: var(--s5); }
 
-.about-intro h1,
-.what-we-do h2 {
+/* the interior masthead sits a tier below the home hero: display type is
+   reserved for the site's front door, so an inside page opens at h1 and the
+   section heads below it at h2 — three steps, not two extremes */
+.about-intro h1 {
   font-family: 'DM Serif Display', serif;
   font-size: var(--fs-h1);
   line-height: var(--lh-h1);
   letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s3);
+  margin-bottom: var(--s4);
+  text-wrap: balance;
 }
+/* a full tier below the masthead, so it reads as a section marker */
+.what-we-do h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2);
+  color: var(--text-dark);
+  margin-bottom: var(--s3);
+  text-wrap: balance;
+}
+
+/* both headers compose on the 12-column field: statement left, supporting
+   copy offset into the right half with a column of air between. This is also
+   what caps the measure — the intro ran ~130 characters at full width. */
+/* in a split header the row gap sets the vertical rhythm, so the heading's
+   own bottom margin would otherwise inflate row 1 and cast the call to
+   action adrift from the copy it belongs to */
+.intro-head, .wwd-head-inner { align-items: start; row-gap: var(--s4); }
+.intro-head > h1, .wwd-head-inner > h2 { margin-bottom: 0; }
+.intro-head > h1, .wwd-head-inner > h2 { grid-column: 1 / 7; }
+.intro-head > .header-sub, .wwd-head-inner > .header-sub { grid-column: 8 / 13; }
 .about-intro h1 em,
 .what-we-do h2 em { font-style: italic; color: var(--pink-600); }
 
@@ -78,16 +109,34 @@
   line-height: 1.75;
   color: var(--text-mid);
   font-weight: 300;
-  max-width: none;
+  max-width: 70ch;
   text-wrap: pretty;
 }
 
 /* ── PILLARS ── stacked rows: the title sits on its own line above its copy.
    No card, no rule between rows; the row gap does the separating. */
-.cards { row-gap: var(--s4); perspective: none; }
+/* ── PILLARS ── three columns of one system. No card, no fill, no radius:
+   a rule across the top, a serif numeral marking position in the sequence,
+   then label and copy. Swiss builds hierarchy from rules, figures and scale
+   jumps — which is the job a card would otherwise have done. */
+.cards { row-gap: var(--s4); perspective: none; counter-reset: pillar; }
+.cards > :nth-child(1) { grid-column: 1 / 5; }
+.cards > :nth-child(2) { grid-column: 5 / 9; }
+.cards > :nth-child(3) { grid-column: 9 / 13; }
+
+.card::before {
+  counter-increment: pillar;
+  content: counter(pillar, decimal-leading-zero);
+  grid-column: 1 / -1;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem; line-height: 1; letter-spacing: -.01em;
+  color: var(--pink-600);
+}
+.card-2::before { color: var(--lav-600); }
 
 .card {
-  grid-column: 1 / -1;
+  border-top: 1px solid var(--text-dark);
+  padding-top: var(--s2);
   align-items: start;
   row-gap: var(--s2);
   /* pre-reveal state; about.js adds .visible */
@@ -137,7 +186,8 @@
 }
 .stat-label { display: block; margin-top: var(--s1); color: var(--text-mid); }
 
-/* CTA — squared, flat, no bevel and no lift */
+/* CTA — pill: the interactive layer is the one place the system rounds
+   off. Flat still — no bevel, no lift. */
 .bottom-cta {
   grid-column: 10 / 13;
   justify-self: start;
@@ -145,7 +195,7 @@
   align-items: center;
   gap: 10px;
   padding: 16px 32px;
-  border-radius: 0;
+  border-radius: var(--radius-pill);
   background: var(--pink-600);
   border: 1px solid var(--pink-600);
   color: #fff;
@@ -167,7 +217,15 @@
 .bottom-cta:hover .arrow i { transform: translateX(-100%); }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+  /* three 4-column tracks fall under a workable measure here — stack them */
+  .cards > :nth-child(1),
+  .cards > :nth-child(2),
+  .cards > :nth-child(3) { grid-column: 1 / -1; }
+}
 @media (max-width: 900px) {
+  .intro-head > h1, .wwd-head-inner > h2,
+  .intro-head > .header-sub, .wwd-head-inner > .header-sub { grid-column: 1 / -1; }
   .about-intro { padding: var(--s5) 0 var(--s4); }
   .what-we-do  { padding: var(--s4) 0; }
   .cards { row-gap: var(--s4); }

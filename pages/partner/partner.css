@@ -25,17 +25,25 @@
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .partner-grid-bg {
-    position: absolute; inset: 0; z-index: 0; opacity: .5; pointer-events: none;
+    position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
     background-image:
         linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
         linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
     background-size: 64px 64px;
 }
+/* the module field is a masthead device: full strength behind the opening
+   statement, dissolving before the running text, a whisper below it */
+.hero .partner-grid-bg {
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+}
+.partners .partner-grid-bg, .why .partner-grid-bg,
+.who .partner-grid-bg, .contact-cta .partner-grid-bg { opacity: .16; }
 .hero-inner, .partners-inner, .why .wrap, .who-inner, .contact-inner { position: relative; z-index: 1; }
 
 /* label — the single small-type role */
 .benefit-card h3, .who-card-label, .who-card-item strong,
-.partner-label, .partner-name {
+.partner-label {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label);
     line-height: var(--lh-label);
@@ -44,13 +52,23 @@
     text-transform: uppercase;
 }
 
-/* ── STATEMENT HEADINGS ── one declarative sentence, no eyebrow ── */
-.hero h1, .why h2, .who h2, .contact-cta h2 {
+/* ── STATEMENT HEADINGS ── display type is reserved for the site's front
+   door, so an inside page opens at h1 and its section heads at h2 ── */
+.hero h1 {
     font-family: 'DM Serif Display', serif;
     font-size: var(--fs-h1);
     line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
     color: var(--text-dark);
+    margin-bottom: var(--s4);
+    text-wrap: balance;
+}
+.why h2, .who h2, .contact-cta h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
+    color: var(--text-dark);
     margin-bottom: var(--s3);
+    text-wrap: balance;
 }
 .hero h1 em, .why h2 em, .who h2 em, .contact-cta h2 em {
     font-style: italic; color: var(--pink-600);
@@ -61,13 +79,24 @@
     font-weight: 300; text-wrap: pretty; max-width: 78ch;
 }
 
-/* ── HERO ── */
-.hero-inner p { margin-bottom: var(--s4); }
+/* ── HERO ── composed on the 12-column field: statement left, supporting
+   copy and its call to action offset into the right half ── */
+/* in a split header the row gap sets the vertical rhythm, so the heading's
+   own bottom margin would otherwise inflate row 1 and cast the call to
+   action adrift from the copy it belongs to */
+.hero-inner, .why-header { align-items: start; row-gap: var(--s4); }
+.hero-inner > h1, .why-header > h2 { margin-bottom: 0; }
+.why-header > p { margin-bottom: 0; }
+.hero-inner > h1, .why-header > h2 { grid-column: 1 / 7; }
+.hero-inner > p, .why-header > p { grid-column: 8 / 13; }
+.hero-inner > .hero-cta { grid-column: 8 / 13; justify-self: start; }
+.hero-inner p { margin-bottom: 0; }
 
-/* buttons — squared, flat, no bevel and no lift */
+/* buttons — pill: the interactive layer is the one place the system
+   rounds off. Flat still — no bevel, no lift. */
 .hero-cta {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: 0;
+    padding: 16px 32px; border-radius: var(--radius-pill);
     background: var(--pink-600); border: 1px solid var(--pink-600);
     color: #fff; font-weight: 600; font-size: .95rem;
     text-decoration: none;
@@ -84,35 +113,70 @@
 .hero-cta:focus-visible,
 .contact-email:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
-/* ── PARTNERS ── a typographic specimen row: marks share a baseline, names
-   share a line beneath. No panel, no chips, no separators. ── */
+/* ── PARTNERS ── a typographic specimen row: three marks on one baseline,
+   each carrying its own name already. No panel, no chips, no separators, and
+   no caption beneath: a label repeating what the mark says is noise.
+   The marks group as one centred specimen instead of spanning the full
+   measure — spread over 12 columns they read as three unrelated items.
+   Brand colour is left intact: these marks do not reduce to a single ink.
+   WSO's icon is two-tone with white counters, so any silhouette collapses it
+   into a solid disc, and desaturating all three only muddied them.
+   Mirrors the home route exactly. ── */
 .swiss-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--gutter);
 }
-.partner-strip { align-items: start; row-gap: var(--s4); }
-.partner-label { grid-column: 1 / -1; justify-self: start; color: var(--text-mid); margin-bottom: var(--s2); }
-.partner { display: flex; flex-direction: column; gap: var(--s3); }
-.partner-wso { grid-column: 1 / 5; }
-.partner-vantedge { grid-column: 5 / 9; }
-.partner-calgary { grid-column: 9 / 13; }
-.partner-mark { display: flex; align-items: flex-end; height: 56px; }
-.partner-mark img { max-height: 100%; max-width: 100%; width: auto; object-fit: contain; display: block; }
-.partner-wso .partner-mark img { max-height: 52px; }
-.partner-calgary .partner-mark img { max-height: 42px; }
+.partner-strip { display: block; }
+.partner-label { display: block; color: var(--text-mid); margin-bottom: var(--s5); }
+.partner-marks {
+    display: flex; flex-wrap: wrap;
+    align-items: flex-end; justify-content: center;
+    column-gap: var(--s7); row-gap: var(--s4);
+}
+.partner { display: block; }
+.partner-mark { display: flex; align-items: flex-end; justify-content: center; height: 60px; }
+.partner-mark img {
+    max-height: 100%; max-width: 100%; width: auto;
+    object-fit: contain; object-position: center bottom; display: block;
+}
+/* sized to a shared cap-height, not a shared box: WSO is a stacked lockup
+   (wordmark ~31% of the file), Calgary a horizontal one (~28%), so equal box
+   heights would leave Calgary's wordmark visibly the smaller of the two */
+.partner-wso .partner-mark img { max-height: 54px; }
+.partner-calgary .partner-mark img {
+    max-height: 52px;
+    /* the crest descends below the wordmark, so bottom-aligning the file sets
+       "CALGARY" ~9px high against the other two. Nudge onto the shared
+       baseline — optical alignment, not box alignment. */
+    transform: translateY(9px);
+}
 .partner-wordmark {
     font-family: 'DM Sans', sans-serif; font-weight: 600;
-    font-size: 1.25rem; letter-spacing: .22em; text-transform: uppercase;
+    font-size: 1.375rem; letter-spacing: .22em; text-transform: uppercase;
     color: var(--text-dark); line-height: 1;
 }
-.partner-name { color: var(--text-light); }
 
 /* ── WAYS TO CONNECT ── stacked rows; the row gap does the separating ── */
 .why-header { margin-bottom: var(--s5); }
-.benefits-grid { display: grid; row-gap: var(--s4); }
-
-.benefit-card { display: flex; flex-direction: column; gap: var(--s2); }
+/* four ways to connect, composed two-up on the field. No card, no fill: a
+   rule across the top and a serif numeral open each one. */
+.benefits-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--s7); row-gap: var(--s5);
+    counter-reset: benefit;
+}
+.benefit-card {
+    display: flex; flex-direction: column; gap: var(--s2);
+    border-top: 1px solid var(--text-dark); padding-top: var(--s2);
+}
+.benefit-card::before {
+    counter-increment: benefit;
+    content: counter(benefit, decimal-leading-zero);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem; line-height: 1; letter-spacing: -.01em;
+    color: var(--pink-600);
+}
 .benefit-head { display: flex; align-items: baseline; gap: 12px; }
 .benefit-icon { font-size: .875rem; color: var(--pink-700); flex-shrink: 0; }
 .benefit-card h3 { color: var(--text-dark); margin: 0; }
@@ -123,7 +187,12 @@
 }
 
 /* ── WHO ── */
-.who-inner { display: grid; row-gap: var(--s5); }
+.who-inner {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter); row-gap: var(--s5); align-items: start;
+}
+.who-text { grid-column: 1 / 7; }
+.who-card { grid-column: 8 / 13; }
 .who-text p { margin-bottom: var(--s3); }
 
 .who-list { list-style: none; display: grid; row-gap: var(--s2); }
@@ -157,10 +226,16 @@
 .contact-email:hover { opacity: .65; }
 
 /* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .benefits-grid { grid-template-columns: 1fr; column-gap: 0; row-gap: var(--s4); }
+}
 @media (max-width: 900px) {
     .hero        { padding: var(--s5) 0 var(--s4); }
     .partners, .why, .who { padding: var(--s4) 0; }
-    .partner-wso, .partner-vantedge, .partner-calgary { grid-column: span 4; }
+    .hero-inner > h1, .hero-inner > p, .hero-inner > .hero-cta,
+    .why-header > h2, .why-header > p,
+    .who-text, .who-card { grid-column: 1 / -1; }
+    .partner-marks { column-gap: var(--s5); }
     .contact-cta { padding: var(--s4) 0 var(--s5); }
     .why-header  { margin-bottom: var(--s4); }
     .who-inner   { row-gap: var(--s4); }

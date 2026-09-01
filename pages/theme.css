@@ -44,6 +44,10 @@
     --metallic-border: linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7);
     --silver-sheen: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 45%, rgba(200,205,215,.4) 52%, rgba(255,255,255,0) 100%);
 
+    /* ── shape — DESIGN.md → rounded.pill. Every button, badge and
+       pill-shaped control takes this; the nav links already did. ── */
+    --radius-pill: 999px;
+
     /* ── motion — CSS approximations of Apple's damping/response spring table ── */
     --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);     /* damping 1.0: decelerate, no overshoot */
     --ease-in-smooth:  cubic-bezier(0.64, 0, 0.78, 0);     /* exact mirror, for symmetric exits */
