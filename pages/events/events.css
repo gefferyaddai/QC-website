@@ -22,24 +22,50 @@
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .events-grid-bg {
-    position: absolute; inset: 0; z-index: 0; opacity: .5; pointer-events: none;
+    position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
     background-image:
         linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
         linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
     background-size: 64px 64px;
 }
+/* the module field is a masthead device: full strength behind the opening
+   statement, dissolving before the running text below it */
+.upcoming-section .events-grid-bg {
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 88%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 88%);
+}
 .page-header .inner,
 .upcoming-section .wrap { position: relative; z-index: 1; }
 
 /* ── TYPE ── statement headings, one declarative sentence each ── */
+/* the interior masthead sits a tier below the home hero: display type is
+    reserved for the site's front door, so an inside page opens at h1 and the
+    section heads below it at h2 — three steps, not two extremes */
 .page-header h1,
 .upcoming-header h1 {
     font-family: 'DM Serif Display', serif;
     font-size: var(--fs-h1);
     line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
     color: var(--text-dark);
-    margin-bottom: var(--s3);
+    margin-bottom: var(--s4);
+    text-wrap: balance;
 }
+
+/* the header composes on the 12-column field: statement left, the standing
+   copy and its call to action offset into the right half */
+.swiss-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+}
+/* in a split header the row gap sets the vertical rhythm, so the heading's
+   own bottom margin would otherwise inflate row 1 and cast the call to
+   action adrift from the copy it belongs to */
+.upcoming-header { align-items: start; row-gap: var(--s4); }
+.upcoming-header > h1, .upcoming-header > p { margin-bottom: 0; }
+.upcoming-header > h1 { grid-column: 1 / 7; }
+.upcoming-header > p { grid-column: 8 / 13; }
+.upcoming-header > .notify-btn { grid-column: 8 / 13; justify-self: start; }
 .page-header h1 em,
 .upcoming-header h1 em { font-style: italic; color: var(--pink-600); }
 
@@ -55,10 +81,11 @@
     font-weight: 300; text-wrap: pretty; margin-bottom: var(--s4);
 }
 
-/* buttons — squared, flat, no bevel and no lift */
+/* buttons — pill: the interactive layer is the one place the system
+   rounds off. Flat still — no bevel, no lift. */
 .notify-btn, .notify-submit-btn {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: 0;
+    padding: 16px 32px; border-radius: var(--radius-pill);
     background: var(--pink-600); border: 1px solid var(--pink-600);
     color: #fff; font-weight: 600; font-size: .95rem;
     font-family: 'DM Sans', sans-serif; cursor: pointer;
@@ -126,7 +153,7 @@
     position: absolute; top: 12px; right: 12px;
     background: none; border: none; font-size: 1rem;
     cursor: pointer; color: var(--text-mid);
-    padding: 8px; border-radius: 0; line-height: 1;
+    padding: 8px; border-radius: var(--radius-pill); line-height: 1;
     transition: color .2s;
 }
 .notify-modal-close:hover { color: var(--pink-700); }
@@ -168,6 +195,8 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
+    .upcoming-header > h1, .upcoming-header > p,
+    .upcoming-header > .notify-btn { grid-column: 1 / -1; }
     .page-header { padding: var(--s5) 0 var(--s4); }
     .upcoming-section { padding: var(--s4) 0 var(--s5); }
     .upcoming-header { margin-bottom: var(--s4); }

@@ -8,7 +8,6 @@ let timers = [];
 let observers = [];
 let plx = [];
 let onScroll = null;
-let onRespResize = null;
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -17,7 +16,6 @@ export function init(root) {
     step(cardReveal);
     step(cardTilt);
     step(parallax);
-    step(responsive);
 }
 
 export function destroy() {
@@ -26,7 +24,6 @@ export function destroy() {
     observers.forEach((o) => o.disconnect());
     observers = [];
     if (onScroll) { window.removeEventListener('scroll', onScroll); onScroll = null; }
-    if (onRespResize) { window.removeEventListener('resize', onRespResize); onRespResize = null; }
     plx = [];
 }
 
@@ -111,18 +108,3 @@ function parallax(root) {
     apply();
 }
 
-/* The CSS media queries already handle every breakpoint. This only keeps the
-   grids correct when the router swaps content in at a size the stylesheet was
-   not evaluated against — harmless to delete if you prefer pure CSS. */
-function responsive(root) {
-    const bottom = root.querySelector('.bottom-row');
-    if (!bottom) return;
-    const apply = () => {
-        const narrow = window.innerWidth <= 768;
-        bottom.style.flexDirection = narrow ? 'column' : '';
-        bottom.style.alignItems = narrow ? 'flex-start' : '';
-    };
-    onRespResize = apply;
-    window.addEventListener('resize', apply);
-    apply();
-}

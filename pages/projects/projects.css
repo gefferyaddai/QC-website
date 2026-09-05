@@ -22,12 +22,19 @@
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .projects-grid-bg {
-  position: absolute; inset: 0; z-index: 0; opacity: .5; pointer-events: none;
+  position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
   background-image:
     linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
   background-size: 64px 64px;
 }
+/* the module field is a masthead device: full strength behind the opening
+   statement, dissolving before the index, a whisper under the entries */
+.page-header .projects-grid-bg {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+          mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+}
+.projects .projects-grid-bg { opacity: .16; }
 
 .inner {
   position: relative;
@@ -48,12 +55,16 @@
 }
 
 /* ── HEADER ── statement heading, no eyebrow ── */
+/* the interior masthead sits a tier below the home hero: display type is
+   reserved for the site's front door, so an inside page opens at h1 and the
+   section heads below it at h2 — three steps, not two extremes */
 .page-header h1 {
   font-family: 'DM Serif Display', serif;
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s3);
+  margin-bottom: var(--s4);
+  text-wrap: balance;
 }
 .page-header h1 em { font-style: italic; color: var(--pink-600); }
 
@@ -62,17 +73,38 @@
   font-weight: 300; text-wrap: pretty;
 }
 
-/* ── PROJECTS ── stacked rows; the row gap does the separating ── */
-.projects .inner { display: grid; row-gap: var(--s5); }
+/* ── PROJECTS ── an index, not a stack of blocks. Each entry composes on the
+   12-column field: its number and metadata hold the left columns, the entry
+   itself the right. A rule across the top opens each row. No card, no fill,
+   no radius — rule, numeral and scale jump do the work instead. */
+.projects .inner { display: grid; row-gap: var(--s5); counter-reset: project; }
 
 .project-card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--s2);
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+  row-gap: var(--s2);
+  align-items: start;
+  border-top: 1px solid var(--text-dark);
+  padding-top: var(--s2);
 }
+.project-card::before {
+  counter-increment: project;
+  content: counter(project, decimal-leading-zero);
+  grid-column: 1 / 4;
+  grid-row: 1;
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem; line-height: 1; letter-spacing: -.01em;
+  color: var(--pink-600);
+}
+.project-card > .card-meta   { grid-column: 1 / 4; grid-row: 2; }
+.project-card > .project-title,
+.project-card > .project-desc,
+.project-card > .tags,
+.project-card > .project-link { grid-column: 5 / 12; }
+.project-card > .project-title { grid-row: 1; }
 
-.card-meta { display: flex; flex-wrap: wrap; gap: var(--s1) var(--s3); }
+.card-meta { display: flex; flex-direction: column; flex-wrap: wrap; gap: var(--s1); }
 .project-tag  { color: var(--pink-700); }
 .project-year { color: var(--text-light); }
 
@@ -111,6 +143,13 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
+  .project-card::before,
+  .project-card > .card-meta,
+  .project-card > .project-title,
+  .project-card > .project-desc,
+  .project-card > .tags,
+  .project-card > .project-link { grid-column: 1 / -1; grid-row: auto; }
+  .card-meta { flex-direction: row; gap: var(--s1) var(--s3); }
   .page-header { padding: var(--s5) 0 var(--s4); }
   .projects    { padding: var(--s4) 0 var(--s5); }
   .projects .inner { row-gap: var(--s4); }

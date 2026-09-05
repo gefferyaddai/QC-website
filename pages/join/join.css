@@ -24,12 +24,22 @@
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .join-grid-bg {
-  position: absolute; inset: 0; z-index: 0; opacity: .5; pointer-events: none;
+  position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
   background-image:
     linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
   background-size: 64px 64px;
 }
+/* the module field is a masthead device: full strength behind the opening
+   statement, dissolving before the running text, a whisper in the sections
+   below it */
+.join-header .join-grid-bg {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+          mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+}
+.tracks-section .join-grid-bg,
+.employers-section .join-grid-bg,
+.join-close .join-grid-bg { opacity: .16; }
 
 .inner {
   position: relative;
@@ -49,14 +59,41 @@
   text-transform: uppercase;
 }
 
-/* ── STATEMENT HEADINGS ── */
-.join-header h1, .section-head h2 {
+/* ── STATEMENT HEADINGS ── display type is reserved for the site's front
+   door, so an inside page opens at h1 and its section heads at h2 ── */
+.join-header h1 {
   font-family: 'DM Serif Display', serif;
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s3);
+  margin-bottom: var(--s4);
+  text-wrap: balance;
 }
+.section-head h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
+  color: var(--text-dark);
+  margin-bottom: var(--s3);
+  text-wrap: balance;
+}
+
+/* headers compose on the 12-column field: statement left, supporting copy
+   and its call to action offset into the right half */
+.swiss-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: var(--gutter);
+}
+/* in a split header the row gap sets the vertical rhythm, so the heading's
+   own bottom margin would otherwise inflate row 1 and cast the call to
+   action adrift from the copy it belongs to */
+.join-head, .section-head.swiss-grid { align-items: start; row-gap: var(--s4); }
+.join-head > h1, .section-head > h2 { margin-bottom: 0; }
+.join-head > .header-sub, .section-head > p { margin-bottom: 0; }
+.join-head > h1, .section-head > h2 { grid-column: 1 / 7; }
+.join-head > .header-sub, .section-head > p { grid-column: 8 / 13; }
+.join-head > .join-cta { grid-column: 8 / 13; justify-self: start; }
 .join-header h1 em, .section-head h2 em { font-style: italic; color: var(--pink-600); }
 
 .header-sub, .section-head p {
@@ -67,10 +104,11 @@
 .section-head { margin-bottom: var(--s5); }
 .tracks-section .section-head { margin-bottom: 0; }
 
-/* ── PRIMARY CTA ── squared, flat, no bevel and no lift ── */
+/* ── PRIMARY CTA ── pill: the interactive layer is the one place the
+   system rounds off. Flat still — no bevel, no lift. ── */
 .join-cta {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: 0;
+  padding: 16px 32px; border-radius: var(--radius-pill);
   background: var(--pink-600); border: 1px solid var(--pink-600);
   color: #fff; font-weight: 600; font-size: .95rem;
   text-decoration: none;
@@ -125,6 +163,9 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
+  .join-head > h1, .section-head > h2,
+  .join-head > .header-sub, .section-head > p,
+  .join-head > .join-cta { grid-column: 1 / -1; }
   .join-header    { padding: var(--s5) 0 var(--s4); }
   .tracks-section,
   .employers-section { padding: var(--s4) 0; }

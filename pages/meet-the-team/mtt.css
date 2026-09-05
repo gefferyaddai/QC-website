@@ -23,12 +23,20 @@
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .mtt-grid-bg {
-  position: absolute; inset: 0; z-index: 0; opacity: .5; pointer-events: none;
+  position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
   background-image:
     linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
   background-size: 64px 64px;
 }
+/* the module field is a masthead device: full strength behind the opening
+   statement, dissolving before the roster, a whisper beneath it */
+.page-header .mtt-grid-bg {
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+          mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
+}
+.team-section .mtt-grid-bg,
+.join-bar .mtt-grid-bg { opacity: .16; }
 
 .inner {
   position: relative;
@@ -56,12 +64,16 @@
 }
 
 /* ── HEADER ── statement heading, no eyebrow ── */
+/* the interior masthead sits a tier below the home hero: display type is
+   reserved for the site's front door, so an inside page opens at h1 and the
+   section heads below it at h2 — three steps, not two extremes */
 .page-header h1 {
   font-family: 'DM Serif Display', serif;
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s3);
+  margin-bottom: var(--s4);
+  text-wrap: balance;
 }
 .page-header h1 em { font-style: italic; color: var(--pink-600); }
 
@@ -79,6 +91,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--s1);
+  /* a rule opens each entry — the roster is a system of columns, not a set
+     of floating blocks. Still no card: no fill, no radius, no shadow. */
+  border-top: 1px solid var(--text-dark);
+  padding-top: var(--s2);
+  height: 100%;
 }
 
 .member-name {
@@ -101,7 +118,10 @@
 
 .linkedin-btn {
   display: inline-flex; align-items: center; gap: 10px;
-  margin-top: var(--s1);
+  /* pushed to the foot of the column so the links share a baseline across a
+     row even when a member has no email listed — otherwise that entry's link
+     rides up and shears the row */
+  margin-top: auto; padding-top: var(--s1);
   color: var(--pink-700); font-weight: 600; font-size: .875rem;
   text-decoration: none;
   transition: opacity .2s;
@@ -128,10 +148,11 @@
 .join-cta { grid-column: 10 / 13; display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); }
 .join-desc { color: var(--text-mid); font-size: .9375rem; line-height: 1.7; font-weight: 300; }
 
-/* CTA — squared, flat, no bevel and no lift */
+/* CTA — pill: the interactive layer is the one place the system rounds
+   off. Flat still — no bevel, no lift. */
 .btn-signup {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: 0;
+  padding: 16px 32px; border-radius: var(--radius-pill);
   background: var(--pink-600); border: 1px solid var(--pink-600);
   color: #fff; font-weight: 600; font-size: .95rem;
   text-decoration: none;
