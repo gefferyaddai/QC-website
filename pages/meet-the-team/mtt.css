@@ -17,7 +17,15 @@
   --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
   --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.page-header  { padding: var(--s6) 0 var(--s5); }
+.page-header {
+  padding: var(--s6) 0 var(--s5);
+  /* team photo, faded into the canvas on the left: same treatment as the About and Events heroes */
+  background:
+    linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+    url(/assets/meet-the-team/team-hero-wide.jpg) center 40% / cover no-repeat,
+    var(--off-white);
+}
+.page-header .inner { position: relative; z-index: 1; }
 .team-section { padding: var(--s5) 0; }
 .join-bar     { padding: var(--s5) 0 var(--s6); }
 
@@ -72,10 +80,10 @@
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s4);
+  margin-bottom: 0;
   text-wrap: balance;
 }
-.page-header h1 em { font-style: italic; color: var(--pink-600); }
+.page-header h1 em { font-style: italic; color: var(--text-dark); }
 
 .header-sub {
   color: var(--text-mid); font-size: 1rem; line-height: 1.75;

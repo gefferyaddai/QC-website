@@ -39,7 +39,7 @@
 /* ── TYPE ROLES ───────────────────────────────────────────────────────── */
 /* label — the single small-type role: role names, partner names,
    captions. DM Sans has no 700 weight loaded, so 600. */
-.role-name, .chart-caption {
+.chart-caption {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label);
     line-height: var(--lh-label);
@@ -100,13 +100,30 @@
 /* ── HERO ─────────────────────────────────────────────────────────────── */
 .hero {
     position: relative; overflow: hidden;
-    min-height: 92vh; display: flex; align-items: center;
-    padding: var(--s6) 0 var(--s5);
-    background: var(--off-white);
+    min-height: 80vh; display: flex; align-items: center;
+    padding: var(--s5) 0 var(--s4);
+    /* Calgary skyline photo, faded into the canvas on the left so the title stays legible */
+    background:
+        linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+        url(/assets/home/hero-calgary-towers.webp) center 35% / cover no-repeat,
+        var(--off-white);
 }
 .hero-inner { position: relative; z-index: 2; align-items: center; row-gap: var(--s5); }
 .hero-copy { grid-column: 1 / 7; }
 .hero-visual { grid-column: 7 / 13; }
+
+/* heading-only hero: the title stands alone, one word per line */
+.hero .hero-title {
+    grid-column: 1 / 13; margin: 0;
+    font-size: clamp(3.4rem, 10vw, 6rem); line-height: .95; letter-spacing: -0.035em;
+}
+.hero .hero-title .word { display: block; }
+.hero-desc {
+    grid-column: 1 / 7; margin-top: var(--s3); max-width: 46ch;
+    font-family: 'Times New Roman', Times, serif; font-style: italic;
+    font-size: 1.25rem; line-height: 1.55; font-weight: 400; color: var(--text-mid);
+}
+@media (max-width: 900px) { .hero-desc { grid-column: 1 / -1; } }
 
 /* the one display-tier element on the site — nothing else competes with it */
 .hero-title {
@@ -202,16 +219,18 @@
 }
 
 /* ── MISSION ──────────────────────────────────────────────────────────── */
-.mission { position: relative; overflow: hidden; padding: var(--s5) 0; }
-.mission-inner { position: relative; z-index: 1; align-items: start; row-gap: var(--s5); }
+.mission { position: relative; overflow: hidden; padding: var(--s4) 0; }
+.mission-inner { position: relative; z-index: 1; align-items: start; row-gap: var(--s4); }
 
 /* the section is composed on the 12-column field: the statement heading holds
    the left half, the supporting copy is offset into the right half with a
    column of air between them. The role stack below runs the full measure as
    three equal 4-column tracks, so the row reads horizontally, not as a list. */
-.mission-copy { grid-column: 1 / -1; align-items: start; row-gap: var(--s3); }
-.mission-head { grid-column: 1 / 7; }
-.mission-body { grid-column: 8 / 13; }
+.mission-copy { grid-column: 1 / -1; align-items: start; row-gap: var(--s2); }
+.mission-head, .mission-body { grid-column: 2 / 12; text-align: center; }
+.mission-body p { margin-left: auto; margin-right: auto; }
+.mission-head .section-title { margin-bottom: 0; }
+.mission-head .section-title em { color: var(--text-dark); }
 
 .role-stack {
     grid-column: 1 / -1;
@@ -220,31 +239,20 @@
     column-gap: var(--gutter);
     row-gap: var(--s4);
     align-items: start;
-    counter-reset: role;
 }
 .role-stack > :nth-child(1) { grid-column: 1 / 5; }
 .role-stack > :nth-child(2) { grid-column: 5 / 9; }
 .role-stack > :nth-child(3) { grid-column: 9 / 13; }
 
 .mission-body p {
-    color: var(--text-mid); font-size: 1rem; line-height: 1.8;
-    margin-bottom: var(--s3); font-weight: 300; text-wrap: pretty; max-width: 66ch;
+    font-family: 'Times New Roman', Times, serif;
+    color: var(--text-mid); font-size: 1rem; line-height: 1.65;
+    margin-bottom: var(--s2); font-weight: 400; text-wrap: pretty; max-width: 70ch;
 }
 .mission-body .link-arrow { margin-top: var(--s1); }
 
 /* roles — three columns of the same system. No card, no fill, no radius:
-   the structure is a rule across the top, a serif numeral marking position
-   in the sequence, then label and copy. Swiss builds hierarchy out of rules,
-   figures and scale jumps, which is what a card would otherwise have done. */
-.role-card::before {
-    counter-increment: role;
-    content: counter(role, decimal-leading-zero);
-    grid-column: 1 / -1;
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem; line-height: 1;
-    letter-spacing: -0.01em;
-    color: var(--pink-600);
-}
+   a rule across the top, then a serif track name and copy. */
 .role-card {
     align-items: start; row-gap: var(--s2);
     border-top: 1px solid var(--text-dark); padding-top: var(--s2);
@@ -253,16 +261,33 @@
 }
 .role-card.slide-in { opacity: 1; transform: none; }
 .role-head { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 12px; }
-.role-icon { font-size: .875rem; color: var(--pink-700); flex-shrink: 0; }
-.role-name { color: var(--text-dark); }
+.role-name {
+    font-family: 'DM Serif Display', serif; font-weight: 400;
+    font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var(--ls-h3);
+    color: var(--text-dark);
+}
 .role-body {
     grid-column: 1 / -1; max-width: 78ch;
+    font-family: 'Times New Roman', Times, serif;
     font-size: .9375rem; color: var(--text-mid); line-height: 1.75;
-    font-weight: 300; text-wrap: pretty;
+    font-weight: 400; text-wrap: pretty;
+}
+
+/* ── WHERE MEMBERS HAVE WORKED ───────────────────────────────────────── */
+.placed-title { text-align: center; margin-bottom: var(--s4); }
+.placed-title em { color: var(--text-dark); }
+.placed-logos {
+    list-style: none; display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: var(--s4) var(--gutter); justify-items: center; align-items: center;
+}
+.placed-logos img { width: 160px; height: 56px; object-fit: contain; }
+@media (max-width: 900px) {
+    .placed-logos { grid-template-columns: repeat(2, 1fr); gap: var(--s4) var(--gutter); }
+    .placed-logos img { width: 130px; height: 46px; }
 }
 
 /* ── PARTNERSHIPS ─────────────────────────────────────────────────────── */
-.proof { position: relative; overflow: hidden; padding: var(--s5) 0 var(--s6); background: var(--off-white); }
+.proof { position: relative; overflow: hidden; padding: var(--s4) 0 var(--s5); background: var(--off-white); }
 .proof .home-wrap { position: relative; z-index: 1; }
 /* section head is a row: title left, framing copy right, logos directly below */
 .proof-head { align-items: start; row-gap: var(--s3); margin-bottom: var(--s3); }

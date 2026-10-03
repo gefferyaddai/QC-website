@@ -17,7 +17,15 @@
   --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
   --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.page-header { padding: var(--s6) 0 var(--s5); }
+.page-header {
+  padding: var(--s6) 0 var(--s5);
+  /* volatility surface, faded into the canvas on the left: same treatment as the other page heroes */
+  background:
+    linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+    url(/assets/projects/projects-hero-wide.jpg) center 60% / cover no-repeat,
+    var(--off-white);
+}
+.page-header .inner { position: relative; z-index: 1; }
 .projects    { padding: var(--s5) 0 var(--s6); }
 
 /* the hairline module field — the one decorative layer Swiss keeps */
@@ -63,10 +71,10 @@
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s4);
+  margin-bottom: 0;
   text-wrap: balance;
 }
-.page-header h1 em { font-style: italic; color: var(--pink-600); }
+.page-header h1 em { font-style: italic; color: var(--text-dark); }
 
 .header-sub {
   color: var(--text-mid); font-size: 1rem; line-height: 1.75;
@@ -77,7 +85,7 @@
    12-column field: its number and metadata hold the left columns, the entry
    itself the right. A rule across the top opens each row. No card, no fill,
    no radius — rule, numeral and scale jump do the work instead. */
-.projects .inner { display: grid; row-gap: var(--s5); counter-reset: project; }
+.projects .inner { display: grid; row-gap: var(--s5) }
 
 .project-card {
   display: grid;
@@ -88,16 +96,7 @@
   border-top: 1px solid var(--text-dark);
   padding-top: var(--s2);
 }
-.project-card::before {
-  counter-increment: project;
-  content: counter(project, decimal-leading-zero);
-  grid-column: 1 / 4;
-  grid-row: 1;
-  font-family: 'DM Serif Display', serif;
-  font-size: 1.5rem; line-height: 1; letter-spacing: -.01em;
-  color: var(--pink-600);
-}
-.project-card > .card-meta   { grid-column: 1 / 4; grid-row: 2; }
+.project-card > .card-meta   { grid-column: 1 / 4; grid-row: 1; }
 .project-card > .project-title,
 .project-card > .project-desc,
 .project-card > .tags,
@@ -143,7 +142,6 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .project-card::before,
   .project-card > .card-meta,
   .project-card > .project-title,
   .project-card > .project-desc,

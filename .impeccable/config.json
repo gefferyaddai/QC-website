@@ -20,6 +20,30 @@
         "value": "#dfe2e7",
         "createdAt": "2026-08-15T06:39:32.973Z",
         "reason": "gradient stop inside pre-existing --metallic-border token, documented as a single gradient (Instrument Silver) in DESIGN.md rather than per-stop"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.05rem",
+        "createdAt": "2026-10-03T04:53:20.539Z",
+        "reason": "Claude: matches existing .hero-lede size in pages/home/home.css (incumbent lede step)"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "times new roman",
+        "createdAt": "2026-10-03T04:56:17.371Z",
+        "reason": "user requested Times New Roman italic for the hero description (live picker prompt 2026-10-02)"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.25rem",
+        "createdAt": "2026-10-03T04:56:37.589Z",
+        "reason": "user accepted this size for the hero description in the live picker"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "3.4rem",
+        "createdAt": "2026-10-03T15:55:33.916Z",
+        "reason": "matches the home hero title clamp(3.4rem, 10vw, 6rem) the user accepted in the live picker"
       }
     ]
   }

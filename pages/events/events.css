@@ -7,7 +7,7 @@
    The Statement Heading Rule.
 ────────────────────────────────────────────────────────────────────────── */
 
-.page-header, .upcoming-section {
+.page-header, .events-hero, .upcoming-section {
     position: relative;
     overflow: hidden;
     background: var(--off-white);
@@ -19,6 +19,35 @@
 }
 .page-header { padding: var(--s6) 0 var(--s5); }
 .upcoming-section { padding: var(--s5) 0 var(--s6); }
+
+/* title-only hero: campus photo faded into the canvas on the left, sized like the About intro */
+.events-hero {
+    position: relative; overflow: hidden;
+    padding: var(--s6) 0 var(--s5);
+    background: var(--off-white);
+}
+/* the photo sits on its own layer so it can be desaturated, with the fade above it */
+.events-hero::before,
+.events-hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.events-hero::before {
+    background: url(/assets/events/events-campus.jpg) center 40% / cover no-repeat;
+    filter: saturate(.6);
+}
+.events-hero::after {
+    background: linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%);
+}
+.events-hero .wrap { position: relative; z-index: 1; }
+.events-hero .upcoming-header { margin-bottom: 0; }
+
+/* intro line + notify button, now under the hero */
+.upcoming-intro {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: var(--s3); margin-bottom: var(--s5);
+}
+.upcoming-intro p {
+    color: var(--text-mid); font-size: 1rem; line-height: 1.75;
+    text-wrap: pretty; margin: 0; max-width: 60ch;
+}
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .events-grid-bg {

@@ -86,6 +86,14 @@ body {
 #app-content > section:last-of-type { flex: 1 0 auto; }
 .footer { flex-shrink: 0; }
 
+/* Paragraph copy is set in Times New Roman site-wide. The #app-content id
+   outranks the per-page class rules, so no page stylesheet can override it. */
+#app-content p, .footer p { font-family: 'Times New Roman', Times, serif; }
+
+/* Page titles carry no accent colour: the italic word stays italic but in ink.
+   The #app-content id outranks every per-page `h1 em` rule. */
+#app-content h1 em { color: var(--text-dark); }
+
 /* ── FADE-UP (shared scroll-reveal utility, used by every page) ── */
 .fade-up {
     opacity: 0;
