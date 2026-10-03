@@ -60,7 +60,7 @@
        the rag so a narrow track can't leave a one-word orphan line */
     text-wrap: balance;
 }
-.section-title em { font-style: italic; color: var(--pink-600); }
+.section-title em { font-style: italic; color: var(--text-dark); }
 
 .link-arrow {
     display: inline-flex; align-items: center; gap: 10px;
@@ -73,12 +73,8 @@
 /* the arrow slides out and its twin slides in — one clipped 1em window */
 .arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
 .arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
-.btn-fill:hover .arrow i,
-.btn-line:hover .arrow i,
 .link-arrow:hover .arrow i { transform: translateX(-100%); }
-.link-arrow:focus-visible,
-.btn-fill:focus-visible,
-.btn-line:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
+.link-arrow:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
 /* the hairline module field — the one decorative layer Swiss keeps.
    It is a masthead device, not a global backdrop: full strength behind the
@@ -152,20 +148,6 @@
     max-width: 62ch; font-size: 1.05rem; color: var(--text-mid);
     line-height: 1.75; margin-bottom: var(--s4); font-weight: 300; text-wrap: pretty;
 }
-
-/* buttons — pill: the interactive layer is the one place the system
-   rounds off. Flat still — no bevel, no lift. */
-.hero-actions { display: flex; gap: var(--s2); flex-wrap: wrap; }
-.btn-fill, .btn-line {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: var(--radius-pill);
-    font-weight: 600; font-size: .95rem; text-decoration: none;
-    transition: background-color .2s, color .2s, border-color .2s;
-}
-.btn-fill { background: var(--pink-600); color: #fff; border: 1px solid var(--pink-600); }
-.btn-fill:hover { background: var(--pink-700); border-color: var(--pink-700); color: #fff; }
-.btn-line { color: var(--text-dark); background: transparent; border: 1px solid var(--text-dark); }
-.btn-line:hover { background: var(--text-dark); color: var(--off-white); }
 
 /* static 2D chart graphic — pure SVG, no canvas, no JS */
 .hero-visual { position: relative; height: min(74vh, 620px); min-height: 420px; }

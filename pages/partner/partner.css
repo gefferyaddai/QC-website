@@ -113,17 +113,14 @@
 .hero-inner > .hero-cta { grid-column: 8 / 13; justify-self: start; }
 .hero-inner p { margin-bottom: 0; }
 
-/* buttons — pill: the interactive layer is the one place the system
-   rounds off. Flat still — no bevel, no lift. */
+/* calls to action are text links in the accent, no button chrome */
 .hero-cta {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: var(--radius-pill);
-    background: var(--pink-600); border: 1px solid var(--pink-600);
-    color: #fff; font-weight: 600; font-size: .95rem;
+    color: var(--pink-700); font-weight: 600; font-size: .95rem;
     text-decoration: none;
-    transition: background-color .2s, border-color .2s;
+    transition: opacity .2s;
 }
-.hero-cta:hover { background: var(--pink-700); border-color: var(--pink-700); color: #fff; }
+.hero-cta:hover { opacity: .65; }
 
 /* the arrow slides out and its twin slides in — one clipped 1em window */
 .arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }

@@ -139,8 +139,7 @@
 /* the arrow slides out and its twin slides in — one clipped 1em window */
 .arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
 .arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
-.linkedin-btn:hover .arrow i,
-.btn-signup:hover .arrow i { transform: translateX(-100%); }
+.linkedin-btn:hover .arrow i { transform: translateX(-100%); }
 
 /* ── JOIN ── bare grid, no rules between the figures ── */
 .join-bar-inner { align-items: end; row-gap: var(--s4); }
@@ -156,18 +155,6 @@
 .join-cta { grid-column: 10 / 13; display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); }
 .join-desc { color: var(--text-mid); font-size: .9375rem; line-height: 1.7; font-weight: 300; }
 
-/* CTA — pill: the interactive layer is the one place the system rounds
-   off. Flat still — no bevel, no lift. */
-.btn-signup {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: var(--radius-pill);
-  background: var(--pink-600); border: 1px solid var(--pink-600);
-  color: #fff; font-weight: 600; font-size: .95rem;
-  text-decoration: none;
-  transition: background-color .2s, border-color .2s;
-}
-.btn-signup:hover { background: var(--pink-700); border-color: var(--pink-700); color: #fff; }
-.btn-signup:focus-visible,
 .linkedin-btn:focus-visible,
 .member-email:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 

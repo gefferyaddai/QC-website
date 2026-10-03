@@ -74,7 +74,8 @@ function initFadeUp(root) {
 
 async function fetchFragment(key) {
     if (fragmentCache.has(key)) return fragmentCache.get(key);
-    const res = await fetch(routes[key].html);
+    // revalidate so an edited fragment is never served stale from the HTTP cache
+    const res = await fetch(routes[key].html, { cache: 'no-cache' });
     const html = await res.text();
     fragmentCache.set(key, html);
     return html;

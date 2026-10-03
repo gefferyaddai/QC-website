@@ -7,7 +7,7 @@
    The Statement Heading Rule.
 ────────────────────────────────────────────────────────────────────────── */
 
-.join-header, .tracks-section, .employers-section, .join-close {
+.join-header, .join-intro-section, .tracks-section, .employers-section, .join-close {
   position: relative;
   overflow: hidden;
   background: var(--off-white);
@@ -17,8 +17,27 @@
   --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
   --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.join-header     { padding: var(--s6) 0 var(--s5); }
-.tracks-section  { padding: var(--s5) 0; }
+.join-header {
+  padding: var(--s6) 0 var(--s5);
+  /* campus sign photo, faded into the canvas on the left: same treatment as the other page heroes */
+  background:
+    linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+    url(/assets/join/header_img/University-of-Calgary.avif) center 75% / cover no-repeat,
+    var(--off-white);
+}
+/* the hero's lede: centred on the same axis as the section heads below it,
+   and sitting closer to the hero (s5) than to the first section (s6) so it
+   reads as the hero's continuation rather than a row adrift between the two */
+.join-intro-section { padding: var(--s5) 0 0; }
+.join-intro {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--s3); text-align: center;
+}
+.join-intro p {
+  color: var(--text-mid); font-size: 1rem; line-height: 1.75;
+  font-weight: 300; text-wrap: pretty; max-width: 64ch; margin: 0;
+}
+.tracks-section  { padding: var(--s6) 0 var(--s5); }
 .employers-section { padding: var(--s5) 0; }
 .join-close      { padding: var(--s5) 0 var(--s6); }
 
@@ -30,13 +49,9 @@
     linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
   background-size: 64px 64px;
 }
-/* the module field is a masthead device: full strength behind the opening
-   statement, dissolving before the running text, a whisper in the sections
-   below it */
-.join-header .join-grid-bg {
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-          mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-}
+/* a whisper of the module field in every section below the hero, unbroken
+   from the hero's bottom edge down */
+.join-intro-section .join-grid-bg,
 .tracks-section .join-grid-bg,
 .employers-section .join-grid-bg,
 .join-close .join-grid-bg { opacity: .16; }
@@ -66,9 +81,10 @@
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s4);
+  margin-bottom: 0;
   text-wrap: balance;
 }
+.join-header h1 em { font-style: italic; color: var(--text-dark); }
 .section-head h2 {
   font-family: 'DM Serif Display', serif;
   font-size: var(--fs-h2);
@@ -78,43 +94,34 @@
   text-wrap: balance;
 }
 
-/* headers compose on the 12-column field: statement left, supporting copy
-   and its call to action offset into the right half */
 .swiss-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: var(--gutter);
 }
-/* in a split header the row gap sets the vertical rhythm, so the heading's
-   own bottom margin would otherwise inflate row 1 and cast the call to
-   action adrift from the copy it belongs to */
-.join-head, .section-head.swiss-grid { align-items: start; row-gap: var(--s4); }
-.join-head > h1, .section-head > h2 { margin-bottom: 0; }
-.join-head > .header-sub, .section-head > p { margin-bottom: 0; }
-.join-head > h1, .section-head > h2 { grid-column: 1 / 7; }
-.join-head > .header-sub, .section-head > p { grid-column: 8 / 13; }
-.join-head > .join-cta { grid-column: 8 / 13; justify-self: start; }
-.join-header h1 em, .section-head h2 em { font-style: italic; color: var(--pink-600); }
+/* section headers stand alone, centred over the section, with the supporting
+   copy centred under the heading — same as the About route's section heads.
+   The row gap sets the rhythm, so neither child keeps its own margin. */
+.section-head.swiss-grid { align-items: start; row-gap: var(--s4); }
+.section-head > h2 { grid-column: 1 / -1; text-align: center; margin-bottom: 0; }
+.section-head > p { grid-column: 1 / -1; justify-self: center; max-width: 64ch; text-align: center; margin-bottom: 0; }
+.section-head h2 em { font-style: italic; color: var(--text-dark); }
 
-.header-sub, .section-head p {
+.section-head p {
   color: var(--text-mid); font-size: 1rem; line-height: 1.75;
   font-weight: 300; text-wrap: pretty;
 }
-.header-sub { margin-bottom: var(--s4); }
 .section-head { margin-bottom: var(--s5); }
 .tracks-section .section-head { margin-bottom: 0; }
 
-/* ── PRIMARY CTA ── pill: the interactive layer is the one place the
-   system rounds off. Flat still — no bevel, no lift. ── */
+/* ── PRIMARY CTA ── a text link in the accent, no button chrome ── */
 .join-cta {
   display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: var(--radius-pill);
-  background: var(--pink-600); border: 1px solid var(--pink-600);
-  color: #fff; font-weight: 600; font-size: .95rem;
+  color: var(--pink-700); font-weight: 600; font-size: .95rem;
   text-decoration: none;
-  transition: background-color .2s, border-color .2s;
+  transition: opacity .2s;
 }
-.join-cta:hover { background: var(--pink-700); border-color: var(--pink-700); color: #fff; }
+.join-cta:hover { opacity: .65; }
 .join-cta:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
 /* the arrow slides out and its twin slides in — one clipped 1em window */
@@ -124,14 +131,18 @@
 
 /* ── EMPLOYERS ── a bare logo field. Every mark is pre-normalised to the same
    optical area and centred in an identical 180x60 box, so no logo outweighs
-   another. Nothing is drawn between them. ── */
+   another. Nothing is drawn between them. A wrapping row rather than a grid,
+   so a short last row centres under the full ones instead of hanging left. ── */
 .employers {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  --cols: 4;
+  display: flex; flex-wrap: wrap; justify-content: center;
   column-gap: var(--gutter);
   row-gap: var(--s5);
   align-items: center;
-  justify-items: center;
+}
+.employer {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+  display: flex; justify-content: center;
 }
 .employer img {
   width: 180px; height: 60px;
@@ -163,13 +174,11 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .join-head > h1, .section-head > h2,
-  .join-head > .header-sub, .section-head > p,
-  .join-head > .join-cta { grid-column: 1 / -1; }
   .join-header    { padding: var(--s5) 0 var(--s4); }
-  .tracks-section,
+  .join-intro-section { padding-top: var(--s4); }
+  .tracks-section { padding: var(--s5) 0 var(--s4); }
   .employers-section { padding: var(--s4) 0; }
-  .employers { grid-template-columns: repeat(3, 1fr); row-gap: var(--s4); }
+  .employers { --cols: 3; row-gap: var(--s4); }
   .join-close     { padding: var(--s4) 0 var(--s5); }
   .section-head   { margin-bottom: var(--s4); }
   .join-stat      { grid-column: span 4; }
@@ -177,7 +186,7 @@
 }
 @media (max-width: 560px) {
   .join-stat { grid-column: 1 / -1; }
-  .employers { grid-template-columns: repeat(2, 1fr); }
+  .employers { --cols: 2; }
   .employer img { width: 140px; height: 48px; }
 }
 
