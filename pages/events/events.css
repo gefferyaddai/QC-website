@@ -129,17 +129,43 @@
 .notify-btn:hover .arrow i,
 .notify-submit-btn:hover .arrow i { transform: translateX(-100%); }
 
-/* empty state — type on the page, no dashed box */
-.empty-state { max-width: 66ch; }
-.empty-state h3 {
+/* ── EVENT LIST ── same index as the Projects route: the rows stack in one
+   column, each opened by a rule, date and status in the left columns and
+   the event itself on the right. No card, no fill, no radius. */
+.events-term {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label); line-height: var(--lh-label);
     letter-spacing: var(--ls-label); font-weight: 600; text-transform: uppercase;
-    color: var(--text-dark); margin-bottom: var(--s2);
+    color: var(--text-dark); margin-bottom: var(--s3);
 }
-.empty-state p {
-    color: var(--text-mid); font-size: .9375rem; line-height: 1.75;
-    font-weight: 300; text-wrap: pretty;
+
+.event-list { display: grid; row-gap: var(--s4); }
+
+.event-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+    align-items: start;
+    border-top: 1px solid var(--text-dark);
+    padding-top: var(--s2);
+}
+.event-row > .event-meta  { grid-column: 1 / 4; }
+.event-row > .event-title { grid-column: 5 / 12; }
+
+.event-meta { display: flex; flex-direction: column; gap: var(--s1); }
+.event-date, .event-status {
+    font-family: 'DM Sans', sans-serif;
+    font-size: var(--fs-label); line-height: var(--lh-label);
+    letter-spacing: var(--ls-label); font-weight: 600; text-transform: uppercase;
+}
+.event-date   { color: var(--pink-700); }
+.event-status { color: var(--text-light); }
+
+.event-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem; line-height: 1.2; letter-spacing: -.01em;
+    color: var(--text-dark); font-weight: 400;
+    margin: 0;
 }
 
 /* ── MODAL ── the one panel on the site: squared, hairline, no shadow ── */
@@ -226,6 +252,10 @@
     .page-header { padding: var(--s5) 0 var(--s4); }
     .upcoming-section { padding: var(--s4) 0 var(--s5); }
     .upcoming-header { margin-bottom: var(--s4); }
+    .event-row { row-gap: var(--s1); }
+    .event-row > .event-meta,
+    .event-row > .event-title { grid-column: 1 / -1; }
+    .event-meta { flex-direction: row; gap: var(--s1) var(--s3); }
 }
 
 @media (prefers-reduced-motion: reduce) {

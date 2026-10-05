@@ -44,6 +44,21 @@
         "value": "3.4rem",
         "createdAt": "2026-10-03T15:55:33.916Z",
         "reason": "matches the home hero title clamp(3.4rem, 10vw, 6rem) the user accepted in the live picker"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "1.75rem",
+        "createdAt": "2026-10-05T18:32:16.416Z",
+        "reason": "Claude: existing sitewide row-title size (projects.css .project-title, events modal h3); event titles reuse it"
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "pages/events/events.css"
+        ],
+        "createdAt": "2026-10-05T18:32:53.423Z",
+        "reason": "Claude: DESIGN.md Key Characteristics lists the hairline grid background as a system device; events.css comments it as the one decorative layer kept; pre-existing, not part of this change"
       }
     ]
   }

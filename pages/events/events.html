@@ -19,10 +19,39 @@
             </button>
         </div>
 
-        <!-- Empty state — replace with the event rows when events are scheduled -->
-        <div class="empty-state fade-up" style="transition-delay: 0.1s">
-            <h3>No upcoming events</h3>
-            <p>Nothing scheduled right now. Check back soon, or get notified when new events drop.</p>
+        <h2 class="events-term fade-up">Fall 2026</h2>
+
+        <!-- one row per event; add the "Tentative" status span while dates are unconfirmed -->
+        <div class="event-list">
+            <article class="event-row fade-up">
+                <div class="event-meta">
+                    <time class="event-date" datetime="2026-10-16">Oct 16</time>
+                </div>
+                <h3 class="event-title">Quantitative Models Workshop</h3>
+            </article>
+
+            <article class="event-row fade-up" style="transition-delay: 0.1s">
+                <div class="event-meta">
+                    <time class="event-date" datetime="2026-10-15">Oct 15–30</time>
+                    <span class="event-status">Tentative</span>
+                </div>
+                <h3 class="event-title">Networking + Media Day</h3>
+            </article>
+
+            <article class="event-row fade-up" style="transition-delay: 0.2s">
+                <div class="event-meta">
+                    <time class="event-date" datetime="2026-11-08">Nov 8</time>
+                </div>
+                <h3 class="event-title">Black Tie Stock Pitch Night</h3>
+            </article>
+
+            <article class="event-row fade-up" style="transition-delay: 0.3s">
+                <div class="event-meta">
+                    <time class="event-date" datetime="2026-11-15">Nov 15–30</time>
+                    <span class="event-status">Tentative</span>
+                </div>
+                <h3 class="event-title">Sports Betting Night</h3>
+            </article>
         </div>
     </div>
 </section>
