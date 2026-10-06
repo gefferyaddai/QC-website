@@ -8,6 +8,12 @@
     padding: 0;
 }
 
+/* hold the first paint until app.js has rendered the first route, so the
+   shell never shows without its content; the 4s animation is a fallback
+   that reveals the page anyway if the script fails */
+html.js-loading body { visibility: hidden; animation: js-loading-fallback 0s 4s forwards; }
+@keyframes js-loading-fallback { to { visibility: visible; } }
+
 :root {
     --pink-100:  #f9dff0;
     --pink-200:  #f2bade;
