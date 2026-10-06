@@ -103,7 +103,8 @@ document.addEventListener('click', (e) => {
     }
 });
 
-navigate('home', { scroll: false });
+navigate('home', { scroll: false })
+    .finally(() => document.documentElement.classList.remove('js-loading'));
 
 function idlePrefetch() {
     Object.keys(routes).forEach((key) => {
