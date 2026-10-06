@@ -94,11 +94,6 @@
   text-wrap: balance;
 }
 
-.swiss-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-}
 /* section headers stand alone, centred over the section, with the supporting
    copy centred under the heading — same as the About route's section heads.
    The row gap sets the rhythm, so neither child keeps its own margin. */
@@ -124,9 +119,6 @@
 .join-cta:hover { opacity: .65; }
 .join-cta:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 .join-cta:hover .arrow i { transform: translateX(-100%); }
 
 /* ── EMPLOYERS ── a bare logo field. Every mark is pre-normalised to the same
@@ -188,8 +180,4 @@
   .join-stat { grid-column: 1 / -1; }
   .employers { --cols: 2; }
   .employer img { width: 140px; height: 48px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .arrow i { transition: none !important; }
 }

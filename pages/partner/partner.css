@@ -122,9 +122,6 @@
 }
 .hero-cta:hover { opacity: .65; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 .hero-cta:hover .arrow i,
 .contact-email:hover .arrow i { transform: translateX(-100%); }
 
@@ -140,11 +137,6 @@
    WSO's icon is two-tone with white counters, so any silhouette collapses it
    into a solid disc, and desaturating all three only muddied them.
    Mirrors the home route exactly. ── */
-.swiss-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--gutter);
-}
 .partner-strip { display: block; }
 .partner-label { display: block; color: var(--text-mid); margin-bottom: var(--s5); }
 .partner-marks {
@@ -260,8 +252,3 @@
     .why-header  { margin-bottom: var(--s4); }
     .who-inner   { row-gap: var(--s4); }
 }
-
-@media (prefers-reduced-motion: reduce) {
-    .arrow i { transition: none !important; }
-}
-

@@ -56,13 +56,6 @@
   margin: 0 auto;
 }
 
-/* the 12-column field every block is composed on */
-.swiss-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-}
-
 /* label — the single small-type role: pillar titles and tags */
 .tag {
   font-family: 'DM Sans', sans-serif;
@@ -213,11 +206,7 @@
 .about-cta .about-cta-btn:hover { opacity: .65; }
 .about-cta-btn:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.about-cta .arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.about-cta .arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 .about-cta-btn:hover .arrow i { transform: translateX(-100%); }
-@media (prefers-reduced-motion: reduce) { .about-cta .arrow i { transition: none !important; } }
 @media (max-width: 900px) { .wwd-head-inner > .header-sub { grid-column: 1 / -1; } }
 
 /* "How we work" pipeline: four steps left to right, an arrow between each */

@@ -65,6 +65,21 @@
         "value": ".9375rem",
         "createdAt": "2026-10-06T19:41:02.205Z",
         "reason": "Claude: existing sitewide small-body size (projects.css .project-desc, events modal copy); event descriptions reuse it"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".95rem",
+        "createdAt": "2026-10-06T20:02:24.734Z",
+        "reason": "Claude: sitewide purple text-link CTA size (about.css, join.css, partner.css, events.css); pre-existing convention"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#000",
+        "files": [
+          "pages/events/events.css"
+        ],
+        "createdAt": "2026-10-06T20:20:32.831Z",
+        "reason": "Claude: #000 here is a mask-image alpha stop on the grid background, never a rendered colour"
       }
     ]
   }

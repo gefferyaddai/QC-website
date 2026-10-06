@@ -13,28 +13,12 @@
 /* ── SYSTEM ───────────────────────────────────────────────────────────── */
 .home-wrap { width: 92%; max-width: 1200px; margin: 0 auto; }
 
-/* the 12-column field every section is composed on */
-.swiss-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--gutter);
-}
-
 .hero, .mission, .proof {
     /* spacing ladder — all vertical rhythm on this page comes from these */
     --gutter: 24px;
     --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
     --s5: 64px; --s6: 96px; --s7: 144px;
 }
-
-/* shared reveal (driven by home.js) */
-.fade-up {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity .6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform .6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.fade-up.visible { opacity: 1; transform: none; }
 
 /* ── TYPE ROLES ───────────────────────────────────────────────────────── */
 /* label — the single small-type role: role names, partner names,
@@ -70,9 +54,6 @@
 }
 .link-arrow:hover { opacity: .65; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 .link-arrow:hover .arrow i { transform: translateX(-100%); }
 .link-arrow:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
@@ -353,5 +334,4 @@
     /* freeze the wave graphic on the composed signal, its most legible state */
     .wave-band { animation: none !important; opacity: 0 !important; }
     .wave-signal { animation: none !important; opacity: 1 !important; }
-    .arrow i { transition: none !important; }
 }
