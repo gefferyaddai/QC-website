@@ -7,7 +7,7 @@
    The Statement Heading Rule.
 ────────────────────────────────────────────────────────────────────────── */
 
-.page-header, .upcoming-section {
+.page-header, .events-hero, .upcoming-section {
     position: relative;
     overflow: hidden;
     background: var(--off-white);
@@ -19,6 +19,35 @@
 }
 .page-header { padding: var(--s6) 0 var(--s5); }
 .upcoming-section { padding: var(--s5) 0 var(--s6); }
+
+/* title-only hero: campus photo faded into the canvas on the left, sized like the About intro */
+.events-hero {
+    position: relative; overflow: hidden;
+    padding: var(--s6) 0 var(--s5);
+    background: var(--off-white);
+}
+/* the photo sits on its own layer so it can be desaturated, with the fade above it */
+.events-hero::before,
+.events-hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.events-hero::before {
+    background: url(/assets/events/events-campus.jpg) center 40% / cover no-repeat;
+    filter: saturate(.6);
+}
+.events-hero::after {
+    background: linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%);
+}
+.events-hero .wrap { position: relative; z-index: 1; }
+.events-hero .upcoming-header { margin-bottom: 0; }
+
+/* intro line + notify button, now under the hero */
+.upcoming-intro {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: var(--s3); margin-bottom: var(--s5);
+}
+.upcoming-intro p {
+    color: var(--text-mid); font-size: 1rem; line-height: 1.75;
+    text-wrap: pretty; margin: 0; max-width: 60ch;
+}
 
 /* the hairline module field — the one decorative layer Swiss keeps */
 .events-grid-bg {
@@ -53,11 +82,6 @@
 
 /* the header composes on the 12-column field: statement left, the standing
    copy and its call to action offset into the right half */
-.swiss-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--gutter);
-}
 /* in a split header the row gap sets the vertical rhythm, so the heading's
    own bottom margin would otherwise inflate row 1 and cast the call to
    action adrift from the copy it belongs to */
@@ -81,39 +105,69 @@
     font-weight: 300; text-wrap: pretty; margin-bottom: var(--s4);
 }
 
-/* buttons — pill: the interactive layer is the one place the system
-   rounds off. Flat still — no bevel, no lift. */
+/* buttons are set as text links in the accent, no button chrome */
 .notify-btn, .notify-submit-btn {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: var(--radius-pill);
-    background: var(--pink-600); border: 1px solid var(--pink-600);
-    color: #fff; font-weight: 600; font-size: .95rem;
+    padding: 0; background: none; border: none;
+    color: var(--pink-700); font-weight: 600; font-size: .95rem;
     font-family: 'DM Sans', sans-serif; cursor: pointer;
-    transition: background-color .2s, border-color .2s;
+    transition: opacity .2s;
 }
-.notify-btn:hover, .notify-submit-btn:hover {
-    background: var(--pink-700); border-color: var(--pink-700); color: #fff;
-}
+.notify-btn:hover, .notify-submit-btn:hover { opacity: .65; }
 .notify-btn:focus-visible,
 .notify-submit-btn:focus-visible,
 .notify-modal-close:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
-.notify-btn:hover .arrow i { transform: translateX(-100%); }
+.notify-btn:hover .arrow i,
+.notify-submit-btn:hover .arrow i { transform: translateX(-100%); }
 
-/* empty state — type on the page, no dashed box */
-.empty-state { max-width: 66ch; }
-.empty-state h3 {
+/* ── EVENT LIST ── same index as the Projects route: the rows stack in one
+   column, each opened by a rule, date and status in the left columns and
+   the event itself on the right. No card, no fill, no radius. */
+.events-term {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label); line-height: var(--lh-label);
     letter-spacing: var(--ls-label); font-weight: 600; text-transform: uppercase;
-    color: var(--text-dark); margin-bottom: var(--s2);
+    color: var(--text-dark); margin-bottom: var(--s3);
 }
-.empty-state p {
-    color: var(--text-mid); font-size: .9375rem; line-height: 1.75;
-    font-weight: 300; text-wrap: pretty;
+
+.event-list { display: grid; row-gap: var(--s4); }
+
+.event-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+    row-gap: var(--s2);
+    align-items: start;
+    border-top: 1px solid var(--text-dark);
+    padding-top: var(--s2);
+}
+.event-row > .event-meta  { grid-column: 1 / 4; grid-row: 1; }
+.event-row > .event-title,
+.event-row > .event-desc  { grid-column: 5 / 12; }
+.event-row > .event-title { grid-row: 1; }
+
+.event-meta { display: flex; flex-direction: column; gap: var(--s1); }
+.event-date, .event-status {
+    font-family: 'DM Sans', sans-serif;
+    font-size: var(--fs-label); line-height: var(--lh-label);
+    letter-spacing: var(--ls-label); font-weight: 600; text-transform: uppercase;
+}
+.event-date   { color: var(--pink-700); }
+.event-status { color: var(--text-light); }
+
+.event-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.75rem; line-height: 1.2; letter-spacing: -.01em;
+    color: var(--text-dark); font-weight: 400;
+    margin: 0;
+}
+
+.event-desc {
+    max-width: 78ch; margin: 0;
+    font-size: .9375rem; line-height: 1.75;
+    color: var(--text-mid); font-weight: 300;
+    text-wrap: pretty;
 }
 
 /* ── MODAL ── the one panel on the site: squared, hairline, no shadow ── */
@@ -143,7 +197,6 @@
     --s1: 8px; --s2: 16px; --s3: 24px; --s4: 40px;
     opacity: 0;
     transform: scale(0.96) translateY(8px);
-    transform-origin: var(--origin-x, 50%) var(--origin-y, 50%);
     transition: opacity var(--dur-moderate) var(--ease-out-smooth),
                 transform var(--dur-moderate) var(--ease-out-smooth);
 }
@@ -186,7 +239,7 @@
 .notify-field input:focus { border-color: var(--pink-600); }
 .notify-field input:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 2px; }
 
-.notify-submit-btn { width: 100%; justify-content: center; margin-top: var(--s1); }
+.notify-submit-btn { margin-top: var(--s1); }
 
 .notify-modal-note {
     font-size: 12px; color: var(--text-light);
@@ -200,8 +253,9 @@
     .page-header { padding: var(--s5) 0 var(--s4); }
     .upcoming-section { padding: var(--s4) 0 var(--s5); }
     .upcoming-header { margin-bottom: var(--s4); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .arrow i { transition: none !important; }
+    .event-row { row-gap: var(--s1); }
+    .event-row > .event-meta,
+    .event-row > .event-title,
+    .event-row > .event-desc { grid-column: 1 / -1; grid-row: auto; }
+    .event-meta { flex-direction: row; gap: var(--s1) var(--s3); }
 }

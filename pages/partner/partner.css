@@ -7,7 +7,7 @@
    The Statement Heading Rule.
 ────────────────────────────────────────────────────────────────────────── */
 
-.hero, .partners, .why, .who, .contact-cta {
+.hero, .partner-intro-section, .partners, .why, .who, .contact-cta {
     position: relative;
     overflow: hidden;
     background: var(--off-white);
@@ -17,7 +17,27 @@
     --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
     --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.hero        { padding: var(--s6) 0 var(--s5); }
+.hero {
+    padding: var(--s6) 0 var(--s5);
+    background: var(--off-white);
+}
+/* skyline photo across the full width, middle of the image so the tower tops show;
+   light fade on the left keeps the title legible */
+.hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+    background:
+        linear-gradient(90deg, rgba(253,250,248,.9) 0%, rgba(253,250,248,.62) 36%, rgba(253,250,248,.05) 66%),
+        url(/assets/partner/partner-hero.jpg) center 45% / cover no-repeat;
+}
+.partner-intro-section { padding: var(--s5) 0 0; background: var(--off-white); }
+.partner-intro {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: var(--s3);
+}
+.partner-intro p {
+    color: var(--text-mid); font-size: 1rem; line-height: 1.75;
+    font-weight: 300; text-wrap: pretty; max-width: 66ch; margin: 0;
+}
 .partners    { padding: var(--s5) 0; }
 .why         { padding: var(--s5) 0; }
 .who         { padding: var(--s5) 0; }
@@ -59,7 +79,7 @@
     font-size: var(--fs-h1);
     line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
     color: var(--text-dark);
-    margin-bottom: var(--s4);
+    margin-bottom: 0;
     text-wrap: balance;
 }
 .why h2, .who h2, .contact-cta h2 {
@@ -70,9 +90,10 @@
     margin-bottom: var(--s3);
     text-wrap: balance;
 }
-.hero h1 em, .why h2 em, .who h2 em, .contact-cta h2 em {
-    font-style: italic; color: var(--pink-600);
-}
+.hero h1 em { font-style: italic; color: var(--text-dark); }
+.why h2 em { font-style: italic; color: var(--text-dark); }
+.who h2 em { font-style: italic; color: var(--text-dark); }
+.contact-cta h2 em { font-style: italic; color: var(--text-dark); }
 
 .hero-inner p, .why-header p, .who-text p, .contact-inner p {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;
@@ -92,21 +113,15 @@
 .hero-inner > .hero-cta { grid-column: 8 / 13; justify-self: start; }
 .hero-inner p { margin-bottom: 0; }
 
-/* buttons — pill: the interactive layer is the one place the system
-   rounds off. Flat still — no bevel, no lift. */
+/* calls to action are text links in the accent, no button chrome */
 .hero-cta {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 16px 32px; border-radius: var(--radius-pill);
-    background: var(--pink-600); border: 1px solid var(--pink-600);
-    color: #fff; font-weight: 600; font-size: .95rem;
+    color: var(--pink-700); font-weight: 600; font-size: .95rem;
     text-decoration: none;
-    transition: background-color .2s, border-color .2s;
+    transition: opacity .2s;
 }
-.hero-cta:hover { background: var(--pink-700); border-color: var(--pink-700); color: #fff; }
+.hero-cta:hover { opacity: .65; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 .hero-cta:hover .arrow i,
 .contact-email:hover .arrow i { transform: translateX(-100%); }
 
@@ -122,17 +137,12 @@
    WSO's icon is two-tone with white counters, so any silhouette collapses it
    into a solid disc, and desaturating all three only muddied them.
    Mirrors the home route exactly. ── */
-.swiss-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: var(--gutter);
-}
 .partner-strip { display: block; }
 .partner-label { display: block; color: var(--text-mid); margin-bottom: var(--s5); }
 .partner-marks {
     display: flex; flex-wrap: wrap;
-    align-items: flex-end; justify-content: center;
-    column-gap: var(--s7); row-gap: var(--s4);
+    align-items: flex-start; justify-content: center;
+    column-gap: var(--s5); row-gap: var(--s4);
 }
 .partner { display: block; }
 .partner-mark { display: flex; align-items: flex-end; justify-content: center; height: 60px; }
@@ -151,6 +161,15 @@
        baseline — optical alignment, not box alignment. */
     transform: translateY(9px);
 }
+.partner-fuse { text-align: center; }
+.partner-fuse .partner-mark { height: 40px; }
+.partner-fuse .partner-mark img { max-height: 34px; }
+.partner-name {
+    display: block; margin-top: var(--s1);
+    font-family: 'DM Sans', sans-serif; font-weight: 600;
+    font-size: 1rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--text-dark); line-height: 1;
+}
 .partner-wordmark {
     font-family: 'DM Sans', sans-serif; font-weight: 600;
     font-size: 1.375rem; letter-spacing: .22em; text-transform: uppercase;
@@ -160,25 +179,16 @@
 /* ── WAYS TO CONNECT ── stacked rows; the row gap does the separating ── */
 .why-header { margin-bottom: var(--s5); }
 /* four ways to connect, composed two-up on the field. No card, no fill: a
-   rule across the top and a serif numeral open each one. */
+   rule across the top opens each one. */
 .benefits-grid {
     display: grid; grid-template-columns: repeat(2, 1fr);
     column-gap: var(--s7); row-gap: var(--s5);
-    counter-reset: benefit;
 }
 .benefit-card {
     display: flex; flex-direction: column; gap: var(--s2);
     border-top: 1px solid var(--text-dark); padding-top: var(--s2);
 }
-.benefit-card::before {
-    counter-increment: benefit;
-    content: counter(benefit, decimal-leading-zero);
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.5rem; line-height: 1; letter-spacing: -.01em;
-    color: var(--pink-600);
-}
 .benefit-head { display: flex; align-items: baseline; gap: 12px; }
-.benefit-icon { font-size: .875rem; color: var(--pink-700); flex-shrink: 0; }
 .benefit-card h3 { color: var(--text-dark); margin: 0; }
 .benefit-card p {
     max-width: 78ch;
@@ -192,14 +202,15 @@
     column-gap: var(--gutter); row-gap: var(--s5); align-items: start;
 }
 .who-text { grid-column: 1 / 7; }
-.who-card { grid-column: 8 / 13; }
+.who-card { grid-column: 8 / 13; align-self: end; }
 .who-text p { margin-bottom: var(--s3); }
 
 .who-list { list-style: none; display: grid; row-gap: var(--s2); }
 .who-list li {
     position: relative; padding-left: 22px;
+    font-family: 'Times New Roman', Times, serif;
     font-size: .9375rem; line-height: 1.7;
-    color: var(--text-mid); font-weight: 300;
+    color: var(--text-mid); font-weight: 400;
 }
 .who-list li::before {
     content: '—'; position: absolute; left: 0;
@@ -211,8 +222,9 @@
 .who-card-item { display: flex; flex-direction: column; gap: var(--s1); }
 .who-card-item strong { color: var(--text-dark); font-weight: 600; }
 .who-card-item span {
+    font-family: 'Times New Roman', Times, serif;
     font-size: .9375rem; line-height: 1.7;
-    color: var(--text-mid); font-weight: 300;
+    color: var(--text-mid); font-weight: 400;
 }
 
 /* ── CONTACT ── */
@@ -239,8 +251,4 @@
     .contact-cta { padding: var(--s4) 0 var(--s5); }
     .why-header  { margin-bottom: var(--s4); }
     .who-inner   { row-gap: var(--s4); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .arrow i { transition: none !important; }
 }

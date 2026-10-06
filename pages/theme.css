@@ -9,40 +9,23 @@
 }
 
 :root {
-    --pink-50:   #fdf3f8;
     --pink-100:  #f9dff0;
     --pink-200:  #f2bade;
     --pink-400:  #e07ab8;
     --pink-600:  #c0509a;
     --pink-700:  #a53f82; /* AA-safe accent for small/bold text (labels, tags, links) — pink-600 falls under 4.5:1 below ~18px */
-    --pink-900:  #5a1a44;
-    --lav-50:    #f3f2ff;
-    --lav-100:   #e4e0fc;
-    --lav-200:   #c9c4f7;
     --lav-400:   #9b93ea;
-    --lav-600:   #6c61cc;
     --off-white: #fdfaf8;
     --white:     #ffffff;
     --text-dark: #1a1018;
     --text-mid:  #5c4d58;
     --text-light:#7a6b78; /* darkened from #9e8ea0 (3.07:1) to clear WCAG AA 4.5:1 for small text */
-    --border:    rgba(180, 140, 170, 0.18);
 
-    /* shorthand aliases (used by home.css) */
-    --pink:       var(--pink-600);
-    --pink-light: var(--pink-100);
-    --pink-mid:   var(--pink-200);
-    --ink:        var(--text-dark);
-    --muted:      var(--text-mid);
-    --cream:      var(--off-white);
 
     /* ── silver / chrome accents — layered on top of the pink/lavender base ── */
-    --chrome-100: #eef0f3;
     --chrome-300: #c3c9d1;
     --chrome-400: #a3abb6;
-    --chrome-600: #6b7280;
     --metallic-border: linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7);
-    --silver-sheen: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.85) 45%, rgba(200,205,215,.4) 52%, rgba(255,255,255,0) 100%);
 
     /* ── shape — DESIGN.md → rounded.pill. Every button, badge and
        pill-shaped control takes this; the nav links already did. ── */
@@ -50,7 +33,6 @@
 
     /* ── motion — CSS approximations of Apple's damping/response spring table ── */
     --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);     /* damping 1.0: decelerate, no overshoot */
-    --ease-in-smooth:  cubic-bezier(0.64, 0, 0.78, 0);     /* exact mirror, for symmetric exits */
     --ease-out-quick:  cubic-bezier(0.16, 1, 0.3, 1);      /* snappy hover/press micro-motion */
     --ease-spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* damping ~0.8: gesture-triggered materialize */
 
@@ -86,6 +68,14 @@ body {
 #app-content > section:last-of-type { flex: 1 0 auto; }
 .footer { flex-shrink: 0; }
 
+/* Paragraph copy is set in Times New Roman site-wide. The #app-content id
+   outranks the per-page class rules, so no page stylesheet can override it. */
+#app-content p, .footer p { font-family: 'Times New Roman', Times, serif; }
+
+/* Page titles carry no accent colour: the italic word stays italic but in ink.
+   The #app-content id outranks every per-page `h1 em` rule. */
+#app-content h1 em { color: var(--text-dark); }
+
 /* ── FADE-UP (shared scroll-reveal utility, used by every page) ── */
 .fade-up {
     opacity: 0;
@@ -94,12 +84,23 @@ body {
 }
 .fade-up.visible { opacity: 1; transform: none; }
 
+/* ── SHARED LAYOUT + LINK ARROW ── */
+.swiss-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--gutter);
+}
+/* the arrow slides out and its twin slides in — one clipped 1em window */
+.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
+.arrow i { flex: 0 0 100%; font-style: normal; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
+
 /* ── accessibility: motion, transparency, contrast ── */
 @media (prefers-reduced-motion: reduce) {
     .fade-up {
         transition: opacity 150ms linear !important;
         transform: none !important;
     }
+    .arrow i { transition: none !important; }
     .notify-modal-overlay, .notify-modal-overlay .notify-modal,
     .nav-links {
         transition-duration: 150ms !important;
@@ -120,7 +121,6 @@ body {
     .notify-modal-overlay.open { background: rgba(26, 16, 24, 0.85) !important; }
 }
 @media (prefers-contrast: more) {
-    :root { --border: rgba(26, 16, 24, 0.35); }
     .nav { background: var(--off-white); border-bottom: 1px solid var(--text-dark); backdrop-filter: none; }
     .notify-modal, .event-card, .calendar-card, .project-card, .member-card { border: 1.5px solid var(--text-dark); }
 }

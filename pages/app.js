@@ -4,50 +4,17 @@
 // ever active — avoiding class-name collisions between page stylesheets that
 // were each authored assuming they'd be the only one in the DOM.
 
+// key → page folder/file stem; only routes listed in `withJs` load a module
 const routes = {
-    home: {
-        html: '/pages/home/home.html',
-        css: 'css-home',
-        mod: '/pages/home/home.js',
-        title: 'Quantitative Investment Society',
-    },
-    about: {
-        html: '/pages/about/about.html',
-        css: 'css-about',
-        mod: '/pages/about/about.js',
-        title: 'Quantitative Investment Society',
-    },
-    events: {
-        html: '/pages/events/events.html',
-        css: 'css-events',
-        mod: '/pages/events/events.js',
-        title: 'Quantitative Investment Society',
-    },
-    team: {
-        html: '/pages/meet-the-team/mtt.html',
-        css: 'css-team',
-        mod: '/pages/meet-the-team/mtt.js',
-        title: 'Quantitative Investment Society',
-    },
-    projects: {
-        html: '/pages/projects/projects.html',
-        css: 'css-projects',
-        mod: '/pages/projects/projects.js',
-        title: 'Quantitative Investment Society',
-    },
-    partner: {
-        html: '/pages/partner/partner.html',
-        css: 'css-partner',
-        mod: '/pages/partner/partner.js',
-        title: 'Quantitative Investment Society',
-    },
-    join: {
-        html: '/pages/join/join.html',
-        css: 'css-join',
-        mod: '/pages/join/join.js',
-        title: 'Quantitative Investment Society',
-    },
+    home: 'home/home',
+    about: 'about/about',
+    events: 'events/events',
+    team: 'meet-the-team/mtt',
+    projects: 'projects/projects',
+    partner: 'partner/partner',
+    join: 'join/join',
 };
+const withJs = new Set(['home', 'about', 'events']);
 
 const appEl = document.getElementById('app-content');
 const fragmentCache = new Map();
@@ -60,7 +27,9 @@ function initFadeUp(root) {
     const obs = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
+                // also reveal anything already scrolled past, so a restored
+                // scroll position never leaves content invisible
+                if (entry.isIntersecting || entry.boundingClientRect.bottom < 0) {
                     entry.target.classList.add('visible');
                     obs.unobserve(entry.target);
                 }
@@ -74,15 +43,15 @@ function initFadeUp(root) {
 
 async function fetchFragment(key) {
     if (fragmentCache.has(key)) return fragmentCache.get(key);
-    const res = await fetch(routes[key].html);
+    // revalidate so an edited fragment is never served stale from the HTTP cache
+    const res = await fetch(`/pages/${routes[key]}.html`, { cache: 'no-cache' });
     const html = await res.text();
     fragmentCache.set(key, html);
     return html;
 }
 
 async function navigate(key, { scroll = true } = {}) {
-    const route = routes[key];
-    if (!route) return;
+    if (!routes[key]) return;
 
     const html = await fetchFragment(key);
 
@@ -90,26 +59,21 @@ async function navigate(key, { scroll = true } = {}) {
         fadeObserver.disconnect();
         fadeObserver = null;
     }
-    if (currentModule && typeof currentModule.destroy === 'function') {
-        currentModule.destroy();
-    }
+    if (currentModule) currentModule.destroy();
 
-    if (currentKey && routes[currentKey]) {
-        document.getElementById(routes[currentKey].css).disabled = true;
-    }
-    document.getElementById(route.css).disabled = false;
+    if (currentKey) document.getElementById(`css-${currentKey}`).disabled = true;
+    document.getElementById(`css-${key}`).disabled = false;
     appEl.innerHTML = html;
 
     document.querySelectorAll('.nav-links a[data-route]').forEach((a) => {
         a.classList.toggle('active', a.dataset.route === key);
     });
-    document.title = route.title;
 
     fadeObserver = initFadeUp(appEl);
 
-    const mod = await import(route.mod);
-    currentModule = mod;
-    if (typeof mod.init === 'function') mod.init(appEl);
+    // reuse app.js's own ?v= tag so page modules are cache-busted with it
+    currentModule = withJs.has(key) ? await import(`/pages/${routes[key]}.js${new URL(import.meta.url).search}`) : null;
+    if (currentModule) currentModule.init(appEl);
 
     currentKey = key;
 

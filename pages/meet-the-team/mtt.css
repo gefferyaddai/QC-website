@@ -17,7 +17,15 @@
   --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
   --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.page-header  { padding: var(--s6) 0 var(--s5); }
+.page-header {
+  padding: var(--s6) 0 var(--s5);
+  /* team photo, faded into the canvas on the left: same treatment as the About and Events heroes */
+  background:
+    linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+    url(/assets/meet-the-team/team-hero-wide.jpg) center 40% / cover no-repeat,
+    var(--off-white);
+}
+.page-header .inner { position: relative; z-index: 1; }
 .team-section { padding: var(--s5) 0; }
 .join-bar     { padding: var(--s5) 0 var(--s6); }
 
@@ -46,13 +54,6 @@
   margin: 0 auto;
 }
 
-/* the 12-column field every block is composed on */
-.swiss-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-}
-
 /* label — the single small-type role */
 .member-role, .member-major, .join-label {
   font-family: 'DM Sans', sans-serif;
@@ -72,10 +73,10 @@
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
-  margin-bottom: var(--s4);
+  margin-bottom: 0;
   text-wrap: balance;
 }
-.page-header h1 em { font-style: italic; color: var(--pink-600); }
+.page-header h1 em { font-style: italic; color: var(--text-dark); }
 
 .header-sub {
   color: var(--text-mid); font-size: 1rem; line-height: 1.75;
@@ -128,11 +129,7 @@
 }
 .linkedin-btn:hover { opacity: .65; }
 
-/* the arrow slides out and its twin slides in — one clipped 1em window */
-.arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
-.arrow i { flex: 0 0 100%; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
-.linkedin-btn:hover .arrow i,
-.btn-signup:hover .arrow i { transform: translateX(-100%); }
+.linkedin-btn:hover .arrow i { transform: translateX(-100%); }
 
 /* ── JOIN ── bare grid, no rules between the figures ── */
 .join-bar-inner { align-items: end; row-gap: var(--s4); }
@@ -148,18 +145,6 @@
 .join-cta { grid-column: 10 / 13; display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2); }
 .join-desc { color: var(--text-mid); font-size: .9375rem; line-height: 1.7; font-weight: 300; }
 
-/* CTA — pill: the interactive layer is the one place the system rounds
-   off. Flat still — no bevel, no lift. */
-.btn-signup {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 16px 32px; border-radius: var(--radius-pill);
-  background: var(--pink-600); border: 1px solid var(--pink-600);
-  color: #fff; font-weight: 600; font-size: .95rem;
-  text-decoration: none;
-  transition: background-color .2s, border-color .2s;
-}
-.btn-signup:hover { background: var(--pink-700); border-color: var(--pink-700); color: #fff; }
-.btn-signup:focus-visible,
 .linkedin-btn:focus-visible,
 .member-email:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
 
@@ -175,8 +160,4 @@
 @media (max-width: 560px) {
   .member-card, .join-stat { grid-column: 1 / -1; }
   .team-grid { row-gap: var(--s4); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .arrow i { transition: none !important; }
 }
