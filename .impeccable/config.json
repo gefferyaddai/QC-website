@@ -59,6 +59,12 @@
         ],
         "createdAt": "2026-10-05T18:32:53.423Z",
         "reason": "Claude: DESIGN.md Key Characteristics lists the hairline grid background as a system device; events.css comments it as the one decorative layer kept; pre-existing, not part of this change"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": ".9375rem",
+        "createdAt": "2026-10-06T19:41:02.205Z",
+        "reason": "Claude: existing sitewide small-body size (projects.css .project-desc, events modal copy); event descriptions reuse it"
       }
     ]
   }

@@ -145,12 +145,15 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--gutter);
+    row-gap: var(--s2);
     align-items: start;
     border-top: 1px solid var(--text-dark);
     padding-top: var(--s2);
 }
-.event-row > .event-meta  { grid-column: 1 / 4; }
-.event-row > .event-title { grid-column: 5 / 12; }
+.event-row > .event-meta  { grid-column: 1 / 4; grid-row: 1; }
+.event-row > .event-title,
+.event-row > .event-desc  { grid-column: 5 / 12; }
+.event-row > .event-title { grid-row: 1; }
 
 .event-meta { display: flex; flex-direction: column; gap: var(--s1); }
 .event-date, .event-status {
@@ -166,6 +169,13 @@
     font-size: 1.75rem; line-height: 1.2; letter-spacing: -.01em;
     color: var(--text-dark); font-weight: 400;
     margin: 0;
+}
+
+.event-desc {
+    max-width: 78ch; margin: 0;
+    font-size: .9375rem; line-height: 1.75;
+    color: var(--text-mid); font-weight: 300;
+    text-wrap: pretty;
 }
 
 /* ── MODAL ── the one panel on the site: squared, hairline, no shadow ── */
@@ -254,7 +264,8 @@
     .upcoming-header { margin-bottom: var(--s4); }
     .event-row { row-gap: var(--s1); }
     .event-row > .event-meta,
-    .event-row > .event-title { grid-column: 1 / -1; }
+    .event-row > .event-title,
+    .event-row > .event-desc { grid-column: 1 / -1; grid-row: auto; }
     .event-meta { flex-direction: row; gap: var(--s1) var(--s3); }
 }
 
