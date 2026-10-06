@@ -121,9 +121,8 @@
 .notify-btn:hover .arrow i,
 .notify-submit-btn:hover .arrow i { transform: translateX(-100%); }
 
-/* ── EVENT LIST ── same index as the Projects route: the rows stack in one
-   column, each opened by a rule, date and status in the left columns and
-   the event itself on the right. No card, no fill, no radius. */
+/* ── EVENT LIST ── the events stack in one column, each opened by a rule:
+   date and photo in the left columns, the event itself on the right. */
 .events-term {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label); line-height: var(--lh-label);
@@ -131,23 +130,42 @@
     color: var(--text-dark); margin-bottom: var(--s3);
 }
 
-.event-list { display: grid; row-gap: var(--s4); }
+.event-list { display: grid; row-gap: var(--s3); }
 
 .event-row {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--gutter);
+    grid-template-rows: auto 1fr; /* a tall photo column grows the description row, never the gap under the title */
     row-gap: var(--s2);
     align-items: start;
     border-top: 1px solid var(--text-dark);
-    padding-top: var(--s2);
+    padding: var(--s3);
 }
-.event-row > .event-meta  { grid-column: 1 / 4; grid-row: 1; }
+.event-row > .event-meta  { grid-column: 1 / 4; grid-row: 1 / span 2; align-self: stretch; }
 .event-row > .event-title,
 .event-row > .event-desc  { grid-column: 5 / 12; }
 .event-row > .event-title { grid-row: 1; }
 
-.event-meta { display: flex; flex-direction: column; gap: var(--s1); }
+/* the date column carries the event's photo, treated like the page hero:
+   desaturated on its own layer, then faded into the canvas from the left so
+   the dates sit on the pale side. Its top lines up with the title's. */
+.event-meta {
+    position: relative; isolation: isolate;
+    display: flex; flex-direction: column; gap: var(--s1);
+    min-height: 168px;
+    padding: var(--s2);
+    border-radius: 8px; overflow: hidden;
+}
+.event-meta::before,
+.event-meta::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.event-meta::before {
+    background: var(--event-img) center / cover no-repeat;
+    filter: saturate(.6);
+}
+.event-meta::after {
+    background: linear-gradient(90deg, rgba(253,250,248,.97) 0%, rgba(253,250,248,.88) 32%, rgba(253,250,248,.35) 68%, rgba(253,250,248,0) 100%);
+}
 .event-date, .event-status {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label); line-height: var(--lh-label);
@@ -253,9 +271,9 @@
     .page-header { padding: var(--s5) 0 var(--s4); }
     .upcoming-section { padding: var(--s4) 0 var(--s5); }
     .upcoming-header { margin-bottom: var(--s4); }
-    .event-row { row-gap: var(--s1); }
+    .event-row { row-gap: var(--s2); padding: var(--s2); }
     .event-row > .event-meta,
     .event-row > .event-title,
     .event-row > .event-desc { grid-column: 1 / -1; grid-row: auto; }
-    .event-meta { flex-direction: row; gap: var(--s1) var(--s3); }
+    .event-meta { flex-direction: row; align-items: flex-start; gap: var(--s1) var(--s3); min-height: 120px; }
 }
