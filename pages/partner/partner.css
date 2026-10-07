@@ -28,6 +28,7 @@
     background:
         linear-gradient(90deg, rgba(253,250,248,.9) 0%, rgba(253,250,248,.62) 36%, rgba(253,250,248,.05) 66%),
         url(/assets/partner/partner-hero.jpg) center 45% / cover no-repeat;
+    filter: saturate(.6);
 }
 .partner-intro-section { padding: var(--s5) 0 0; background: var(--off-white); }
 .partner-intro {

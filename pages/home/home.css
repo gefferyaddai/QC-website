@@ -239,13 +239,19 @@
 /* ── WHERE MEMBERS HAVE WORKED ───────────────────────────────────────── */
 .placed-title { text-align: center; margin-bottom: var(--s4); }
 .placed-title em { color: var(--text-dark); }
+/* wrapping row, not a grid, so a short last row centres instead of hanging left */
 .placed-logos {
-    list-style: none; display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: var(--s4) var(--gutter); justify-items: center; align-items: center;
+    --cols: 4;
+    list-style: none; display: flex; flex-wrap: wrap; justify-content: center;
+    gap: var(--s4) var(--gutter); align-items: center;
+}
+.placed-logos li {
+    flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gutter)) / var(--cols));
+    display: flex; justify-content: center;
 }
 .placed-logos img { width: 160px; height: 56px; object-fit: contain; }
 @media (max-width: 900px) {
-    .placed-logos { grid-template-columns: repeat(2, 1fr); gap: var(--s4) var(--gutter); }
+    .placed-logos { --cols: 2; }
     .placed-logos img { width: 130px; height: 46px; }
 }
 
