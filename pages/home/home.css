@@ -92,7 +92,7 @@
 /* heading-only hero: the title stands alone, one word per line */
 .hero .hero-title {
     grid-column: 1 / 13; margin: 0;
-    font-size: clamp(3.4rem, 10vw, 6rem); line-height: .95; letter-spacing: -0.035em;
+    font-size: clamp(3.4rem, 10vw, 6rem); line-height: .95; letter-spacing: 1px;
 }
 .hero .hero-title .word { display: block; }
 .hero-desc {
