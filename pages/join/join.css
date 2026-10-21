@@ -21,7 +21,7 @@
   padding: var(--s6) 0 var(--s5);
   /* campus sign photo, faded into the canvas on the left: same treatment as the other page heroes */
   background:
-    linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+    var(--hero-fade),
     url(/assets/join/header_img/University-of-Calgary.avif) center 75% / cover no-repeat,
     var(--off-white);
 }
@@ -177,7 +177,6 @@
   .join-close-cta { grid-column: 1 / -1; }
 }
 @media (max-width: 560px) {
-  .join-stat { grid-column: 1 / -1; }
   .employers { --cols: 2; }
   .employer img { width: 140px; height: 48px; }
 }

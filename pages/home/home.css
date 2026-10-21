@@ -81,7 +81,7 @@
     padding: var(--s5) 0 var(--s4);
     /* Calgary skyline photo, faded into the canvas on the left so the title stays legible */
     background:
-        linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+        var(--hero-fade),
         url(/assets/home/hero-calgary-towers.webp) center 35% / cover no-repeat,
         var(--off-white);
 }

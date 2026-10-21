@@ -244,11 +244,13 @@
 }
 @media (max-width: 900px) {
     .hero        { padding: var(--s5) 0 var(--s4); }
+    .hero::before { background: var(--hero-fade), url(/assets/partner/partner-hero.jpg) center 45% / cover no-repeat; }
+    .partner-label { margin-bottom: var(--s4); }
     .partners, .why, .who { padding: var(--s4) 0; }
     .hero-inner > h1, .hero-inner > p, .hero-inner > .hero-cta,
     .why-header > h2, .why-header > p,
     .who-text, .who-card { grid-column: 1 / -1; }
-    .partner-marks { column-gap: var(--s5); }
+    .partner-marks { gap: var(--s3) var(--s4); }
     .contact-cta { padding: var(--s4) 0 var(--s5); }
     .why-header  { margin-bottom: var(--s4); }
     .who-inner   { row-gap: var(--s4); }
