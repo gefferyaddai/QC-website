@@ -146,22 +146,22 @@
     column-gap: var(--s5); row-gap: var(--s4);
 }
 .partner { display: block; }
-.partner-mark { display: flex; align-items: flex-end; justify-content: center; height: 60px; }
+.partner-mark { display: flex; align-items: flex-end; justify-content: center; height: 70px; }
 .partner-mark img {
     max-height: 100%; max-width: 100%; width: auto;
     object-fit: contain; object-position: center bottom; display: block;
 }
-/* sized to a shared cap-height, not a shared box: WSO is a stacked lockup
-   (wordmark ~31% of the file), Calgary a horizontal one (~28%), so equal box
-   heights would leave Calgary's wordmark visibly the smaller of the two */
-.partner-wso .partner-mark img { max-height: 54px; }
-.partner-calgary .partner-mark img {
-    max-height: 52px;
-    /* the crest descends below the wordmark, so bottom-aligning the file sets
-       "CALGARY" ~9px high against the other two. Nudge onto the shared
-       baseline — optical alignment, not box alignment. */
-    transform: translateY(9px);
-}
+/* sized to equal visual weight, not a shared box: each mark gets roughly the
+   same inked area (height ∝ 1/√aspect), trimmed a touch for denser ink. WSO's
+   file carries ~7px of padding under its ink; the other three files are
+   trimmed to their ink, so they sit 7px up onto WSO's baseline. */
+.partner-wso .partner-mark img { max-height: 64px; }
+.partner-altaml .partner-mark img,
+.partner-capital-power .partner-mark img,
+.partner-saf .partner-mark img { margin-bottom: 7px; }
+.partner-altaml .partner-mark img { max-height: 32px; }
+.partner-capital-power .partner-mark img { max-height: 35px; }
+.partner-saf .partner-mark img { max-height: 41px; }
 .partner-fuse { text-align: center; }
 .partner-fuse .partner-mark { height: 40px; }
 .partner-fuse .partner-mark img { max-height: 34px; }
@@ -171,9 +171,15 @@
     font-size: 1rem; letter-spacing: .18em; text-transform: uppercase;
     color: var(--text-dark); line-height: 1;
 }
+/* stacked lockup: FUSE over a smaller COLLECTIVE */
+.partner-name small {
+    display: block; margin-top: 4px;
+    font-size: .5625rem; letter-spacing: .18em;
+}
+/* Vantedge has no supplied logo: set in Times New Roman */
 .partner-wordmark {
-    font-family: 'DM Sans', sans-serif; font-weight: 600;
-    font-size: 1.375rem; letter-spacing: .22em; text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif; font-weight: 400;
+    font-size: 1.375rem; letter-spacing: .12em; text-transform: uppercase;
     color: var(--text-dark); line-height: 1;
 }
 
