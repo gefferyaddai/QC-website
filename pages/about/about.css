@@ -20,7 +20,7 @@
   padding: var(--s6) 0 var(--s5);
   /* campus photo, faded into the canvas on the left behind the title */
   background:
-    linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%),
+    var(--hero-fade),
     url(/assets/about/about-campus.webp) center 40% / cover no-repeat,
     var(--off-white);
 }
@@ -225,7 +225,7 @@
 }
 .pipeline .card-head, .pipeline .tags { justify-content: flex-start; }
 @media (max-width: 900px) {
-  .cards.pipeline { grid-template-columns: 1fr; }
+  .cards.pipeline { grid-template-columns: 1fr; row-gap: var(--s4); }
   .pipeline > .card:not(:last-child)::after { content: none; }
 }
 
@@ -235,4 +235,4 @@
   grid-column: auto; min-width: 0;
   display: flex; flex-direction: column; align-items: center; gap: var(--s2);
 }
-@media (max-width: 900px) { .cards.teams { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .cards.teams { grid-template-columns: 1fr; row-gap: var(--s4); } }
