@@ -91,7 +91,6 @@
 .upcoming-header > p { grid-column: 8 / 13; }
 .upcoming-header > .notify-btn { grid-column: 8 / 13; justify-self: start; }
 .page-header h1 em,
-.upcoming-header h1 em { font-style: italic; color: var(--pink-600); }
 
 .header-sub {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;

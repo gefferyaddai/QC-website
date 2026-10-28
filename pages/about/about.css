@@ -102,8 +102,6 @@
 .intro-head > h1, .wwd-head-inner > h2 { margin-bottom: 0; }
 .intro-head > h1, .wwd-head-inner > h2 { grid-column: 1 / 7; }
 .intro-head > .header-sub, .wwd-head-inner > .header-sub { grid-column: 8 / 13; }
-.about-intro h1 em { font-style: italic; color: var(--text-dark); }
-.what-we-do h2 em { font-style: italic; color: var(--text-dark); }
 
 .header-sub {
   font-size: 1rem;

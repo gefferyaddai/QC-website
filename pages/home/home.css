@@ -44,7 +44,6 @@
        the rag so a narrow track can't leave a one-word orphan line */
     text-wrap: balance;
 }
-.section-title em { font-style: italic; color: var(--text-dark); }
 
 .link-arrow {
     display: inline-flex; align-items: center; gap: 10px;

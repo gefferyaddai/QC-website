@@ -91,10 +91,6 @@
     margin-bottom: var(--s3);
     text-wrap: balance;
 }
-.hero h1 em { font-style: italic; color: var(--text-dark); }
-.why h2 em { font-style: italic; color: var(--text-dark); }
-.who h2 em { font-style: italic; color: var(--text-dark); }
-.contact-cta h2 em { font-style: italic; color: var(--text-dark); }
 
 .hero-inner p, .why-header p, .who-text p, .contact-inner p {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;

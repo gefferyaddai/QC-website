@@ -76,7 +76,6 @@
   margin-bottom: 0;
   text-wrap: balance;
 }
-.page-header h1 em { font-style: italic; color: var(--text-dark); }
 
 .header-sub {
   color: var(--text-mid); font-size: 1rem; line-height: 1.75;
