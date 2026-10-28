@@ -86,9 +86,9 @@ body {
    outranks the per-page class rules, so no page stylesheet can override it. */
 #app-content p, .footer p { font-family: 'Times New Roman', Times, serif; }
 
-/* Page titles carry no accent colour: the italic word stays italic but in ink.
-   The #app-content id outranks every per-page `h1 em` rule. */
-#app-content h1 em { color: var(--text-dark); }
+/* Headings are set roman throughout: the <em> word gets no italic and no accent colour.
+   The #app-content id outranks every per-page `h1 em` / `h2 em` rule. */
+#app-content h1 em, #app-content h2 em { font-style: normal; color: var(--text-dark); }
 
 /* ── FADE-UP (shared scroll-reveal utility, used by every page) ── */
 .fade-up {
