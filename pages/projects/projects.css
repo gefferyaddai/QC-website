@@ -11,38 +11,10 @@
   position: relative;
   overflow: hidden;
   background: var(--off-white);
-
-  /* spacing ladder — all vertical rhythm on this page comes from these */
-  --gutter: 24px;
-  --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
-  --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.page-header {
-  padding: var(--s6) 0 var(--s5);
-  /* volatility surface, faded into the canvas on the left: same treatment as the other page heroes */
-  background:
-    var(--hero-fade),
-    url(/assets/projects/projects-hero-wide.jpg) center 60% / cover no-repeat,
-    var(--off-white);
-}
-.page-header .inner { position: relative; z-index: 1; }
+/* banner masthead: circles and title column come from theme.css .masthead */
+.page-header { padding: var(--s6) 0 var(--s5); }
 .projects    { padding: var(--s5) 0 var(--s6); }
-
-/* the hairline module field — the one decorative layer Swiss keeps */
-.projects-grid-bg {
-  position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-/* the module field is a masthead device: full strength behind the opening
-   statement, dissolving before the index, a whisper under the entries */
-.page-header .projects-grid-bg {
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-          mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-}
-.projects .projects-grid-bg { opacity: .16; }
 
 .inner {
   position: relative;
@@ -67,7 +39,7 @@
    reserved for the site's front door, so an inside page opens at h1 and the
    section heads below it at h2 — three steps, not two extremes */
 .page-header h1 {
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-serif);
   font-size: var(--fs-h1);
   line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
   color: var(--text-dark);
@@ -77,7 +49,7 @@
 
 .header-sub {
   color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-  font-weight: 300; text-wrap: pretty;
+  font-weight: 400; text-wrap: pretty;
 }
 
 /* ── PROJECTS ── an index, not a stack of blocks. Each entry composes on the
@@ -107,7 +79,7 @@
 .project-year { color: var(--text-light); }
 
 .project-title {
-  font-family: 'DM Serif Display', serif;
+  font-family: var(--font-serif);
   font-size: 1.75rem;
   line-height: 1.2; letter-spacing: -.01em;
   color: var(--text-dark);
@@ -118,7 +90,7 @@
 .project-desc {
   max-width: 78ch;
   font-size: .9375rem; line-height: 1.75;
-  color: var(--text-mid); font-weight: 300;
+  color: var(--text-mid); font-weight: 400;
   text-wrap: pretty;
 }
 

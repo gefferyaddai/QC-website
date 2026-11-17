@@ -11,32 +11,12 @@
     position: relative;
     overflow: hidden;
     background: var(--off-white);
-
-    /* spacing ladder — all vertical rhythm on this page comes from these */
-    --gutter: 24px;
-    --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
-    --s5: 64px; --s6: 96px; --s7: 144px;
 }
 .page-header { padding: var(--s6) 0 var(--s5); }
 .upcoming-section { padding: var(--s5) 0 var(--s6); }
 
-/* title-only hero: campus photo faded into the canvas on the left, sized like the About intro */
-.events-hero {
-    position: relative; overflow: hidden;
-    padding: var(--s6) 0 var(--s5);
-    background: var(--off-white);
-}
-/* the photo sits on its own layer so it can be desaturated, with the fade above it */
-.events-hero::before,
-.events-hero::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.events-hero::before {
-    background: url(/assets/events/events-campus.jpg) center 40% / cover no-repeat;
-    filter: saturate(.6);
-}
-.events-hero::after {
-    background: var(--hero-fade);
-}
-.events-hero .wrap { position: relative; z-index: 1; }
+/* banner masthead: circles and title column come from theme.css .masthead */
+.events-hero { padding: var(--s6) 0 var(--s5); }
 .events-hero .upcoming-header { margin-bottom: 0; }
 
 /* intro line + notify button, now under the hero */
@@ -49,20 +29,6 @@
     text-wrap: pretty; margin: 0; max-width: 60ch;
 }
 
-/* the hairline module field — the one decorative layer Swiss keeps */
-.events-grid-bg {
-    position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
-    background-image:
-        linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
-    background-size: 64px 64px;
-}
-/* the module field is a masthead device: full strength behind the opening
-   statement, dissolving before the running text below it */
-.upcoming-section .events-grid-bg {
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 88%);
-            mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 88%);
-}
 .page-header .inner,
 .upcoming-section .wrap { position: relative; z-index: 1; }
 
@@ -72,7 +38,7 @@
     section heads below it at h2 — three steps, not two extremes */
 .page-header h1,
 .upcoming-header h1 {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif);
     font-size: var(--fs-h1);
     line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
     color: var(--text-dark);
@@ -90,18 +56,16 @@
 .upcoming-header > h1 { grid-column: 1 / 7; }
 .upcoming-header > p { grid-column: 8 / 13; }
 .upcoming-header > .notify-btn { grid-column: 8 / 13; justify-self: start; }
-.page-header h1 em,
-
 .header-sub {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-    font-weight: 300; text-wrap: pretty;
+    font-weight: 400; text-wrap: pretty;
 }
 
 /* ── UPCOMING ── */
 .upcoming-header { margin-bottom: var(--s5); }
 .upcoming-header p {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-    font-weight: 300; text-wrap: pretty; margin-bottom: var(--s4);
+    font-weight: 400; text-wrap: pretty; margin-bottom: var(--s4);
 }
 
 /* buttons are set as text links in the accent, no button chrome */
@@ -122,13 +86,6 @@
 
 /* ── EVENT LIST ── the events stack in one column, each opened by a rule:
    date and photo in the left columns, the event itself on the right. */
-.events-term {
-    font-family: 'DM Sans', sans-serif;
-    font-size: var(--fs-label); line-height: var(--lh-label);
-    letter-spacing: var(--ls-label); font-weight: 600; text-transform: uppercase;
-    color: var(--text-dark); margin-bottom: var(--s3);
-}
-
 .event-list { display: grid; row-gap: var(--s3); }
 
 .event-row {
@@ -154,7 +111,7 @@
     display: flex; flex-direction: column; gap: var(--s1);
     min-height: 168px;
     padding: var(--s2);
-    border-radius: 8px; overflow: hidden;
+    overflow: hidden;
 }
 .event-meta::before,
 .event-meta::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
@@ -163,7 +120,7 @@
     filter: saturate(.6);
 }
 .event-meta::after {
-    background: linear-gradient(90deg, rgba(253,250,248,.97) 0%, rgba(253,250,248,.88) 32%, rgba(253,250,248,.35) 68%, rgba(253,250,248,0) 100%);
+    background: linear-gradient(90deg, rgba(247,242,239,.97) 0%, rgba(247,242,239,.88) 32%, rgba(247,242,239,.35) 68%, rgba(247,242,239,0) 100%);
 }
 .event-date, .event-status {
     font-family: 'DM Sans', sans-serif;
@@ -174,7 +131,7 @@
 .event-status { color: var(--text-light); }
 
 .event-title {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif);
     font-size: 1.75rem; line-height: 1.2; letter-spacing: -.01em;
     color: var(--text-dark); font-weight: 400;
     margin: 0;
@@ -183,35 +140,30 @@
 .event-desc {
     max-width: 78ch; margin: 0;
     font-size: .9375rem; line-height: 1.75;
-    color: var(--text-mid); font-weight: 300;
+    color: var(--text-mid); font-weight: 400;
     text-wrap: pretty;
 }
 
 /* ── MODAL ── the one panel on the site: squared, hairline, no shadow ── */
 .notify-modal-overlay {
     position: fixed; inset: 0;
-    background: rgba(26, 16, 24, 0);
-    backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px);
+    background: rgba(17, 17, 17, 0);
     z-index: 9999; display: flex;
     align-items: center; justify-content: center; padding: 20px;
     opacity: 0; visibility: hidden; pointer-events: none;
     transition: background var(--dur-moderate) var(--ease-out-smooth),
-                backdrop-filter var(--dur-moderate) var(--ease-out-smooth),
                 visibility 0s linear var(--dur-moderate);
 }
 .notify-modal-overlay.open {
-    background: rgba(26, 16, 24, 0.55);
-    backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    background: rgba(17, 17, 17, 0.6);
     opacity: 1; visibility: visible; pointer-events: auto;
     transition: background var(--dur-moderate) var(--ease-out-smooth),
-                backdrop-filter var(--dur-moderate) var(--ease-out-smooth),
                 visibility 0s linear 0s;
 }
 .notify-modal {
-    background: var(--white); border: 1px solid var(--text-dark); border-radius: 0;
+    background: var(--white); border: 1px solid var(--text-dark);
     padding: var(--s4) var(--s4) var(--s3);
     max-width: 420px; width: 100%; position: relative;
-    --s1: 8px; --s2: 16px; --s3: 24px; --s4: 40px;
     opacity: 0;
     transform: scale(0.96) translateY(8px);
     transition: opacity var(--dur-moderate) var(--ease-out-smooth),
@@ -223,19 +175,19 @@
     position: absolute; top: 12px; right: 12px;
     background: none; border: none; font-size: 1rem;
     cursor: pointer; color: var(--text-mid);
-    padding: 8px; border-radius: var(--radius-pill); line-height: 1;
+    padding: 8px; line-height: 1;
     transition: color .2s;
 }
 .notify-modal-close:hover { color: var(--pink-700); }
 
 .notify-modal h3 {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif);
     font-size: 1.75rem; line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
     color: var(--text-dark); margin-bottom: var(--s1);
 }
 .notify-modal > div > p {
     color: var(--text-mid); font-size: .9375rem; line-height: 1.7;
-    font-weight: 300; margin-bottom: var(--s3);
+    font-weight: 400; margin-bottom: var(--s3);
 }
 
 .notify-field { margin-bottom: var(--s2); }
@@ -248,7 +200,7 @@
 }
 .notify-field input {
     width: 100%; padding: 13px 16px; border-radius: 0;
-    border: 1px solid rgba(26, 16, 24, .28);
+    border: 1px solid rgba(17, 17, 17, .28);
     background: var(--white);
     font-family: 'DM Sans', sans-serif; font-size: .9375rem;
     outline: none; transition: border-color .2s;
@@ -259,8 +211,8 @@
 .notify-submit-btn { margin-top: var(--s1); }
 
 .notify-modal-note {
-    font-size: 12px; color: var(--text-light);
-    margin-top: var(--s2); font-weight: 300;
+    font-size: .875rem; color: var(--text-light);
+    margin-top: var(--s2); font-weight: 400;
 }
 
 /* ── RESPONSIVE ── */

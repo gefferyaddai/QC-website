@@ -11,25 +11,9 @@
     position: relative;
     overflow: hidden;
     background: var(--off-white);
-
-    /* spacing ladder — all vertical rhythm on this page comes from these */
-    --gutter: 24px;
-    --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
-    --s5: 64px; --s6: 96px; --s7: 144px;
 }
-.hero {
-    padding: var(--s6) 0 var(--s5);
-    background: var(--off-white);
-}
-/* skyline photo across the full width, middle of the image so the tower tops show;
-   light fade on the left keeps the title legible */
-.hero::before {
-    content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-    background:
-        linear-gradient(90deg, rgba(253,250,248,.9) 0%, rgba(253,250,248,.62) 36%, rgba(253,250,248,.05) 66%),
-        url(/assets/partner/partner-hero.jpg) center 45% / cover no-repeat;
-    filter: saturate(.6);
-}
+/* banner masthead: circles and title column come from theme.css .masthead */
+.hero { padding: var(--s6) 0 var(--s5); }
 .partner-intro-section { padding: var(--s5) 0 0; background: var(--off-white); }
 .partner-intro {
     display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
@@ -37,34 +21,17 @@
 }
 .partner-intro p {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-    font-weight: 300; text-wrap: pretty; max-width: 66ch; margin: 0;
+    font-weight: 400; text-wrap: pretty; max-width: 66ch; margin: 0;
 }
 .partners    { padding: var(--s5) 0; }
 .why         { padding: var(--s5) 0; }
 .who         { padding: var(--s5) 0; }
 .contact-cta { padding: var(--s5) 0 var(--s6); }
 
-/* the hairline module field — the one decorative layer Swiss keeps */
-.partner-grid-bg {
-    position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
-    background-image:
-        linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
-    background-size: 64px 64px;
-}
-/* the module field is a masthead device: full strength behind the opening
-   statement, dissolving before the running text, a whisper below it */
-.hero .partner-grid-bg {
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-            mask-image: linear-gradient(180deg, #000 0%, #000 46%, transparent 92%);
-}
-.partners .partner-grid-bg, .why .partner-grid-bg,
-.who .partner-grid-bg, .contact-cta .partner-grid-bg { opacity: .16; }
 .hero-inner, .partners-inner, .why .wrap, .who-inner, .contact-inner { position: relative; z-index: 1; }
 
 /* label — the single small-type role */
-.benefit-card h3, .who-card-label, .who-card-item strong,
-.partner-label {
+.benefit-card h3, .who-card-item strong {
     font-family: 'DM Sans', sans-serif;
     font-size: var(--fs-label);
     line-height: var(--lh-label);
@@ -76,7 +43,7 @@
 /* ── STATEMENT HEADINGS ── display type is reserved for the site's front
    door, so an inside page opens at h1 and its section heads at h2 ── */
 .hero h1 {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif);
     font-size: var(--fs-h1);
     line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
     color: var(--text-dark);
@@ -84,7 +51,7 @@
     text-wrap: balance;
 }
 .why h2, .who h2, .contact-cta h2 {
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif);
     font-size: var(--fs-h2);
     line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
     color: var(--text-dark);
@@ -94,7 +61,7 @@
 
 .hero-inner p, .why-header p, .who-text p, .contact-inner p {
     color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-    font-weight: 300; text-wrap: pretty; max-width: 78ch;
+    font-weight: 400; text-wrap: pretty; max-width: 78ch;
 }
 
 /* ── HERO ── composed on the 12-column field: statement left, supporting
@@ -130,12 +97,11 @@
    no caption beneath: a label repeating what the mark says is noise.
    The marks group as one centred specimen instead of spanning the full
    measure — spread over 12 columns they read as three unrelated items.
-   Brand colour is left intact: these marks do not reduce to a single ink.
+   Grayscale + .75 opacity, matching the home "placed" logos.
    WSO's icon is two-tone with white counters, so any silhouette collapses it
    into a solid disc, and desaturating all three only muddied them.
    Mirrors the home route exactly. ── */
 .partner-strip { display: block; }
-.partner-label { display: block; color: var(--text-mid); margin-bottom: var(--s5); }
 .partner-marks {
     display: flex; flex-wrap: wrap;
     align-items: flex-start; justify-content: center;
@@ -146,6 +112,7 @@
 .partner-mark img {
     max-height: 100%; max-width: 100%; width: auto;
     object-fit: contain; object-position: center bottom; display: block;
+    filter: grayscale(1); opacity: .75;
 }
 /* sized to equal visual weight, not a shared box: each mark gets roughly the
    same inked area (height ∝ 1/√aspect), trimmed a touch for denser ink. WSO's
@@ -170,11 +137,11 @@
 /* stacked lockup: FUSE over a smaller COLLECTIVE */
 .partner-name small {
     display: block; margin-top: 4px;
-    font-size: .5625rem; letter-spacing: .18em;
+    font-size: var(--fs-label); letter-spacing: .18em;
 }
-/* Vantedge has no supplied logo: set in Times New Roman */
+/* Vantedge has no supplied logo: set in the heading serif */
 .partner-wordmark {
-    font-family: 'Times New Roman', Times, serif; font-weight: 400;
+    font-family: var(--font-serif); font-weight: 400;
     font-size: 1.375rem; letter-spacing: .12em; text-transform: uppercase;
     color: var(--text-dark); line-height: 1;
 }
@@ -196,7 +163,7 @@
 .benefit-card p {
     max-width: 78ch;
     font-size: .9375rem; line-height: 1.75;
-    color: var(--text-mid); font-weight: 300; text-wrap: pretty;
+    color: var(--text-mid); font-weight: 400; text-wrap: pretty;
 }
 
 /* ── WHO ── */
@@ -211,21 +178,18 @@
 .who-list { list-style: none; display: grid; row-gap: var(--s2); }
 .who-list li {
     position: relative; padding-left: 22px;
-    font-family: 'Times New Roman', Times, serif;
     font-size: .9375rem; line-height: 1.7;
     color: var(--text-mid); font-weight: 400;
 }
 .who-list li::before {
     content: '—'; position: absolute; left: 0;
-    color: var(--pink-700); font-weight: 600;
+    color: var(--text-dark);
 }
 
 .who-card { display: grid; row-gap: var(--s3); }
-.who-card-label { color: var(--text-light); }
 .who-card-item { display: flex; flex-direction: column; gap: var(--s1); }
 .who-card-item strong { color: var(--text-dark); font-weight: 600; }
 .who-card-item span {
-    font-family: 'Times New Roman', Times, serif;
     font-size: .9375rem; line-height: 1.7;
     color: var(--text-mid); font-weight: 400;
 }
@@ -234,7 +198,7 @@
 .contact-inner p { margin-bottom: var(--s4); }
 .contact-email {
     display: inline-flex; align-items: center; gap: 10px;
-    color: var(--pink-700); font-weight: 600; font-size: 1.05rem;
+    color: var(--pink-700); font-weight: 600; font-size: 1rem;
     text-decoration: none;
     transition: opacity .2s;
 }
@@ -246,8 +210,6 @@
 }
 @media (max-width: 900px) {
     .hero        { padding: var(--s5) 0 var(--s4); }
-    .hero::before { background: var(--hero-fade), url(/assets/partner/partner-hero.jpg) center 45% / cover no-repeat; }
-    .partner-label { margin-bottom: var(--s4); }
     .partners, .why, .who { padding: var(--s4) 0; }
     .hero-inner > h1, .hero-inner > p, .hero-inner > .hero-cta,
     .why-header > h2, .why-header > p,

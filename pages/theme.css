@@ -1,6 +1,6 @@
 /* Shared design tokens + resets loaded once by the shell (index.html).
-   Per-page stylesheets no longer declare their own :root/reset/body/.fade-up
-   blocks — this file is the single source of truth for all of that. */
+   Per-page stylesheets declare no :root/reset/body/.fade-up blocks of their
+   own — this file is the single source of truth for all of that. */
 
 *, *::before, *::after {
     box-sizing: border-box;
@@ -15,52 +15,45 @@ html.js-loading body { visibility: hidden; animation: js-loading-fallback 0s 4s 
 @keyframes js-loading-fallback { to { visibility: visible; } }
 
 :root {
-    --pink-100:  #f9dff0;
-    --pink-200:  #f2bade;
-    --pink-400:  #e07ab8;
-    --pink-600:  #c0509a;
-    --pink-700:  #a53f82; /* AA-safe accent for small/bold text (labels, tags, links) — pink-600 falls under 4.5:1 below ~18px */
-    --lav-400:   #9b93ea;
-    --off-white: #fdfaf8;
+    /* palette taken from the LinkedIn banner: warm cream ground, black serif
+       type, and two pastels (pink, lavender) used only as the masthead circles */
+    --off-white: #f7f2ef;
     --white:     #ffffff;
-    --text-dark: #1a1018;
-    --text-mid:  #5c4d58;
-    --text-light:#7a6b78; /* darkened from #9e8ea0 (3.07:1) to clear WCAG AA 4.5:1 for small text */
+    --text-dark: #111111;
+    --text-mid:  #4f4a47;
+    --text-light:#6b6562;
+    --pastel-pink: #f8d1de;
+    --pastel-lav:  #c9c6e5;
+    /* the accent is the pastel pink deepened until it reads as text:
+       700 for links and small labels (6.5:1 on cream), 600 for non-text marks */
+    --pink-600:  #b0698c;
+    --pink-700:  #8a3c62;
+    /* the one hairline: ink at low alpha, never tinted */
+    --rule:      rgba(17, 17, 17, .14);
 
+    /* headings: the banner's Times-style serif. Tinos is Times New Roman's
+       metric twin, loaded for systems that don't ship Times */
+    --font-serif: 'Times New Roman', Tinos, Times, serif;
 
-    /* ── silver / chrome accents — layered on top of the pink/lavender base ── */
-    --chrome-300: #c3c9d1;
-    --chrome-400: #a3abb6;
-    --metallic-border: linear-gradient(135deg, #e8eaee, #b8bec8 40%, #f4f5f7 55%, #9aa1ad 80%, #dfe2e7);
+    /* spacing ladder — all vertical rhythm on the site comes from these */
+    --gutter: 24px;
+    --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
+    --s5: 64px; --s6: 96px; --s7: 144px;
 
-    /* ── shape — DESIGN.md → rounded.pill. Every button, badge and
-       pill-shaped control takes this; the nav links already did. ── */
-    --radius-pill: 999px;
-
-    /* ── motion — CSS approximations of Apple's damping/response spring table ── */
-    --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);     /* damping 1.0: decelerate, no overshoot */
-    --ease-out-quick:  cubic-bezier(0.16, 1, 0.3, 1);      /* snappy hover/press micro-motion */
-    --ease-spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* damping ~0.8: gesture-triggered materialize */
-
+    /* motion */
+    --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-out-quick:  cubic-bezier(0.16, 1, 0.3, 1);
     --dur-instant:  100ms;
     --dur-fast:     180ms;
     --dur-base:     280ms;
     --dur-moderate: 380ms;
 
-    /* ── type scale — tracking and leading tighten together as size grows ── */
+    /* type scale — tracking and leading tighten together as size grows */
     --fs-display: clamp(2.6rem, 6vw, 5rem);     --ls-display: -0.03em; --lh-display: 1.05;
     --fs-h1:      clamp(2.2rem, 5vw, 4rem);     --ls-h1: -0.025em;     --lh-h1: 1.1;
     --fs-h2:      clamp(1.6rem, 3.2vw, 2.4rem); --ls-h2: -0.02em;      --lh-h2: 1.2;
     --fs-h3:      clamp(1.1rem, 2vw, 1.4rem);   --ls-h3: -0.01em;      --lh-h3: 1.3;
     --fs-label:   0.6875rem;                    --ls-label: 0.14em;    --lh-label: 1.3;
-
-    /* page-hero photo fade: canvas on the left behind the title, photo on the right */
-    --hero-fade: linear-gradient(90deg, rgba(253,250,248,.96) 0%, rgba(253,250,248,.82) 38%, rgba(253,250,248,.15) 75%);
-}
-/* on a phone the title spans the full width, so the photo's clear side sits
-   right under the text — flatten the fade so it never drops below legibility */
-@media (max-width: 900px) {
-    :root { --hero-fade: linear-gradient(90deg, rgba(253,250,248,.94) 0%, rgba(253,250,248,.85) 55%, rgba(253,250,248,.6) 100%); }
 }
 
 body {
@@ -74,17 +67,94 @@ body {
     min-height: 100vh;
 }
 
-/* Short pages (e.g. Events with no events scheduled) must not leave a band of
-   bare canvas under the footer. The routed content grows to fill the viewport
-   and its final section absorbs the slack, so the section's own background and
-   hairline grid run all the way down to the footer. */
+/* Short pages must not leave a band of bare canvas under the footer: the
+   routed content grows to fill the viewport and its final section absorbs
+   the slack. */
 #app-content { flex: 1 0 auto; display: flex; flex-direction: column; }
+/* focused by the router on each route change, for screen readers only */
+#app-content:focus { outline: none; }
 #app-content > section:last-of-type { flex: 1 0 auto; }
 .footer { flex-shrink: 0; }
 
-/* Paragraph copy is set in Times New Roman site-wide. The #app-content id
-   outranks the per-page class rules, so no page stylesheet can override it. */
-#app-content p, .footer p { font-family: 'Times New Roman', Times, serif; }
+/* Two faces only: the Times-style serif (--font-serif) for headings, DM Sans
+   for everything else. The #app-content id outranks the per-page class rules. */
+#app-content p, .footer p { font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+/* ── MASTHEAD ── every page opens on the LinkedIn banner: cream ground, two
+   soft overlapping pastel circles on the left, the black serif title set to
+   the right of them. Each route tags its first section with .masthead. ── */
+/* the #app-content id outranks the page stylesheets' own section backgrounds */
+#app-content .masthead {
+    position: relative; overflow: hidden; isolation: isolate;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--pastel-pink) 45%, var(--off-white)) 0%, var(--off-white) 55%);
+}
+.masthead::before,
+.masthead::after {
+    content: ""; position: absolute; z-index: -1; pointer-events: none;
+    width: min(46vw, 560px); aspect-ratio: 1; border-radius: 50%;
+}
+/* upper circle: pink sweeping into lavender */
+.masthead::before {
+    left: -6%; top: -55%;
+    background: linear-gradient(115deg, var(--pastel-pink) 10%, color-mix(in srgb, var(--pastel-pink) 55%, var(--pastel-lav)) 55%, var(--pastel-lav) 100%);
+    opacity: .85;
+}
+/* lower circle, overlapping it: lavender back into pink */
+.masthead::after {
+    left: 16%; top: 38%;
+    background: linear-gradient(200deg, var(--pastel-pink) 0%, color-mix(in srgb, var(--pastel-pink) 45%, var(--pastel-lav)) 50%, var(--pastel-lav) 100%);
+    opacity: .75; mix-blend-mode: multiply;
+}
+/* the title column sits to the right of the circles */
+.masthead > * { padding-left: min(18%, 220px); }
+/* the title takes the whole column right of the circles, even where a page
+   grid would otherwise hold it to half the measure */
+#app-content .masthead h1 { grid-column: 1 / -1; font-weight: 400; color: var(--text-dark); }
+/* the banner's italic strapline */
+.masthead-tagline {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: var(--fs-h3); line-height: var(--lh-h3); color: var(--text-dark);
+}
+/* on a phone the circles drop behind the title as a tint */
+@media (max-width: 900px) {
+    .masthead > * { padding-left: 0; }
+    .masthead::before { width: 70vw; left: auto; right: -30vw; top: -30vw; opacity: .6; }
+    .masthead::after  { width: 60vw; left: auto; right: -12vw; top: 55%; opacity: .5; }
+}
+
+/* Home + Join masthead, after the LinkedIn banner: a large circle on the left,
+   and two equal circles stacked on its right edge, touching at mid-height.
+   ::before is the large circle. ::after is a 2r × 4r box holding both small
+   circles: each half is a square with its own gradient, masked to the circle
+   inscribed in it. --cx is the large circle's right edge (the small circles'
+   centre line), --r the small radius, --R the large radius. Title sits right. */
+.masthead-trio { --cx: 18vw; --r: min(19vw, 250px); --R: calc(var(--r) * 1.2); }
+.masthead-trio > * { padding-left: min(34%, 440px); }
+.masthead-trio::before {
+    width: calc(var(--R) * 2);
+    left: calc(var(--cx) - var(--R) * 2); top: 50%; transform: translateY(-50%);
+    background: linear-gradient(90deg, var(--pastel-pink) 15%, var(--pastel-lav) 100%);
+    opacity: .9;
+}
+.masthead-trio::after {
+    width: calc(var(--r) * 2); height: calc(var(--r) * 4); aspect-ratio: auto; border-radius: 0;
+    left: calc(var(--cx) - var(--r)); top: calc(50% - var(--r) * 2);
+    background:
+        linear-gradient(90deg, var(--pastel-lav), var(--pastel-pink) 60%) top / 100% 50% no-repeat,
+        linear-gradient(90deg, var(--pastel-pink) 20%, var(--pastel-lav)) bottom / 100% 50% no-repeat;
+    -webkit-mask: radial-gradient(circle closest-side, #000 99%, transparent) top / 100% 50% no-repeat,
+                  radial-gradient(circle closest-side, #000 99%, transparent) bottom / 100% 50% no-repeat;
+            mask: radial-gradient(circle closest-side, #000 99%, transparent) top / 100% 50% no-repeat,
+                  radial-gradient(circle closest-side, #000 99%, transparent) bottom / 100% 50% no-repeat;
+    opacity: .8; mix-blend-mode: multiply;
+}
+/* on a phone the trio moves to the right edge behind the title as a tint */
+@media (max-width: 900px) {
+    .masthead-trio { --cx: 92vw; --r: 30vw; }
+    .masthead-trio > * { padding-left: 0; }
+    .masthead-trio::before { left: calc(var(--cx) - var(--R) * 2); right: auto; top: 50%; opacity: .5; }
+    .masthead-trio::after  { left: calc(var(--cx) - var(--r)); right: auto; top: calc(50% - var(--r) * 2); opacity: .45; }
+}
 
 /* Headings are set roman throughout: the <em> word gets no italic and no accent colour.
    The #app-content id outranks every per-page `h1 em` / `h2 em` rule. */
@@ -108,7 +178,21 @@ body {
 .arrow { display: inline-flex; overflow: hidden; width: 1em; flex: 0 0 1em; }
 .arrow i { flex: 0 0 100%; font-style: normal; transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1); }
 
-/* ── accessibility: motion, transparency, contrast ── */
+/* ── FIGURES ── a serif numeral over an uppercase label (home, join) ── */
+.stat { display: flex; flex-direction: column; gap: var(--s1); }
+.stat-num {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: 2.4rem; line-height: 1; letter-spacing: -.02em;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-dark);
+}
+.stat-label {
+    font-size: var(--fs-label); line-height: var(--lh-label);
+    letter-spacing: var(--ls-label); font-weight: 600; text-transform: uppercase;
+    color: var(--text-mid);
+}
+
+/* ── accessibility: motion, contrast ── */
 @media (prefers-reduced-motion: reduce) {
     .fade-up {
         transition: opacity 150ms linear !important;
@@ -121,22 +205,10 @@ body {
         transition-timing-function: linear !important;
     }
     .notify-modal-overlay.open .notify-modal,
-    .nav-links.open {
-        transform: none !important;
-        filter: none !important;
-    }
-}
-@media (prefers-reduced-transparency: reduce) {
-    .nav, .nav.scrolled, .nav-links, .notify-modal-overlay.open {
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-    }
-    .nav, .nav.scrolled, .nav-links { background: var(--off-white) !important; }
-    .notify-modal-overlay.open { background: rgba(26, 16, 24, 0.85) !important; }
+    .nav-links.open { transform: none !important; }
 }
 @media (prefers-contrast: more) {
-    .nav { background: var(--off-white); border-bottom: 1px solid var(--text-dark); backdrop-filter: none; }
-    .notify-modal, .event-card, .calendar-card, .project-card, .member-card { border: 1.5px solid var(--text-dark); }
+    .nav { border-bottom: 1px solid var(--text-dark); }
 }
 
 /* ── Lenis smooth scroll (pages/smooth.js) ──────────────────────────────── */

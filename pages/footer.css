@@ -1,24 +1,7 @@
-/* ── FOOTER ── */
-.footer {
-    background: var(--text-dark);
-    padding: 56px 0;
-    border-top: 1px solid rgba(180, 140, 170, 0.12);
-    position: relative;
-    overflow: hidden;
-}
-
-/* metallic accent line at top — mirrors the nav hairline */
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    height: 2px; width: 100%;
-    background: linear-gradient(90deg, var(--pink-400), var(--chrome-300) 45%, #fff 50%, var(--chrome-300) 55%, var(--lav-400));
-    opacity: 0.8;
-}
+/* ── FOOTER ── the one dark surface: ink ground, white type, neutral rules ── */
+.footer { background: var(--text-dark); padding: 56px 0; }
 
 .footer-inner {
-    position: relative; z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,17 +14,15 @@
     display: flex;
     align-items: center;
     gap: 14px;
-    font-family: 'DM Serif Display', serif;
+    font-family: var(--font-serif);
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.7);
-    letter-spacing: -0.2px;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: -0.01em;
 }
 .footer-brand img {
     width: 40px; height: 40px;
     object-fit: contain; border-radius: 50%;
-    opacity: 0.85;
 }
-.footer-brand span { font-style: italic; color: var(--pink-400); }
 
 /* social icons */
 .footer-socials {
@@ -52,40 +33,31 @@
 .footer-socials a {
     display: flex; align-items: center; justify-content: center;
     width: 44px; height: 44px;
-    border-radius: 50%;
-    border: 1px solid rgba(180, 140, 170, 0.2);
-    color: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 1.05rem;
     text-decoration: none;
-    transition: color 0.2s, background 0.2s, border-color 0.2s, transform 0.18s;
+    transition: color 0.2s, border-color 0.2s;
 }
-.footer-socials a:hover {
-    color: #fff;
-    background: rgba(192, 80, 154, 0.22);
-    border-color: rgba(192, 80, 154, 0.5);
-    transform: translateY(-2px);
-}
-.footer-socials a:active {
-    transform: scale(0.9);
-    transition: transform var(--dur-instant) var(--ease-out-quick);
-}
+.footer-socials a:hover { color: #fff; border-color: rgba(255, 255, 255, 0.6); }
+.footer-socials a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-/* metallic-fade divider between the socials and the copyright line */
+/* hairline between the socials and the copyright line */
 .footer-divider {
     width: 1px;
     height: 32px;
-    background: linear-gradient(180deg, transparent, var(--chrome-400), transparent);
+    background: rgba(255, 255, 255, 0.2);
     flex-shrink: 0;
 }
 
 /* copyright */
 .footer-copy {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.03em;
     white-space: nowrap;
 }
-.footer-copy span { color: rgba(255, 255, 255, 0.45); }
+.footer-copy span { color: rgba(255, 255, 255, 0.75); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 700px) {

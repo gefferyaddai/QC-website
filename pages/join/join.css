@@ -1,180 +1,143 @@
-/* ── join us — Swiss ─────────────────────────────────────────────────────
+/* ── join us ─────────────────────────────────────────────────────────────
    Loaded/enabled by the router (index.html #css-join).
+   Mirrors home.css: same masthead, mission split, role stack and logo field.
+   The router enables one page stylesheet at a time, so the rules are copied
+   rather than shared — keep the two in step. No page JS here, so the home
+   route's word blur-up and role slide-in states are left out.
 
-   Same system as every other route: whitespace and alignment do the
-   structuring. No card has a border, fill, radius or shadow; nothing is drawn
-   between rows. See DESIGN.md → The Swiss Grid Rule and
-   The Statement Heading Rule.
+   Structure comes from the 12-column grid, whitespace and hairline rules —
+   never from a container. No fills, radius, shadow or imagery behind type.
+   Tokens (colour, spacing ladder, type scale) live in pages/theme.css.
 ────────────────────────────────────────────────────────────────────────── */
 
-.join-header, .join-intro-section, .tracks-section, .employers-section, .join-close {
-  position: relative;
-  overflow: hidden;
-  background: var(--off-white);
+.home-wrap { width: 92%; max-width: 1200px; margin: 0 auto; }
 
-  /* spacing ladder — all vertical rhythm on this page comes from these */
-  --gutter: 24px;
-  --s1: 8px;  --s2: 16px; --s3: 24px; --s4: 40px;
-  --s5: 64px; --s6: 96px; --s7: 144px;
-}
-.join-header {
-  padding: var(--s6) 0 var(--s5);
-  /* campus sign photo, faded into the canvas on the left: same treatment as the other page heroes */
-  background:
-    var(--hero-fade),
-    url(/assets/join/header_img/University-of-Calgary.avif) center 75% / cover no-repeat,
-    var(--off-white);
-}
-/* the hero's lede: centred on the same axis as the section heads below it,
-   and sitting closer to the hero (s5) than to the first section (s6) so it
-   reads as the hero's continuation rather than a row adrift between the two */
-.join-intro-section { padding: var(--s5) 0 0; }
-.join-intro {
-  display: flex; flex-direction: column; align-items: center;
-  gap: var(--s3); text-align: center;
-}
-.join-intro p {
-  color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-  font-weight: 300; text-wrap: pretty; max-width: 64ch; margin: 0;
-}
-.tracks-section  { padding: var(--s6) 0 var(--s5); }
-.employers-section { padding: var(--s5) 0; }
-.join-close      { padding: var(--s5) 0 var(--s6); }
-
-/* the hairline module field — the one decorative layer Swiss keeps */
-.join-grid-bg {
-  position: absolute; inset: 0; z-index: 0; opacity: .28; pointer-events: none;
-  background-image:
-    linear-gradient(rgba(180, 140, 170, .16) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 140, 170, .16) 1px, transparent 1px);
-  background-size: 64px 64px;
-}
-/* a whisper of the module field in every section below the hero, unbroken
-   from the hero's bottom edge down */
-.join-intro-section .join-grid-bg,
-.tracks-section .join-grid-bg,
-.employers-section .join-grid-bg,
-.join-close .join-grid-bg { opacity: .16; }
-
-.inner {
-  position: relative;
-  z-index: 1;
-  width: 92%;
-  max-width: 1200px;
-  margin: 0 auto;
+/* statement heading — one declarative sentence carries the section. Sits a
+   full tier below .hero-title, the only display-size type on the page. */
+.section-title {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
+    color: var(--text-dark);
+    text-wrap: balance;
 }
 
-/* label — the single small-type role */
-.join-label {
-  font-family: 'DM Sans', sans-serif;
-  font-size: var(--fs-label);
-  line-height: var(--lh-label);
-  letter-spacing: var(--ls-label);
-  font-weight: 600;
-  text-transform: uppercase;
+.link-arrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--pink-700); font-weight: 600; font-size: .9rem;
+    text-decoration: none;
+    transition: opacity .2s;
+}
+.link-arrow:hover { opacity: .65; }
+.link-arrow:hover .arrow i { transform: translateX(-100%); }
+.link-arrow:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
+
+/* ── HERO ── the banner masthead (theme.css .masthead): title, the italic
+   strapline, one line of copy, two links, then the figures */
+.hero { padding: var(--s6) 0 var(--s5); }
+.hero-inner { row-gap: var(--s3); }
+.hero-inner > * { grid-column: 1 / -1; }
+.hero-inner > .hero-desc { margin-top: var(--s2); }
+
+.hero-title {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: clamp(3.2rem, 8vw, 5.5rem); line-height: .98; letter-spacing: -0.015em;
+    color: var(--text-dark);
+}
+.hero-title .word { display: block; }
+.hero-title .word.pre-reveal {
+    opacity: 0; filter: blur(12px); transform: translateY(20px);
+    transition: opacity .9s cubic-bezier(0.22, 1, 0.36, 1),
+                transform .9s cubic-bezier(0.22, 1, 0.36, 1),
+                filter .9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-title .word.revealed { opacity: 1; filter: blur(0); transform: none; }
+
+.hero-desc {
+    max-width: 46ch;
+    font-size: 1.25rem; line-height: 1.55; color: var(--text-mid);
+    text-wrap: pretty;
+}
+.hero-links { display: flex; flex-wrap: wrap; gap: var(--s2) var(--s4); }
+
+.stat-strip {
+    list-style: none;
+    display: flex; flex-wrap: wrap; gap: var(--s3) var(--s6);
+    margin-top: var(--s3); padding-top: var(--s3);
+    border-top: 1px solid var(--text-dark);
 }
 
-/* ── STATEMENT HEADINGS ── display type is reserved for the site's front
-   door, so an inside page opens at h1 and its section heads at h2 ── */
-.join-header h1 {
-  font-family: 'DM Serif Display', serif;
-  font-size: var(--fs-h1);
-  line-height: var(--lh-h1); letter-spacing: var(--ls-h1);
-  color: var(--text-dark);
-  margin-bottom: 0;
-  text-wrap: balance;
+/* ── MISSION ── statement left, supporting copy right, roles below ── */
+.mission { padding: var(--s5) 0; }
+.mission-inner { align-items: start; row-gap: var(--s5); }
+.mission-copy { grid-column: 1 / -1; align-items: start; row-gap: var(--s3); }
+.mission-head { grid-column: 1 / 7; }
+.mission-body { grid-column: 7 / 13; }
+.mission-body p {
+    color: var(--text-mid); font-size: 1rem; line-height: 1.7;
+    margin-bottom: var(--s2); text-wrap: pretty; max-width: 62ch;
 }
-.section-head h2 {
-  font-family: 'DM Serif Display', serif;
-  font-size: var(--fs-h2);
-  line-height: var(--lh-h2); letter-spacing: var(--ls-h2);
-  color: var(--text-dark);
-  margin-bottom: var(--s3);
-  text-wrap: balance;
+.mission-body .link-arrow { margin-top: var(--s1); }
+
+.role-stack {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--s4) var(--gutter);
+    align-items: start;
 }
 
-/* section headers stand alone, centred over the section, with the supporting
-   copy centred under the heading — same as the About route's section heads.
-   The row gap sets the rhythm, so neither child keeps its own margin. */
-.section-head.swiss-grid { align-items: start; row-gap: var(--s4); }
-.section-head > h2 { grid-column: 1 / -1; text-align: center; margin-bottom: 0; }
-.section-head > p { grid-column: 1 / -1; justify-self: center; max-width: 64ch; text-align: center; margin-bottom: 0; }
-
-.section-head p {
-  color: var(--text-mid); font-size: 1rem; line-height: 1.75;
-  font-weight: 300; text-wrap: pretty;
+/* roles — no card: a rule across the top, then a serif track name and copy */
+.role-card {
+    display: grid; row-gap: var(--s2);
+    border-top: 1px solid var(--text-dark); padding-top: var(--s2);
 }
-.section-head { margin-bottom: var(--s5); }
-.tracks-section .section-head { margin-bottom: 0; }
-
-/* ── PRIMARY CTA ── a text link in the accent, no button chrome ── */
-.join-cta {
-  display: inline-flex; align-items: center; gap: 10px;
-  color: var(--pink-700); font-weight: 600; font-size: .95rem;
-  text-decoration: none;
-  transition: opacity .2s;
+.role-name {
+    font-family: var(--font-serif); font-weight: 400;
+    font-size: var(--fs-h3); line-height: var(--lh-h3); letter-spacing: var(--ls-h3);
+    color: var(--text-dark);
 }
-.join-cta:hover { opacity: .65; }
-.join-cta:focus-visible { outline: 2px solid var(--pink-700); outline-offset: 3px; }
-
-.join-cta:hover .arrow i { transform: translateX(-100%); }
-
-/* ── EMPLOYERS ── a bare logo field. Every mark is pre-normalised to the same
-   optical area and centred in an identical 180x60 box, so no logo outweighs
-   another. Nothing is drawn between them. A wrapping row rather than a grid,
-   so a short last row centres under the full ones instead of hanging left. ── */
-.employers {
-  --cols: 4;
-  display: flex; flex-wrap: wrap; justify-content: center;
-  column-gap: var(--gutter);
-  row-gap: var(--s5);
-  align-items: center;
-}
-.employer {
-  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gutter)) / var(--cols));
-  display: flex; justify-content: center;
-}
-.employer img {
-  width: 180px; height: 60px;
-  object-fit: contain;
-  display: block;
+.role-body {
+    font-size: .9375rem; color: var(--text-mid); line-height: 1.7;
+    text-wrap: pretty;
 }
 
-/* ── CLOSING ── bare grid, no rules between the figures ── */
-.join-close-inner {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: var(--gutter);
-  row-gap: var(--s4);
-  align-items: end;
+/* ── WHERE MEMBERS HAVE PLACED ── one ink for every mark, so fourteen brand
+   colours don't compete with the page ── */
+.proof { padding: var(--s5) 0 var(--s6); }
+.placed-title { margin-bottom: var(--s4); }
+.placed-logos {
+    list-style: none;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--s4) var(--gutter); align-items: center;
+    border-top: 1px solid var(--text-dark); padding-top: var(--s4);
 }
-.join-stat { grid-column: span 3; display: flex; flex-direction: column; gap: var(--s1); }
-.join-num {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.4rem; line-height: 1; letter-spacing: -.02em;
-  color: var(--pink-600);
+.placed-logos li { display: flex; justify-content: center; }
+.placed-logos li.pre-in { opacity: 0; transform: translateY(12px); transition: opacity .6s ease, transform .6s ease; }
+.placed-logos li.pre-in.in { opacity: 1; transform: none; }
+.placed-logos img {
+    width: 160px; max-width: 100%; height: 56px; object-fit: contain;
+    filter: grayscale(1); opacity: .75;
 }
-.join-label { color: var(--text-mid); }
-
-.join-close-cta {
-  grid-column: 10 / 13;
-  display: flex; flex-direction: column; align-items: flex-start; gap: var(--s2);
-}
-.join-close-cta p { color: var(--text-mid); font-size: .9375rem; line-height: 1.7; font-weight: 300; }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .join-header    { padding: var(--s5) 0 var(--s4); }
-  .join-intro-section { padding-top: var(--s4); }
-  .tracks-section { padding: var(--s5) 0 var(--s4); }
-  .employers-section { padding: var(--s4) 0; }
-  .employers { --cols: 3; row-gap: var(--s4); }
-  .join-close     { padding: var(--s4) 0 var(--s5); }
-  .section-head   { margin-bottom: var(--s4); }
-  .join-stat      { grid-column: span 4; }
-  .join-close-cta { grid-column: 1 / -1; }
+@media (max-width: 1024px) {
+    /* three tracks fall under a workable measure here — stack them */
+    .role-stack { grid-template-columns: 1fr; }
 }
-@media (max-width: 560px) {
-  .employers { --cols: 2; }
-  .employer img { width: 140px; height: 48px; }
+@media (max-width: 900px) {
+    .hero { padding: var(--s5) 0 var(--s4); }
+    .mission { padding: var(--s4) 0; }
+    .proof { padding: var(--s4) 0 var(--s5); }
+    .mission-head, .mission-body { grid-column: 1 / -1; }
+    .stat-strip { column-gap: var(--s4); }
+    .placed-logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .placed-logos img { width: 130px; height: 46px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-up, .hero-title .word, .placed-logos li {
+        opacity: 1 !important; transform: none !important; filter: none !important;
+        transition: none !important;
+    }
 }

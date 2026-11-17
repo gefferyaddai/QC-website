@@ -14,7 +14,7 @@ const routes = {
     partner: 'partner/partner',
     join: 'join/join',
 };
-const withJs = new Set(['home', 'about', 'events']);
+const withJs = new Set(['home', 'about', 'events', 'join']);
 
 const appEl = document.getElementById('app-content');
 const fragmentCache = new Map();
