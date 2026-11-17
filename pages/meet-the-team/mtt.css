@@ -52,11 +52,18 @@
   font-weight: 400; text-wrap: pretty;
 }
 
+.team-group-title {
+  font-family: var(--font-serif); font-size: var(--fs-h2); line-height: var(--lh-h2);
+  letter-spacing: var(--ls-h2); font-weight: 400; color: var(--text-dark);
+  margin-bottom: var(--s4);
+}
+.team-grid + .team-group-title { margin-top: var(--s6); }
+
 /* ── ROSTER ── bare grid: three columns, nothing drawn between them ── */
 .team-grid { row-gap: var(--s5); }
 
 .member-card {
-  grid-column: span 4;
+  grid-column: span 3;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -66,6 +73,15 @@
   border-top: 1px solid var(--text-dark);
   padding-top: var(--s2);
   height: 100%;
+}
+
+.member-photo {
+  width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 15%;
+  margin-bottom: var(--s1); background: var(--text-dark);
+}
+div.member-photo {
+  display: grid; place-items: center; color: var(--off-white);
+  font-family: var(--font-serif); font-size: var(--fs-h2);
 }
 
 .member-name {
